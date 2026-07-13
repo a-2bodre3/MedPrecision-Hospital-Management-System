@@ -1,0 +1,29 @@
+<div hlmSidebarWrapper dir="rtl" class="h-screen flex bg-gray-50 w-full overflow-hidden">
+
+  <app-sidebar-staff class="border border-gray-300 h-full shrink-0"/>
+
+  <main hlmSidebarInset class="flex-1 h-full flex flex-col overflow-hidden bg-white">
+
+    <header class="h-16 flex items-center justify-between px-8 bg-white border-b border-gray-200 shrink-0">
+      <button hlmSidebarTrigger class="text-sm text-gray-600 hover:text-blue-600 transition font-medium">
+        القائمة
+      </button>
+      <div class="px-6 py-6 border-b border-gray-100">
+        <h1 class="text-xl font-bold text-blue-700 flex items-center gap-2">
+          <app-logo [hasIcon]="false"/>
+        </h1>
+      </div>
+
+      <div class="flex items-center gap-3 text-sm text-gray-500 bg-gray-100 px-4 py-1.5 rounded-full whitespace-nowrap">
+        <span>{{ currentDate() }}</span>
+        <span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+        <span class="font-medium text-gray-700">{{ currentTime() }}</span>
+      </div>
+    </header>
+
+    <div class="flex-1 p-8 bg-gray-100 overflow-y-auto">
+      <router-outlet/>
+    </div>
+
+  </main>
+</div>

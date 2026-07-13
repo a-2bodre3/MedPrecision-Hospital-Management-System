@@ -1,0 +1,40 @@
+<div class="min-h-screen flex flex-col bg-gray-50 overflow-x-hidden">
+  <header class="w-full flex items-center justify-center p-3 font-bold text-2xl border-b bg-white z-10">
+    <app-logo></app-logo>
+  </header>
+
+  <main class="flex-1 flex items-center justify-center p-4 md:p-8 relative overflow-hidden">
+
+    <div class="absolute inset-0 bg-[url('/Image/auth/bg-auth1.png')] bg-cover bg-center"></div>
+    <div class="absolute inset-0 bg-gray-900/60"></div>
+
+    <div
+      class="relative z-10 w-full max-w-5xl min-h-[600px] md:h-[600px] flex flex-col md:flex-row bg-white rounded-2xl overflow-hidden shadow-2xl">
+
+      <div class="hidden md:flex w-1/2 relative items-end justify-center text-center text-white px-10 pb-12">
+        <div class="absolute inset-0 bg-[url('/Image/auth/bg-auth2.png')] bg-cover bg-center"></div>
+        <div class="absolute inset-0 bg-black/50"></div>
+
+        <div class="relative z-10 space-y-4">
+          <h1 class="text-3xl font-bold leading-tight">
+            مستقبل الرعاية الصحية بين يديك
+          </h1>
+          <p class="text-base text-gray-200 leading-relaxed">
+            نظام MedPrecision HMS يوفر أحدث التقنيات لإدارة المنشآت الطبية بدقة وسرعة فائقة
+          </p>
+        </div>
+      </div>
+
+      <div class="w-full md:w-1/2 flex items-center justify-center px-6 py-10 bg-white">
+        <div class="w-full max-w-md">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-white z-10">
+    <app-footer-auth-layout></app-footer-auth-layout>
+  </footer>
+</div>

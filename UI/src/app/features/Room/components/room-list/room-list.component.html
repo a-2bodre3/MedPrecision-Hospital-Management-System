@@ -1,0 +1,72 @@
+<div class="w-full overflow-x-auto rounded-2xl border border-slate-200/80 bg-white shadow-sm" dir="rtl">
+  <table class="w-full min-w-[700px] border-collapse text-right text-sm">
+    <thead class="bg-slate-50/75 text-slate-500 border-b border-slate-200">
+    <tr>
+      <th class="px-6 py-4 font-semibold text-xs tracking-wider">رقم / اسم الغرفة</th>
+      <th class="px-6 py-4 font-semibold text-xs tracking-wider">نوع الغرفة</th>
+      <th class="px-6 py-4 font-semibold text-xs tracking-wider">الحالة</th>
+      <th class="px-6 py-4 font-semibold text-xs tracking-wider">الإجراءات</th>
+    </tr>
+    </thead>
+
+    <tbody class="divide-y divide-slate-100 text-slate-600">
+      @for (room of filteredRooms(); track room.id) {
+        <tr class="transition-colors duration-200 hover:bg-slate-50/50">
+
+          <td class="px-6 py-4 font-semibold text-slate-900">
+            <div class="flex items-center gap-2.5">
+              <svg lucideHospital class="w-4 h-4 text-blue-600"></svg>
+              <span>{{ room.roomNumber }}</span>
+            </div>
+          </td>
+
+          <td class="px-6 py-4">
+            <span
+              class="rounded-lg bg-blue-50/50 px-2.5 py-1 text-xs font-medium text-blue-700 border border-blue-100/50">
+              {{ room.roomType }}
+            </span>
+          </td>
+
+          <td class="px-6 py-4">
+            <span
+              class="inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium tracking-wide transition-all border"
+              [class]="room.isActive ? 'bg-emerald-50 text-emerald-700 border-emerald-200/60' : 'bg-rose-50 text-rose-700 border-rose-200/60'">
+              <span class="ml-1.5 h-1.5 w-1.5 rounded-full"
+                    [class]="room.isActive ? 'bg-emerald-500' : 'bg-rose-500'"></span>
+              {{ room.isActive ? 'نشط' : 'غير نشط' }}
+            </span>
+          </td>
+
+          <td class="px-6 py-4">
+            <div class="flex items-center gap-2">
+              <button (click)="showDialogView(room.id)"
+                      class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 border border-slate-200/40 bg-white transition-all hover:bg-blue-50 hover:text-blue-600 hover:border-blue-200/60 cursor-pointer shadow-sm"
+                      title="عرض التفاصيل">
+                <svg lucideEye class="w-4 h-4"></svg>
+              </button>
+
+              <button (click)="showDialogEdit(room.id)"
+                      class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 border border-slate-200/40 bg-white transition-all hover:bg-amber-50 hover:text-amber-600 hover:border-amber-200/60 cursor-pointer shadow-sm"
+                      title="تعديل">
+                <svg lucidePencil class="w-4 h-4"></svg>
+              </button>
+
+              <button (click)="showDeleteConfirmation(room.id, room.roomNumber)"
+                      class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 border border-slate-200/40 bg-white transition-all hover:bg-red-50 hover:text-red-600 hover:border-red-200/60 cursor-pointer shadow-sm"
+                      title="حذف">
+                <svg lucideTrash2 class="w-4 h-4"></svg>
+              </button>
+            </div>
+          </td>
+
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="4" class="text-center py-8 text-slate-400 italic">
+            لا توجد غرف مطابقة لخيارات التصفية المحددة.
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

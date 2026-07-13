@@ -1,0 +1,115 @@
+<div dir="rtl">
+  <header
+    class="flex items-center justify-between p-5 border-b border-slate-100 bg-gradient-to-b from-slate-50/50 to-white">
+    <div class="flex items-center gap-4">
+      <div class="flex items-center justify-center w-11 h-11 bg-blue-50 text-blue-600 rounded-xl">
+        @if (type() === 'update') {
+          <svg lucideClipboardPenLine></svg>
+        } @else if (type() === 'create') {
+          <svg lucideGitPullRequestCreate></svg>
+        }
+      </div>
+      <div>
+        <h2 class="text-lg font-bold text-slate-800 m-0">{{ title() }}</h2>
+        <p class="text-xs text-slate-500 mt-1 m-0">{{ description() }}</p>
+      </div>
+    </div>
+
+    <button (click)="closeDialog()"
+            class="p-2 text-slate-400 hover:text-red-500 hover:bg-slate-100 rounded-lg transition-colors duration-200"
+            aria-label="Close dialog">
+
+      <svg lucideXCircle></svg>
+
+    </button>
+  </header>
+  <form (submit)="onSubmit($event)" class="w-full max-w-xl mx-auto bg-white p-6 rounded-2xl space-y-6" dir="rtl">
+
+    <div class="space-y-4">
+      <div class="flex flex-col gap-1.5">
+        <label class="text-sm font-semibold text-slate-700">اسم الفرع</label>
+        <input type="text"
+               [formField]="branchForm.name"
+               placeholder="أدخل اسم الفرع الفعلي..."
+               class="w-full px-4 py-2.5 text-sm text-slate-800 bg-slate-50/50 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all duration-200">
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="flex flex-col gap-1.5">
+          <label class="text-sm font-semibold text-slate-700">رقم الفرع</label>
+          <input type="text"
+                 [formField]="branchForm.phoneNumber"
+                 placeholder="مثال: 102"
+                 class="w-full px-4 py-2.5 text-sm text-slate-800 bg-slate-50/50 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all duration-200">
+        </div>
+
+        <div class="flex flex-col gap-1.5">
+          <label class="text-sm font-semibold text-slate-700">كود الفرع</label>
+          <input type="text"
+                 [formField]="branchForm.code"
+                 [readOnly]="type() === 'update'"
+                 placeholder="مثال: BR-RYD"
+                 class="w-full px-4 py-2.5 text-sm text-slate-800 bg-slate-50/50 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all duration-200"
+                 [class.cursor-not-allowed]="type() === 'update'"
+                 [class.text-slate-500]="type() === 'update'">
+        </div>
+      </div>
+    </div>
+
+    @if (type() === 'update') {
+      <div class="flex items-center justify-between rounded-xl border border-slate-100 bg-slate-50/70 px-4 py-3">
+        <div>
+          <p class="text-sm font-semibold text-slate-700 m-0">حالة الفرع</p>
+          <p class="text-xs text-slate-400 mt-1 m-0">حدد إذا كان الفرع متاحًا داخل النظام</p>
+        </div>
+        <label class="inline-flex cursor-pointer items-center gap-2">
+          <input type="checkbox" [formField]="branchForm.isActive" class="h-4 w-4 accent-blue-600">
+          <span class="text-sm font-medium text-slate-600">{{ branchModel().isActive ? 'نشط' : 'غير نشط' }}</span>
+        </label>
+      </div>
+    }
+
+    <div class="pt-2 border-t border-slate-100">
+      <h2 class="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">
+        <span class="w-1 h-4 bg-blue-500 rounded-full"></span>
+        تفاصيل الموقع
+      </h2>
+
+      <div class="space-y-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="flex flex-col gap-1.5">
+            <label class="text-sm font-semibold text-slate-700">الدولة</label>
+            <input type="text"
+                   [formField]="branchForm.address.country"
+                   placeholder="المملكة العربية السعودية"
+                   class="w-full px-4 py-2.5 text-sm text-slate-800 bg-slate-50/50 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all duration-200">
+          </div>
+
+          <div class="flex flex-col gap-1.5">
+            <label class="text-sm font-semibold text-slate-700">المدينة</label>
+            <input type="text"
+                   [formField]="branchForm.address.city"
+                   placeholder="الرياض"
+                   class="w-full px-4 py-2.5 text-sm text-slate-800 bg-slate-50/50 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all duration-200">
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-1.5">
+          <label class="text-sm font-semibold text-slate-700">الشارع / الحي</label>
+          <input type="text"
+                 [formField]="branchForm.address.street"
+                 placeholder="شارع التخصصي - حي الياسمين"
+                 class="w-full px-4 py-2.5 text-sm text-slate-800 bg-slate-50/50 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all duration-200">
+        </div>
+      </div>
+    </div>
+
+    <div class="flex justify-end pt-4 border-t border-slate-100">
+      <button type="submit"
+              class="px-6 py-2.5 text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 active:scale-[0.98] rounded-xl shadow-lg shadow-blue-500/20 transition-all duration-200">
+        حفظ التغييرات
+      </button>
+    </div>
+
+  </form>
+</div>

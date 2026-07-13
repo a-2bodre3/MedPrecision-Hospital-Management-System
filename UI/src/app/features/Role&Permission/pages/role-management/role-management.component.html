@@ -1,0 +1,343 @@
+<div class="relative flex flex-col gap-6">
+  <app-header
+    title="إدارة الأدوار"
+    description="عرض وتنظيم أدوار المستخدمين والصلاحيات المرتبطة بها"
+  >
+    <button
+      hlmBtn
+      (click)="openCreateModal()"
+      class="bg-[#155dfc] hover:bg-[#155dfc]/80 cursor-pointer"
+    >
+      <svg lucideShieldPlus class="w-4 h-4 ml-2"></svg>
+      إضافة دور جديد
+    </button>
+  </app-header>
+
+  @if (store.error()) {
+    <div class="rounded-xl border border-rose-100 bg-rose-50 px-4 py-3 text-sm font-medium text-rose-700" dir="rtl">
+      {{ store.error() }}
+    </div>
+  }
+
+  <div class="flex items-center gap-4 bg-white p-4 rounded-xl border border-slate-100 shadow-sm" dir="rtl">
+    <div class="relative w-full max-w-md">
+      <input
+        type="search"
+        [value]="searchTerm()"
+        (input)="searchTerm.set($any($event.target).value)"
+        placeholder="ابحث باسم الدور..."
+        class="w-full rounded-lg border border-slate-200 bg-slate-50 py-2.5 pl-4 pr-10 text-sm text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:outline-none"
+      >
+      <svg lucideSearch class="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400"></svg>
+    </div>
+  </div>
+
+  <div class="w-full overflow-x-auto rounded-2xl border border-slate-200/80 bg-white shadow-sm" dir="rtl">
+    <table class="w-full min-w-[760px] border-collapse text-right text-sm">
+      <thead class="bg-slate-50/75 text-slate-500 border-b border-slate-200">
+        <tr>
+          <th class="px-6 py-4 font-semibold text-xs tracking-wider">ID</th>
+          <th class="px-6 py-4 font-semibold text-xs tracking-wider">اسم الدور</th>
+          <th class="px-6 py-4 font-semibold text-xs tracking-wider">الإجراءات</th>
+        </tr>
+      </thead>
+
+      <tbody class="divide-y divide-slate-100 text-slate-600">
+        @for (role of filteredRoles(); track role.id) {
+          <tr class="transition-colors duration-200 hover:bg-slate-50/50">
+            <td class="px-6 py-4 font-semibold text-slate-900">#{{ role.id }}</td>
+            <td class="px-6 py-4 font-medium text-slate-800">
+              <div class="flex items-center gap-2.5">
+                <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
+                  <svg lucideKeyRound class="h-4 w-4"></svg>
+                </span>
+                <span>{{ role.name }}</span>
+              </div>
+            </td>
+
+            <td class="px-6 py-4">
+              <div class="flex items-center gap-2">
+                <button
+                  (click)="openViewModal(role)"
+                  class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 border border-slate-200/40 bg-white transition-all hover:bg-sky-50 hover:text-sky-600 hover:border-sky-200/60 cursor-pointer shadow-sm"
+                  title="عرض">
+                  <svg lucideEye class="w-4 h-4"></svg>
+                </button>
+
+                <button
+                  (click)="openUpdateModal(role)"
+                  class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 border border-slate-200/40 bg-white transition-all hover:bg-amber-50 hover:text-amber-600 hover:border-amber-200/60 cursor-pointer shadow-sm"
+                  title="تعديل">
+                  <svg lucidePencil class="w-4 h-4"></svg>
+                </button>
+
+                <button
+                  (click)="openDeleteModal(role)"
+                  class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 border border-slate-200/40 bg-white transition-all hover:bg-red-50 hover:text-red-600 hover:border-red-200/60 cursor-pointer shadow-sm"
+                  title="حذف">
+                  <svg lucideTrash2 class="w-4 h-4"></svg>
+                </button>
+
+                <button
+                  (click)="openPermissionsModal(role)"
+                  class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 border border-slate-200/40 bg-white transition-all hover:bg-violet-50 hover:text-violet-600 hover:border-violet-200/60 cursor-pointer shadow-sm"
+                  title="إدارة الصلاحيات">
+                  <svg lucideSlidersHorizontal class="w-4 h-4"></svg>
+                </button>
+              </div>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="3" class="text-center py-8 text-slate-400 italic">
+              لا توجد أدوار مطابقة للبحث الحالي.
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  @if (store.isLoading()) {
+    <div class="absolute inset-0 z-20 flex min-h-64 items-center justify-center rounded-2xl bg-white/70 backdrop-blur-sm">
+      <div class="h-10 w-10 animate-spin rounded-full border-4 border-blue-100 border-t-blue-600"></div>
+    </div>
+  }
+</div>
+
+@if (modalMode(); as mode) {
+  <div class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/40 p-4" dir="rtl">
+    <div
+      class="max-h-[90vh] overflow-hidden rounded-2xl bg-white shadow-2xl shadow-slate-900/20"
+      [class]="mode === 'permissions' ? 'w-full max-w-5xl' : 'w-full max-w-lg'"
+    >
+
+      <!-- ======== Create / Update ======== -->
+      @if (mode === 'create' || mode === 'update') {
+        <header class="flex items-center justify-between p-5 border-b border-slate-100 bg-gradient-to-b from-slate-50/50 to-white">
+          <div class="flex items-center gap-4">
+            <div class="flex items-center justify-center w-11 h-11 bg-blue-50 text-blue-600 rounded-xl">
+              <svg lucideKeyRound></svg>
+            </div>
+            <div>
+              <h2 class="text-lg font-bold text-slate-800 m-0">
+                {{ mode === 'create' ? 'إضافة دور جديد' : 'تعديل الدور' }}
+              </h2>
+              <p class="text-xs text-slate-500 mt-1 m-0">اسم الدور مطلوب ولا يزيد عن 100 حرف</p>
+            </div>
+          </div>
+          <button
+            (click)="closeModal()"
+            class="p-2 text-slate-400 hover:text-red-500 hover:bg-slate-100 rounded-lg transition-colors duration-200 cursor-pointer"
+            aria-label="Close dialog">
+            <svg lucideCircleX></svg>
+          </button>
+        </header>
+
+        <form (submit)="submitRoleForm($event)" class="p-6">
+          <div class="flex flex-col gap-1.5">
+            <label class="text-sm font-semibold text-slate-700">اسم الدور</label>
+            <input
+              type="text"
+              [value]="roleName()"
+              (input)="roleName.set($any($event.target).value)"
+              (blur)="touchedRoleName.set(true)"
+              placeholder="مثلاً: Admin, Receptionist"
+              class="w-full px-3.5 py-2 text-sm text-slate-800 bg-slate-50 border rounded-lg focus:outline-none focus:border-blue-500 focus:bg-white transition-all duration-200"
+              [class]="touchedRoleName() && roleNameError() ? 'border-rose-300' : 'border-slate-200'"
+            >
+            @if (touchedRoleName() && roleNameError()) {
+              <p class="text-xs font-medium text-rose-600">{{ roleNameError() }}</p>
+            }
+          </div>
+
+          <div class="flex items-center justify-end gap-3 mt-6 pt-4 border-t border-slate-100">
+            <button
+              type="button"
+              (click)="closeModal()"
+              class="px-5 py-2 text-sm font-medium text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors duration-200 cursor-pointer"
+            >
+              إلغاء
+            </button>
+            <button
+              type="submit"
+              [disabled]="isRoleFormInvalid() || store.isLoading()"
+              class="px-5 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-slate-300 rounded-lg shadow-sm shadow-blue-100 transition-colors duration-200 cursor-pointer"
+            >
+              {{ mode === 'create' ? 'حفظ البيانات' : 'حفظ التعديلات' }}
+            </button>
+          </div>
+        </form>
+      }
+
+      <!-- ======== View ======== -->
+      @if (mode === 'view') {
+        <header class="flex items-center justify-between p-5 border-b border-slate-100 bg-gradient-to-b from-slate-50/50 to-white">
+          <div class="flex items-center gap-4">
+            <div class="flex items-center justify-center w-11 h-11 bg-sky-50 text-sky-600 rounded-xl">
+              <svg lucideEye></svg>
+            </div>
+            <div>
+              <h2 class="text-lg font-bold text-slate-800 m-0">تفاصيل الدور</h2>
+              <p class="text-xs text-slate-500 mt-1 m-0">عرض بيانات الدور والصلاحيات الحالية</p>
+            </div>
+          </div>
+          <button (click)="closeModal()" class="p-2 text-slate-400 hover:text-red-500 hover:bg-slate-100 rounded-lg transition-colors duration-200 cursor-pointer" aria-label="Close dialog">
+            <svg lucideCircleX></svg>
+          </button>
+        </header>
+
+        <section class="max-h-[70vh] overflow-y-auto p-6">
+          @if (selectedRole(); as role) {
+            <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+              <div class="rounded-xl border border-slate-100 bg-slate-50/60 p-4">
+                <p class="text-xs font-medium text-slate-400 mb-1">ID</p>
+                <p class="text-sm font-semibold text-slate-800">#{{ role.id }}</p>
+              </div>
+              <div class="rounded-xl border border-slate-100 bg-slate-50/60 p-4">
+                <p class="text-xs font-medium text-slate-400 mb-1">اسم الدور</p>
+                <p class="text-sm font-semibold text-slate-800">{{ role.name }}</p>
+              </div>
+            </div>
+
+            <div class="mt-5">
+              <h3 class="mb-3 text-sm font-bold text-slate-700">الصلاحيات الحالية</h3>
+
+              @if (store.isLoading()) {
+                <div class="flex items-center gap-2 text-sm text-slate-400">
+                  <div class="h-4 w-4 animate-spin rounded-full border-2 border-slate-200 border-t-blue-500"></div>
+                  جارٍ تحميل الصلاحيات...
+                </div>
+              } @else {
+                <div class="flex flex-wrap gap-2">
+                  @for (permission of currentRolePermissions(); track permission.id) {
+                    <span class="rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-xs font-medium text-blue-700">
+                      {{ permission.description }}
+                    </span>
+                  } @empty {
+                    <span class="text-sm text-slate-400 italic">لا توجد صلاحيات لهذا الدور.</span>
+                  }
+                </div>
+              }
+            </div>
+          }
+        </section>
+      }
+
+      <!-- ======== Delete ======== -->
+      @if (mode === 'delete') {
+        <div class="p-6 text-center">
+          <div class="mx-auto flex items-center justify-center w-12 h-12 rounded-full bg-rose-50 text-rose-600 mb-4 animate-pulse">
+            <svg lucideTrash2 class="w-6 h-6"></svg>
+          </div>
+
+          <h3 class="text-lg font-bold text-slate-800 mb-2">تأكيد الحذف</h3>
+          <p class="text-sm text-slate-500 mb-6 leading-relaxed">
+            هل أنت متأكد من أنك تريد حذف هذا الدور؟
+            @if (selectedRole(); as role) {
+              <br><span class="font-semibold text-slate-700">"{{ role.name }}"</span>
+            }
+          </p>
+
+          <div class="flex items-center justify-center gap-3">
+            <button
+              (click)="confirmDeleteRole()"
+              [disabled]="store.isLoading()"
+              class="px-5 py-2 text-sm font-bold text-white bg-rose-600 hover:bg-rose-700 disabled:cursor-not-allowed disabled:bg-slate-300 active:scale-[0.98] rounded-xl shadow-lg shadow-rose-500/20 transition-all duration-200 cursor-pointer"
+            >
+              حذف
+            </button>
+            <button
+              (click)="closeModal()"
+              class="px-5 py-2 text-sm font-medium text-slate-600 bg-slate-100 hover:bg-slate-200 active:scale-[0.98] rounded-xl transition-all duration-200 cursor-pointer"
+            >
+              إلغاء
+            </button>
+          </div>
+        </div>
+      }
+
+      <!-- ======== Permissions ======== -->
+      @if (mode === 'permissions') {
+        <header class="flex items-center justify-between p-5 border-b border-slate-100 bg-gradient-to-b from-slate-50/50 to-white">
+          <div class="flex items-center gap-4">
+            <div class="flex items-center justify-center w-11 h-11 bg-violet-50 text-violet-600 rounded-xl">
+              <svg lucideSlidersHorizontal></svg>
+            </div>
+            <div>
+              <h2 class="text-lg font-bold text-slate-800 m-0">إدارة الصلاحيات</h2>
+              <p class="text-xs text-slate-500 mt-1 m-0">
+                @if (selectedRole(); as role) {
+                  {{ role.name }} — {{ selectedPermissionCount() }} صلاحية محددة
+                }
+              </p>
+            </div>
+          </div>
+          <button (click)="closeModal()" class="p-2 text-slate-400 hover:text-red-500 hover:bg-slate-100 rounded-lg transition-colors duration-200 cursor-pointer" aria-label="Close dialog">
+            <svg lucideCircleX></svg>
+          </button>
+        </header>
+
+        <section class="max-h-[65vh] overflow-y-auto p-6">
+          @if (store.isLoading()) {
+            <div class="flex items-center justify-center gap-3 py-12 text-sm text-slate-400">
+              <div class="h-6 w-6 animate-spin rounded-full border-2 border-slate-200 border-t-violet-500"></div>
+              جارٍ تحميل الصلاحيات...
+            </div>
+          } @else {
+            <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
+              @for (group of permissionGroups(); track group.module) {
+                <div class="rounded-xl border border-slate-100 bg-white shadow-sm">
+                  <div class="flex items-center justify-between border-b border-slate-100 bg-slate-50/70 px-4 py-3">
+                    <h3 class="text-sm font-bold text-slate-800">{{ group.module }}</h3>
+                    <span class="rounded-full bg-white px-2.5 py-1 text-xs font-medium text-slate-500 border border-slate-200">
+                      {{ group.permissions.length }}
+                    </span>
+                  </div>
+
+                  <div class="divide-y divide-slate-100">
+                    @for (permission of group.permissions; track permission.id) {
+                      <label class="flex items-start gap-3 px-4 py-3 transition-colors hover:bg-slate-50 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          [checked]="hasPermission(permission.id)"
+                          (change)="togglePermission(permission.id, $any($event.target).checked)"
+                          class="mt-1 h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                        >
+                        <span class="flex flex-col gap-0.5">
+                          <span class="text-sm font-medium text-slate-700">{{ permission.description }}</span>
+                          <span class="text-xs text-slate-400">{{ permission.token }}</span>
+                        </span>
+                      </label>
+                    }
+                  </div>
+                </div>
+              } @empty {
+                <div class="rounded-xl border border-slate-100 bg-slate-50 p-6 text-center text-sm text-slate-400 lg:col-span-2">
+                  لا توجد صلاحيات متاحة حالياً.
+                </div>
+              }
+            </div>
+          }
+        </section>
+
+        <footer class="flex items-center justify-end gap-3 border-t border-slate-100 bg-white p-5">
+          <button
+            (click)="closeModal()"
+            class="px-5 py-2 text-sm font-medium text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors duration-200 cursor-pointer"
+          >
+            إلغاء
+          </button>
+          <button
+            (click)="savePermissions()"
+            [disabled]="store.isLoading()"
+            class="px-5 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-slate-300 rounded-lg shadow-sm shadow-blue-100 transition-colors duration-200 cursor-pointer"
+          >
+            حفظ الصلاحيات
+          </button>
+        </footer>
+      }
+
+    </div>
+  </div>
+}

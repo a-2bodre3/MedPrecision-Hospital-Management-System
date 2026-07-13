@@ -1,0 +1,242 @@
+<div class="flex flex-col gap-6" dir="rtl">
+  <app-header
+    title="ملف المريض"
+    description="عرض تفاصيل الملف الطبي والشخصي، الحالات المرضية، وقائمة المواعيد"
+  >
+    <button (click)="goBack()"
+            class="cursor-pointer transition-colors bg-white hover:bg-slate-50 border border-slate-200 text-slate-600 px-4 py-2 rounded-xl flex items-center gap-2 shadow-sm font-semibold">
+      <svg lucideArrowRight class="w-4 h-4"></svg>
+      رجوع
+    </button>
+  </app-header>
+
+  @if (patientStore.loading() && !patientStore.selectedPatient()) {
+    <div
+      class="bg-white rounded-2xl border border-slate-100 shadow-sm p-12 text-center text-slate-400 flex flex-col items-center justify-center gap-3">
+      <div class="w-8 h-8 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+      <span class="text-sm font-medium text-slate-500">جاري تحميل بيانات المريض...</span>
+    </div>
+  } @else if (patientStore.selectedPatient(); as patient) {
+    <section class="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-6 items-start">
+      <!-- البطاقة الجانبية للمريض -->
+      <aside class="bg-white rounded-3xl border border-slate-100 shadow-sm p-6 flex flex-col items-center text-center gap-6 sticky top-6">
+        <div class="relative group">
+          @if (patient.imageUrl) {
+            <img [src]="'https://localhost:7042' + patient.imageUrl" [alt]="patient.fullName"
+                 class="h-28 w-28 rounded-full object-cover ring-4 ring-blue-50 border border-slate-100 shadow-inner">
+          } @else {
+            <div
+              class="flex h-28 w-28 items-center justify-center rounded-full bg-gradient-to-br from-blue-50 to-indigo-50 text-blue-600 ring-4 ring-blue-50 border border-slate-100">
+              <svg lucideUserRound class="w-12 h-12 stroke-[1.5]"></svg>
+            </div>
+          }
+        </div>
+
+        <div class="space-y-1">
+          <h2 class="text-lg font-extrabold text-slate-800 tracking-tight">{{ patient.fullName }}</h2>
+          <p class="text-xs font-bold text-slate-400 font-mono tracking-wider bg-slate-50 px-3 py-1 rounded-full border border-slate-100 inline-block">
+            {{ patient.patientCode }}
+          </p>
+        </div>
+
+        <span
+          class="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold border"
+          [class]="patient.isActive
+            ? 'bg-emerald-50 text-emerald-700 border-emerald-200/60'
+            : 'bg-rose-50 text-rose-700 border-rose-200/60'">
+          <span class="w-1.5 h-1.5 rounded-full ml-1.5"
+                [class]="patient.isActive ? 'bg-emerald-500' : 'bg-rose-500'"></span>
+          {{ patient.isActive ? 'نشط' : 'غير نشط' }}
+        </span>
+
+        <!-- أزرار التبويبات -->
+        <nav class="w-full flex flex-col gap-1.5 pt-4 border-t border-slate-100">
+          <button (click)="setActiveTab('basic')"
+                  [class]="activeTab() === 'basic'
+                    ? 'bg-blue-50 text-blue-700 font-bold'
+                    : 'text-slate-600 hover:bg-slate-50 font-medium'"
+                  class="cursor-pointer w-full text-right px-4 py-3 rounded-2xl transition-all duration-200 text-sm flex items-center gap-3">
+            <svg lucideInfo class="w-4 h-4"></svg>
+            البيانات الأساسية
+          </button>
+
+          <button (click)="setActiveTab('medical')"
+                  [class]="activeTab() === 'medical'
+                    ? 'bg-blue-50 text-blue-700 font-bold'
+                    : 'text-slate-600 hover:bg-slate-50 font-medium'"
+                  class="cursor-pointer w-full text-right px-4 py-3 rounded-2xl transition-all duration-200 text-sm flex items-center gap-3">
+            <svg lucideHeartPulse class="w-4 h-4"></svg>
+            السجل المرضي
+          </button>
+
+          <button (click)="setActiveTab('appointments')"
+                  [class]="activeTab() === 'appointments'
+                    ? 'bg-blue-50 text-blue-700 font-bold'
+                    : 'text-slate-600 hover:bg-slate-50 font-medium'"
+                  class="cursor-pointer w-full text-right px-4 py-3 rounded-2xl transition-all duration-200 text-sm flex items-center gap-3">
+            <svg lucideCalendar class="w-4 h-4"></svg>
+            المواعيد
+          </button>
+        </nav>
+      </aside>
+
+      <!-- محتوى التبويب المختار -->
+      <div class="bg-white rounded-3xl border border-slate-100 shadow-sm p-6 lg:p-8 min-h-[460px]">
+        @if (activeTab() === 'basic') {
+          <div class="space-y-8 animate-fade-in">
+            <!-- قسم المعلومات الشخصية -->
+            <div>
+              <h3 class="text-base font-bold text-slate-800 mb-5 pb-3 border-b border-slate-100 flex items-center gap-2">
+                <span class="w-1 h-4 bg-blue-600 rounded-full"></span>
+                المعلومات الشخصية للاتصال
+              </h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <div class="flex flex-col gap-1.5 p-4 rounded-2xl bg-slate-50/50 border border-slate-100/80">
+                  <span class="text-xs font-semibold text-slate-400">البريد الإلكتروني</span>
+                  <strong class="text-sm font-semibold text-slate-700 break-all">{{ patient.email }}</strong>
+                </div>
+
+                <div class="flex flex-col gap-1.5 p-4 rounded-2xl bg-slate-50/50 border border-slate-100/80">
+                  <span class="text-xs font-semibold text-slate-400">رقم الهاتف</span>
+                  <strong class="text-sm font-semibold text-slate-700" dir="ltr">{{ patient.phoneNumber }}</strong>
+                </div>
+
+                <div class="flex flex-col gap-1.5 p-4 rounded-2xl bg-slate-50/50 border border-slate-100/80">
+                  <span class="text-xs font-semibold text-slate-400">الجنس</span>
+                  <strong class="text-sm font-semibold text-slate-700">
+                    {{ patient.gender === '1' ? 'ذكر' : (patient.gender === '2' ? 'أنثى' : 'غير محدد') }}
+                  </strong>
+                </div>
+
+                <div class="flex flex-col gap-1.5 p-4 rounded-2xl bg-slate-50/50 border border-slate-100/80">
+                  <span class="text-xs font-semibold text-slate-400">تاريخ الميلاد</span>
+                  <strong class="text-sm font-semibold text-slate-700">
+                    {{ patient.dateOfBirth ? (patient.dateOfBirth | date: 'yyyy-MM-dd') : 'غير محدد' }}
+                  </strong>
+                </div>
+
+                <div class="flex flex-col gap-1.5 p-4 rounded-2xl bg-slate-50/50 border border-slate-100/80">
+                  <span class="text-xs font-semibold text-slate-400">تاريخ التسجيل بالعيادة</span>
+                  <strong class="text-sm font-semibold text-slate-700">
+                    {{ patient.createdAt ? (patient.createdAt | date: 'yyyy-MM-dd') : 'غير محدد' }}
+                  </strong>
+                </div>
+              </div>
+            </div>
+
+            <!-- قسم العنوان الجغرافي -->
+            <div>
+              <h3 class="text-base font-bold text-slate-800 mb-5 pb-3 border-b border-slate-100 flex items-center gap-2">
+                <span class="w-1 h-4 bg-blue-600 rounded-full"></span>
+                العنوان الوطني والجغرافي
+              </h3>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <div class="flex flex-col gap-1.5 p-4 rounded-2xl bg-slate-50/50 border border-slate-100/80">
+                  <span class="text-xs font-semibold text-slate-400">الدولة</span>
+                  <strong class="text-sm font-semibold text-slate-700">{{ patient.country || 'غير محدد' }}</strong>
+                </div>
+
+                <div class="flex flex-col gap-1.5 p-4 rounded-2xl bg-slate-50/50 border border-slate-100/80">
+                  <span class="text-xs font-semibold text-slate-400">المدينة</span>
+                  <strong class="text-sm font-semibold text-slate-700">{{ patient.city || 'غير محدد' }}</strong>
+                </div>
+
+                <div class="flex flex-col gap-1.5 p-4 rounded-2xl bg-slate-50/50 border border-slate-100/80">
+                  <span class="text-xs font-semibold text-slate-400">الشارع والحي</span>
+                  <strong class="text-sm font-semibold text-slate-700">{{ patient.street || 'غير محدد' }}</strong>
+                </div>
+              </div>
+            </div>
+
+            <!-- قسم حالات الطوارئ -->
+            <div>
+              <h3 class="text-base font-bold text-slate-800 mb-5 pb-3 border-b border-slate-100 flex items-center gap-2">
+                <span class="w-1 h-4 bg-rose-500 rounded-full"></span>
+                الاتصال عند حالات الطوارئ
+              </h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div class="flex flex-col gap-1.5 p-4 rounded-2xl bg-rose-50/20 border border-rose-100/60">
+                  <span class="text-xs font-semibold text-rose-600">رقم هاتف الطوارئ</span>
+                  <strong class="text-sm font-semibold text-slate-700" dir="ltr">{{ patient.emergencyPhoneNumber || 'غير مسجل' }}</strong>
+                </div>
+
+                <div class="flex flex-col gap-1.5 p-4 rounded-2xl bg-rose-50/20 border border-rose-100/60">
+                  <span class="text-xs font-semibold text-rose-600">البريد الإلكتروني لحالات الطوارئ</span>
+                  <strong class="text-sm font-semibold text-slate-700 break-all">{{ patient.emergencyEmail || 'غير مسجل' }}</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+
+        @if (activeTab() === 'medical') {
+          <div class="space-y-8 animate-fade-in">
+            <!-- قسم أنواع الحساسية -->
+            <div>
+              <h3 class="text-base font-bold text-slate-800 mb-5 pb-3 border-b border-slate-100 flex items-center gap-2">
+                <span class="w-1 h-4 bg-rose-500 rounded-full"></span>
+                حالات الحساسية المسجلة للمريض
+              </h3>
+              <div class="flex flex-wrap gap-2.5 p-4 bg-slate-50/50 border border-dashed border-slate-200/80 rounded-2xl items-center min-h-[70px]">
+                @if (!patient.allergies || patient.allergies.length === 0) {
+                  <div class="flex items-center gap-2 text-slate-400 text-xs italic">
+                    <svg lucideShieldAlert class="w-4 h-4 text-slate-400"></svg>
+                    لا توجد حالات حساسية مسجلة في ملف المريض حالياً.
+                  </div>
+                } @else {
+                  @for (allergy of patient.allergies; track allergy) {
+                    <span class="inline-flex items-center bg-rose-50 text-rose-700 border border-rose-200/60 text-xs font-bold px-3 py-1.5 rounded-xl">
+                      {{ allergy }}
+                    </span>
+                  }
+                }
+              </div>
+            </div>
+
+            <!-- قسم الأمراض المزمنة -->
+            <div>
+              <h3 class="text-base font-bold text-slate-800 mb-5 pb-3 border-b border-slate-100 flex items-center gap-2">
+                <span class="w-1 h-4 bg-indigo-500 rounded-full"></span>
+                الأمراض المزمنة المسجلة
+              </h3>
+              <div class="flex flex-wrap gap-2.5 p-4 bg-slate-50/50 border border-dashed border-slate-200/80 rounded-2xl items-center min-h-[70px]">
+                @if (!patient.chronicDiseases || patient.chronicDiseases.length === 0) {
+                  <div class="flex items-center gap-2 text-slate-400 text-xs italic">
+                    <svg lucideShieldAlert class="w-4 h-4 text-slate-400"></svg>
+                    لا توجد أمراض مزمنة مسجلة في ملف المريض حتى الآن.
+                  </div>
+                } @else {
+                  @for (disease of patient.chronicDiseases; track disease) {
+                    <span class="inline-flex items-center bg-indigo-50 text-indigo-700 border border-indigo-200/60 text-xs font-bold px-3 py-1.5 rounded-xl">
+                      {{ disease }}
+                    </span>
+                  }
+                }
+              </div>
+            </div>
+          </div>
+        }
+
+        @if (activeTab() === 'appointments') {
+          <div class="space-y-6 animate-fade-in">
+            <h3 class="text-base font-bold text-slate-800 mb-5 pb-3 border-b border-slate-100 flex items-center gap-2">
+              <span class="w-1 h-4 bg-emerald-500 rounded-full"></span>
+              سجل مواعيد المريض بالعيادة
+            </h3>
+
+            <!-- Placeholder لمواعيد المريض لعدم توفرها بالـ API حالياً -->
+            <div class="flex flex-col items-center justify-center text-center p-12 bg-slate-50 rounded-2xl border border-dashed border-slate-200/80 gap-4">
+              <div class="w-12 h-12 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600">
+                <svg lucideCalendar class="w-6 h-6"></svg>
+              </div>
+              <div class="space-y-1">
+                <h4 class="text-sm font-bold text-slate-700">لا يوجد مواعيد مسجلة حالياً</h4>
+                <p class="text-xs text-slate-400 max-w-xs">يمكنك حجز موعد جديد للمريض عن طريق قسم المواعيد بقائمة النظام</p>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </section>
+  }
+</div>

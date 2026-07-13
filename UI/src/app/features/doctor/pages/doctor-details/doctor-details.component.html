@@ -1,0 +1,175 @@
+<div class="flex flex-col gap-6" dir="rtl">
+  <app-header
+    title="تفاصيل الطبيب"
+    description="عرض ملف الطبيب والمعلومات المهنية والوظيفية وموقع العمل"
+  >
+    <button hlmBtn variant="outline" (click)="goBack()"
+            class="cursor-pointer transition-colors hover:bg-slate-50 border-slate-200 text-slate-600 gap-2">
+      <svg lucideArrowRight class="w-4 h-4"></svg>
+      رجوع
+    </button>
+  </app-header>
+
+  @if (employeeStore.loading() && !employeeStore.selectedDoctor()) {
+    <div
+      class="bg-white rounded-2xl border border-slate-100 shadow-sm p-12 text-center text-slate-400 flex flex-col items-center justify-center gap-3">
+      <div class="w-8 h-8 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+      <span class="text-sm font-medium text-slate-500">جاري تحميل بيانات الطبيب...</span>
+    </div>
+  } @else if (employeeStore.selectedDoctor(); as doctor) {
+    <section class="grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-6 items-start">
+      <aside class="bg-white rounded-2xl border border-slate-100 shadow-sm p-6 sticky top-6">
+        <div class="flex flex-col items-center text-center">
+          <div class="relative group mb-4">
+            @if (doctor.imageUrl) {
+              <img [src]="'https://localhost:7042'+doctor.imageUrl" [alt]="doctor.fullName"
+                   class="h-32 w-32 rounded-full object-cover ring-4 ring-slate-50 border border-slate-100 shadow-inner">
+            } @else {
+              <div
+                class="flex h-32 w-32 items-center justify-center rounded-full bg-gradient-to-br from-blue-50 to-indigo-50 text-blue-600 ring-4 ring-slate-50 border border-slate-100">
+                <svg lucideUserRound class="w-14 h-14 stroke-[1.5]"></svg>
+              </div>
+            }
+          </div>
+
+          <div class="space-y-1 mb-4">
+            <h2 class="text-xl font-bold text-slate-800 tracking-tight">{{ doctor.fullName }}</h2>
+            <p
+              class="text-sm font-medium text-blue-600 bg-blue-50/50 px-3 py-1 rounded-full inline-block">{{ doctor.jobTitle }}</p>
+          </div>
+
+          <span
+            class="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold border mb-6"
+            [class]="doctor.isActive
+              ? 'bg-emerald-50 text-emerald-700 border-emerald-200/60'
+              : 'bg-rose-50 text-rose-700 border-rose-200/60'">
+            <span class="w-1.5 h-1.5 rounded-full ml-1.5"
+                  [class]="doctor.isActive ? 'bg-emerald-500' : 'bg-rose-500'"></span>
+            {{ doctor.isActive ? 'نشط' : 'غير نشط' }}
+          </span>
+
+          <button hlmBtn variant="outline"
+                  class="w-full cursor-pointer gap-2 border-slate-200 hover:bg-slate-50 text-slate-700 font-medium"
+                  (click)="showPasswordForm.set(!showPasswordForm())">
+            <svg lucideKeyRound class="w-4 h-4"></svg>
+            تغيير كلمة المرور
+          </button>
+        </div>
+
+        @if (showPasswordForm()) {
+          <form (submit)="submitPassword($event)" class="mt-5 pt-5 border-t border-slate-100 flex flex-col gap-3">
+            <div class="relative">
+              <input
+                type="password"
+                [value]="newPassword()"
+                (input)="updatePasswordValue($event)"
+                placeholder="كلمة المرور الجديدة"
+                class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-50"
+              >
+            </div>
+            <button type="submit" hlmBtn
+                    class="w-full cursor-pointer bg-blue-600 hover:bg-blue-700 text-white rounded-xl shadow-sm shadow-blue-100 transition-all">
+              حفظ كلمة المرور
+            </button>
+          </form>
+        }
+      </aside>
+
+      <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-6 lg:p-8 flex flex-col gap-8">
+
+        <div>
+          <h3 class="text-base font-bold text-slate-800 mb-6 pb-3 border-b border-slate-100 flex items-center gap-2">
+            <span class="w-1 h-4 bg-blue-600 rounded-full"></span>
+            المعلومات المهنية والتخصص
+          </h3>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div class="flex flex-col gap-1.5 p-3.5 rounded-xl bg-blue-50/30 border border-blue-100/50">
+              <span class="text-xs font-medium text-blue-600">التخصص</span>
+              <strong class="text-sm font-bold text-slate-800">{{ doctor.specialization }}</strong>
+            </div>
+
+            <div class="flex flex-col gap-1.5 p-3.5 rounded-xl bg-blue-50/30 border border-blue-100/50">
+              <span class="text-xs font-medium text-blue-600">الدرجة العلمية</span>
+              <strong class="text-sm font-bold text-slate-800">{{ doctor.academicDegree }}</strong>
+            </div>
+
+            <div class="flex flex-col gap-1.5 p-3.5 rounded-xl bg-blue-50/30 border border-blue-100/50">
+              <span class="text-xs font-medium text-blue-600">رقم الرخصة</span>
+              <strong class="text-sm font-mono font-bold text-slate-800">{{ doctor.licenseNumber }}</strong>
+            </div>
+
+            <div class="flex flex-col gap-1.5 p-3.5 rounded-xl bg-emerald-50/30 border border-emerald-100/50">
+              <span class="text-xs font-medium text-emerald-600">سعر الكشف</span>
+              <strong class="text-sm font-mono font-bold text-emerald-700">{{ doctor.consultationFee }}</strong>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-base font-bold text-slate-800 mb-6 pb-3 border-b border-slate-100 flex items-center gap-2">
+            <span class="w-1 h-4 bg-slate-400 rounded-full"></span>
+            المعلومات الشخصية والوظيفية
+          </h3>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div class="flex flex-col gap-1.5 p-3.5 rounded-xl bg-slate-50/50 border border-slate-100">
+              <span class="text-xs font-medium text-slate-400">البريد الإلكتروني</span>
+              <strong class="text-sm font-semibold text-slate-700 break-all">{{ doctor.email }}</strong>
+            </div>
+
+            <div class="flex flex-col gap-1.5 p-3.5 rounded-xl bg-slate-50/50 border border-slate-100">
+              <span class="text-xs font-medium text-slate-400">رقم الهاتف</span>
+              <strong class="text-sm font-semibold text-slate-700" dir="ltr">{{ doctor.phoneNumber }}</strong>
+            </div>
+
+            <div class="flex flex-col gap-1.5 p-3.5 rounded-xl bg-slate-50/50 border border-slate-100">
+              <span class="text-xs font-medium text-slate-400">الدور</span>
+              <strong class="text-sm font-semibold text-slate-700">{{ doctor.roleName }}</strong>
+            </div>
+
+            <div class="flex flex-col gap-1.5 p-3.5 rounded-xl bg-slate-50/50 border border-slate-100">
+              <span class="text-xs font-medium text-slate-400">الفرع</span>
+              <strong class="text-sm font-semibold text-slate-700">{{ doctor.branchName }}</strong>
+            </div>
+
+            <div class="flex flex-col gap-1.5 p-3.5 rounded-xl bg-slate-50/50 border border-slate-100">
+              <span class="text-xs font-medium text-slate-400">القسم</span>
+              <strong class="text-sm font-semibold text-slate-700">{{ doctor.departmentName }}</strong>
+            </div>
+
+            <div class="flex flex-col gap-1.5 p-3.5 rounded-xl bg-slate-50/50 border border-slate-100">
+              <span class="text-xs font-medium text-slate-400">الراتب</span>
+              <strong class="text-sm font-semibold text-emerald-600 font-mono">{{ doctor.salary }}</strong>
+            </div>
+
+            <div class="flex flex-col gap-1.5 p-3.5 rounded-xl bg-slate-50/50 border border-slate-100">
+              <span class="text-xs font-medium text-slate-400">تاريخ الميلاد</span>
+              <strong
+                class="text-sm font-semibold text-slate-700">{{ doctor.birthDate ? (doctor.birthDate | date: 'yyyy-MM-dd') : 'غير محدد' }}</strong>
+            </div>
+
+            <div class="flex flex-col gap-1.5 p-3.5 rounded-xl bg-slate-50/50 border border-slate-100">
+              <span class="text-xs font-medium text-slate-400">تاريخ التعيين</span>
+              <strong
+                class="text-sm font-semibold text-slate-700">{{ doctor.hireDate ? (doctor.hireDate | date: 'yyyy-MM-dd') : 'غير محدد' }}</strong>
+            </div>
+
+            <div class="flex flex-col gap-1.5 p-3.5 rounded-xl bg-slate-50/50 border border-slate-100">
+              <span class="text-xs font-medium text-slate-400">تاريخ الإنشاء</span>
+              <strong class="text-sm font-semibold text-slate-700">{{ doctor.createdAt | date: 'yyyy-MM-dd' }}</strong>
+            </div>
+
+            <div
+              class="flex flex-col gap-1.5 p-3.5 rounded-xl bg-slate-50/50 border border-slate-100 md:col-span-2 lg:col-span-3">
+              <span class="text-xs font-medium text-slate-400">العنوان</span>
+              <strong class="text-sm font-semibold text-slate-700">{{ doctor.street }}، {{ doctor.city }}
+                ، {{ doctor.country }}</strong>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  }
+</div>

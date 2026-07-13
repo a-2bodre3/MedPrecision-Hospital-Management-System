@@ -1,0 +1,81 @@
+<div dir="rtl">
+  @if (branchStore.isLoading()) {
+    <hlm-empty>
+      <hlm-empty-header>
+        <hlm-empty-media variant="icon">
+          <hlm-spinner/>
+        </hlm-empty-media>
+        <div hlmEmptyTitle>جارٍ معالجة طلبك</div>
+        <div hlmEmptyDescription>يرجى الانتظار ريثما تتم معالجة طلبك. لا تقم بتحديث الصفحة.</div>
+      </hlm-empty-header>
+    </hlm-empty>
+  } @else {
+
+
+    <header
+      class="flex items-center justify-between p-5 border-b border-slate-100 bg-gradient-to-b from-slate-50/50 to-white">
+      <div class="flex items-center gap-4">
+        <div class="flex items-center justify-center w-11 h-11 bg-blue-50 text-blue-600 rounded-xl">
+          <svg lucideHospital class="w-6 h-6"></svg>
+        </div>
+        <div>
+          <h2 class="text-lg font-bold text-slate-800 m-0">عرض تفاصيل الفرع</h2>
+          <p class="text-xs text-slate-500 mt-1 m-0">بيانات مرجعية للنظام</p>
+        </div>
+      </div>
+
+      <button (click)="closeDialog()"
+              class="p-2 text-slate-400 hover:text-red-500 hover:bg-slate-100 rounded-lg transition-colors duration-200"
+              aria-label="Close dialog">
+        <svg lucideXCircle></svg>
+      </button>
+    </header>
+
+    <main class="p-6">
+
+      <section class="flex justify-between items-center mb-6">
+        <div>
+          <span class="text-xs font-medium text-slate-400 block mb-1">اسم الفرع</span>
+          <h1 class="text-2xl font-extrabold text-blue-600 m-0">{{ branchStore.branchDetails()?.name }}</h1>
+        </div>
+        <span
+          class="px-3 py-1 text-xs font-semibold border rounded-full select-none"
+          [class]="branchStore.branchDetails()?.isActive
+            ? 'text-emerald-700 bg-emerald-50 border-emerald-200/60'
+            : 'text-rose-700 bg-rose-50 border-rose-200/60'">
+        {{ branchStore.branchDetails()?.isActive ? 'نشط' : 'غير نشط' }}
+      </span>
+      </section>
+
+      <hr class="border-t border-slate-100 my-5"/>
+
+      <section class="grid grid-cols-2 gap-4">
+
+        <div class="p-4 bg-slate-50/70 border border-slate-100 rounded-xl">
+          <p class="text-xs font-medium text-slate-400 mb-1.5 m-0">معرف الفرع</p>
+          <span
+            class="inline-block text-sm font-mono font-bold text-blue-600 bg-white border border-slate-200/60 px-2 py-0.5 rounded-md">
+          {{ branchStore.branchDetails()?.code }}
+        </span>
+        </div>
+
+        <div class="p-4 bg-slate-50/70 border border-slate-100 rounded-xl">
+          <p class="text-xs font-medium text-slate-400 mb-1.5 m-0">رقم التواصل</p>
+          <p
+            class="text-sm font-semibold text-slate-700 font-mono tracking-wider m-0">{{ branchStore.branchDetails()?.phoneNumber }}</p>
+        </div>
+
+        <div class="col-span-2 p-4 bg-slate-50/70 border border-slate-100 rounded-xl">
+          <p class="text-xs font-medium text-slate-400 mb-2 m-0">الموقع</p>
+          <div class="text-sm text-slate-700">
+            <p class="font-bold m-0 text-slate-800">{{ branchStore.branchDetails()?.address?.country }}</p>
+            <p class="text-slate-500 text-xs mt-1 m-0">{{ branchStore.branchDetails()?.address?.city }}
+              - {{ branchStore.branchDetails()?.address?.street }}</p>
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+  }
+</div>

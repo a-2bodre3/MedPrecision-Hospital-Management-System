@@ -1,0 +1,138 @@
+<!--<div dir="rtl"-->
+<!--     class="bg-white text-gray-900  max-w-2xl mx-auto overflow-hidden">-->
+
+<!--  <header class="flex items-center justify-between gap-4 p-5 border-b border-gray-100 bg-blue-50/30">-->
+<!--    <div class="space-y-1.5 text-right">-->
+<!--      <h3 class="text-xl font-bold text-gray-900 tracking-tight leading-none">-->
+<!--        {{ header() }}-->
+<!--      </h3>-->
+<!--      <p class="text-sm text-blue-600 font-medium">-->
+<!--        {{ description() }}-->
+<!--      </p>-->
+<!--    </div>-->
+
+<!--    <button-->
+<!--      (click)="onClose()"-->
+<!--      class="flex items-center justify-center w-8 h-8 rounded-md text-gray-400 hover:text-blue-600 hover:bg-blue-50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">-->
+<!--      <svg lucideX class="w-4 h-4"></svg>-->
+<!--    </button>-->
+<!--  </header>-->
+
+<!--  <form (submit)="onSubmit($event)" class="p-6 space-y-6">-->
+
+<!--    <div class="space-y-2">-->
+<!--      <label class="text-sm font-semibold text-gray-700 block mb-2">أيام العمل</label>-->
+<!--      <div class="flex flex-wrap gap-2">-->
+<!--        @for (day of days(); track $index) {-->
+<!--          <span-->
+<!--            (click)="selectedDay($index)"-->
+<!--            class="px-4 py-2 rounded-lg cursor-pointer text-sm font-medium select-none transition-all duration-200 shadow-sm"-->
+<!--            [class.bg-blue-600]="day.selected"-->
+<!--            [class.text-white]="day.selected"-->
+<!--            [class.bg-blue-50]="!day.selected"-->
+<!--            [class.text-blue-700]="!day.selected"-->
+<!--            [class.hover:bg-blue-100]="!day.selected"-->
+<!--          >-->
+<!--            {{ day.label }}-->
+<!--          </span>-->
+<!--        }-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">-->
+
+<!--      <hlm-field class="space-y-2">-->
+<!--        <label hlmFieldLabel for="start-time" class="text-sm font-semibold text-gray-700">وقت بداية الموعد</label>-->
+<!--        <input-->
+<!--          [formField]="scheduleForm.startTime"-->
+<!--          hlmInput-->
+<!--          id="start-time"-->
+<!--          type="time"-->
+<!--          step="1"-->
+<!--          class="w-full bg-gray-50 border-0 focus:bg-white px-3 py-2.5 rounded-lg focus-visible:ring-2 focus-visible:ring-blue-500 text-gray-900 transition-all"-->
+<!--        />-->
+<!--      </hlm-field>-->
+
+<!--      <hlm-field class="space-y-2">-->
+<!--        <label hlmFieldLabel for="end-time" class="text-sm font-semibold text-gray-700">وقت انتهاء الموعد</label>-->
+<!--        <input-->
+<!--          [formField]="scheduleForm.endTime"-->
+<!--          hlmInput-->
+<!--          id="end-time"-->
+<!--          type="time"-->
+<!--          step="1"-->
+<!--          class="w-full bg-gray-50 border-0 focus:bg-white px-3 py-2.5 rounded-lg focus-visible:ring-2 focus-visible:ring-blue-500 text-gray-900 transition-all"-->
+<!--        />-->
+<!--      </hlm-field>-->
+
+<!--    </div>-->
+
+<!--    <hlm-field class="space-y-2">-->
+<!--      <label hlmFieldLabel for="maxPatient" class="text-sm font-semibold text-gray-700">الحد الأقصى للمرضى</label>-->
+<!--      <input-->
+<!--        hlmInput-->
+<!--        [formField]="scheduleForm.maxPatients"-->
+<!--        id="maxPatient"-->
+<!--        type="number"-->
+<!--        placeholder="مثال: 20"-->
+<!--        class="w-full bg-gray-50 border-0 focus:bg-white px-3 py-2.5 rounded-lg focus-visible:ring-2 focus-visible:ring-blue-500 text-gray-900 transition-all"-->
+<!--      />-->
+<!--    </hlm-field>-->
+
+<!--    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">-->
+
+<!--      <hlm-field class="space-y-2">-->
+<!--        <label hlmFieldLabel class="text-sm font-semibold text-gray-700">الطبيب المعالج</label>-->
+<!--        <hlm-select-->
+<!--          [formField]="scheduleForm.doctorId"-->
+<!--        >-->
+<!--          <hlm-select-trigger class="w-full bg-gray-50 border-0 rounded-lg text-right px-3 py-2.5">-->
+<!--            <hlm-select-value placeholder="اختر الطبيب"/>-->
+<!--          </hlm-select-trigger>-->
+
+<!--          <hlm-select-content *hlmSelectPortal-->
+<!--                              class="border border-gray-100 rounded-lg shadow-lg bg-white text-gray-900">-->
+<!--            <hlm-select-group>-->
+<!--              @for (doc of employeeStore.filterDoctorEmployee(); track doc.id) {-->
+<!--                <hlm-select-item [value]="doc.id"-->
+<!--                                 class="cursor-pointer hover:bg-blue-50 hover:text-blue-700 rounded-md m-1">-->
+<!--                  {{ doc.fullName }}-->
+<!--                </hlm-select-item>-->
+<!--              }-->
+<!--            </hlm-select-group>-->
+<!--          </hlm-select-content>-->
+<!--        </hlm-select>-->
+<!--      </hlm-field>-->
+
+<!--      <hlm-field class="space-y-2">-->
+<!--        <label hlmFieldLabel class="text-sm font-semibold text-gray-700">العيادة / الغرفة</label>-->
+<!--        <hlm-select-->
+<!--          [formField]="scheduleForm.roomId"-->
+<!--        >-->
+<!--          <hlm-select-trigger class="w-full bg-gray-50 border-0 rounded-lg text-right px-3 py-2.5">-->
+<!--            <hlm-select-value placeholder="اختر الغرفة"/>-->
+<!--          </hlm-select-trigger>-->
+
+<!--          <hlm-select-content *hlmSelectPortal-->
+<!--                              class="border border-gray-100 rounded-lg shadow-lg bg-white text-gray-900">-->
+<!--            <hlm-select-group>-->
+<!--              @for (room of roomStore.filterClinicRoom(); track room.id) {-->
+<!--                <hlm-select-item [value]="room.id"-->
+<!--                                 class="cursor-pointer hover:bg-blue-50 hover:text-blue-700 rounded-md m-1">-->
+<!--                  {{ room.roomNumber }}-->
+<!--                </hlm-select-item>-->
+<!--              }-->
+<!--            </hlm-select-group>-->
+<!--          </hlm-select-content>-->
+<!--        </hlm-select>-->
+<!--      </hlm-field>-->
+
+<!--    </div>-->
+
+<!--    <button hlmBtn-->
+<!--            class="w-full font-bold py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all shadow-md shadow-blue-200 mt-2 hover:shadow-lg focus:ring-4 focus:ring-blue-100">-->
+<!--      {{ type() == 'add' ? 'حفظ وإضافة الموعد' : 'حفظ وتعديل الموعد' }}-->
+<!--    </button>-->
+
+<!--  </form>-->
+<!--</div>-->

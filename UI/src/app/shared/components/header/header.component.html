@@ -1,0 +1,15 @@
+<header
+  class="flex flex-col sm:flex-row justify-between items-start sm:items-center p-6 bg-white rounded-xl border border-gray-100 shadow-sm gap-4 mb-6">
+  <div class="space-y-1">
+    <h1 class="text-2xl font-bold text-gray-900 tracking-tight m-0">
+      {{ title() }}
+    </h1>
+    <p class="text-sm text-gray-500 m-0">
+      {{ description() }}
+    </p>
+  </div>
+
+  <div class="flex items-center gap-3 w-full sm:w-auto justify-start sm:justify-end">
+    <ng-content/>
+  </div>
+</header>

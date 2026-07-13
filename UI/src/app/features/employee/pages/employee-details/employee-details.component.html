@@ -1,0 +1,128 @@
+<div class="flex flex-col gap-6" dir="rtl">
+  <app-header
+    title="تفاصيل الموظف"
+    description="عرض ملف الموظف والمعلومات الوظيفية وموقع العمل"
+  >
+    <button hlmBtn variant="outline" (click)="goBack()" class="cursor-pointer transition-colors hover:bg-slate-50 border-slate-200 text-slate-600 gap-2">
+      <svg lucideArrowRight class="w-4 h-4"></svg>
+      رجوع
+    </button>
+  </app-header>
+
+  @if (employeeStore.loading() && !employeeStore.selectedEmployee()) {
+    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-12 text-center text-slate-400 flex flex-col items-center justify-center gap-3">
+      <div class="w-8 h-8 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+      <span class="text-sm font-medium text-slate-500">جاري تحميل بيانات الموظف...</span>
+    </div>
+  } @else if (employeeStore.selectedEmployee(); as employee) {
+    <section class="grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-6 items-start">
+      <aside class="bg-white rounded-2xl border border-slate-100 shadow-sm p-6 sticky top-6">
+        <div class="flex flex-col items-center text-center">
+          <div class="relative group mb-4">
+            @if (employee.imageUrl) {
+              <img [src]="'https://localhost:7042'+employee.imageUrl" [alt]="employee.fullName"
+                   class="h-32 w-32 rounded-full object-cover ring-4 ring-slate-50 border border-slate-100 shadow-inner">
+            } @else {
+              <div class="flex h-32 w-32 items-center justify-center rounded-full bg-gradient-to-br from-blue-50 to-indigo-50 text-blue-600 ring-4 ring-slate-50 border border-slate-100">
+                <svg lucideUserRound class="w-14 h-14 stroke-[1.5]"></svg>
+              </div>
+            }
+          </div>
+
+          <div class="space-y-1 mb-4">
+            <h2 class="text-xl font-bold text-slate-800 tracking-tight">{{ employee.fullName }}</h2>
+            <p class="text-sm font-medium text-blue-600 bg-blue-50/50 px-3 py-1 rounded-full inline-block">{{ employee.jobTitle }}</p>
+          </div>
+
+          <span
+            class="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold border mb-6"
+            [class]="employee.isActive
+              ? 'bg-emerald-50 text-emerald-700 border-emerald-200/60'
+              : 'bg-rose-50 text-rose-700 border-rose-200/60'">
+            <span class="w-1.5 h-1.5 rounded-full ml-1.5" [class]="employee.isActive ? 'bg-emerald-500' : 'bg-rose-500'"></span>
+            {{ employee.isActive ? 'نشط' : 'غير نشط' }}
+          </span>
+
+          <button hlmBtn variant="outline" class="w-full cursor-pointer gap-2 border-slate-200 hover:bg-slate-50 text-slate-700 font-medium" (click)="showPasswordForm.set(!showPasswordForm())">
+            <svg lucideKeyRound class="w-4 h-4"></svg>
+            تغيير كلمة المرور
+          </button>
+        </div>
+
+        @if (showPasswordForm()) {
+          <form (submit)="submitPassword($event)" class="mt-5 pt-5 border-t border-slate-100 flex flex-col gap-3">
+            <div class="relative">
+              <input
+                type="password"
+                [value]="newPassword()"
+                (input)="updatePasswordValue($event)"
+                placeholder="كلمة المرور الجديدة"
+                class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-50"
+              >
+            </div>
+            <button type="submit" hlmBtn class="w-full cursor-pointer bg-blue-600 hover:bg-blue-700 text-white rounded-xl shadow-sm shadow-blue-100 transition-all">حفظ كلمة المرور</button>
+          </form>
+        }
+      </aside>
+
+      <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-6 lg:p-8">
+        <h3 class="text-base font-bold text-slate-800 mb-6 pb-3 border-b border-slate-100 flex items-center gap-2">
+          <span class="w-1 h-4 bg-blue-600 rounded-full"></span>
+          المعلومات الشخصية والوظيفية
+        </h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="flex flex-col gap-1.5 p-3.5 rounded-xl bg-slate-50/50 border border-slate-100">
+            <span class="text-xs font-medium text-slate-400">البريد الإلكتروني</span>
+            <strong class="text-sm font-semibold text-slate-700 break-all">{{ employee.email }}</strong>
+          </div>
+
+          <div class="flex flex-col gap-1.5 p-3.5 rounded-xl bg-slate-50/50 border border-slate-100">
+            <span class="text-xs font-medium text-slate-400">رقم الهاتف</span>
+            <strong class="text-sm font-semibold text-slate-700" dir="ltr">{{ employee.phoneNumber }}</strong>
+          </div>
+
+          <div class="flex flex-col gap-1.5 p-3.5 rounded-xl bg-slate-50/50 border border-slate-100">
+            <span class="text-xs font-medium text-slate-400">الدور</span>
+            <strong class="text-sm font-semibold text-slate-700">{{ employee.roleName }}</strong>
+          </div>
+
+          <div class="flex flex-col gap-1.5 p-3.5 rounded-xl bg-slate-50/50 border border-slate-100">
+            <span class="text-xs font-medium text-slate-400">الفرع</span>
+            <strong class="text-sm font-semibold text-slate-700">{{ employee.branchName }}</strong>
+          </div>
+
+          <div class="flex flex-col gap-1.5 p-3.5 rounded-xl bg-slate-50/50 border border-slate-100">
+            <span class="text-xs font-medium text-slate-400">القسم</span>
+            <strong class="text-sm font-semibold text-slate-700">{{ employee.departmentName }}</strong>
+          </div>
+
+          <div class="flex flex-col gap-1.5 p-3.5 rounded-xl bg-slate-50/50 border border-slate-100">
+            <span class="text-xs font-medium text-slate-400">الراتب</span>
+            <strong class="text-sm font-semibold text-emerald-600 font-mono">{{ employee.salary }}</strong>
+          </div>
+
+          <div class="flex flex-col gap-1.5 p-3.5 rounded-xl bg-slate-50/50 border border-slate-100">
+            <span class="text-xs font-medium text-slate-400">تاريخ الميلاد</span>
+            <strong class="text-sm font-semibold text-slate-700">{{ employee.birthDate ? (employee.birthDate | date: 'yyyy-MM-dd') : 'غير محدد' }}</strong>
+          </div>
+
+          <div class="flex flex-col gap-1.5 p-3.5 rounded-xl bg-slate-50/50 border border-slate-100">
+            <span class="text-xs font-medium text-slate-400">تاريخ التعيين</span>
+            <strong class="text-sm font-semibold text-slate-700">{{ employee.hireDate ? (employee.hireDate | date: 'yyyy-MM-dd') : 'غير محدد' }}</strong>
+          </div>
+
+          <div class="flex flex-col gap-1.5 p-3.5 rounded-xl bg-slate-50/50 border border-slate-100">
+            <span class="text-xs font-medium text-slate-400">تاريخ الإنشاء</span>
+            <strong class="text-sm font-semibold text-slate-700">{{ employee.createdAt | date: 'yyyy-MM-dd' }}</strong>
+          </div>
+
+          <div class="flex flex-col gap-1.5 p-3.5 rounded-xl bg-slate-50/50 border border-slate-100 md:col-span-2 lg:col-span-3">
+            <span class="text-xs font-medium text-slate-400">العنوان</span>
+            <strong class="text-sm font-semibold text-slate-700">{{ employee.street }}، {{ employee.city }}، {{ employee.country }}</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+  }
+</div>

@@ -1,0 +1,74 @@
+<div dir="rtl">
+  <header
+    class="flex items-center justify-between p-5 border-b border-slate-100 bg-gradient-to-b from-slate-50/50 to-white">
+    <div class="flex items-center gap-4">
+      <div class="flex items-center justify-center w-11 h-11 bg-blue-50 text-blue-600 rounded-xl">
+        <svg lucideEye></svg>
+      </div>
+      <div>
+        <h2 class="text-lg font-bold text-slate-800 m-0">تفاصيل الغرفة</h2>
+        <p class="text-xs text-slate-500 mt-1 m-0">عرض كافة البيانات الخاصة بالغرفة</p>
+      </div>
+    </div>
+    <button (click)="closeDialog()"
+            class="p-2 text-slate-400 hover:text-red-500 hover:bg-slate-100 rounded-lg transition-colors duration-200 cursor-pointer"
+            aria-label="إغلاق">
+      <svg lucideXCircle></svg>
+    </button>
+  </header>
+
+  <div class="p-6 bg-white">
+    @if (roomStore.isLoading()) {
+      <div class="flex justify-center p-8">
+        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+      </div>
+    } @else if (roomStore.roomDetails(); as details) {
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-8">
+        <div class="flex flex-col gap-1">
+          <span class="text-xs text-slate-500 font-medium">رقم الغرفة</span>
+          <span class="text-sm font-semibold text-slate-900">{{ details.roomNumber }}</span>
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <span class="text-xs text-slate-500 font-medium">نوع الغرفة</span>
+          <span class="text-sm font-semibold text-blue-600">{{ details.roomType }}</span>
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <span class="text-xs text-slate-500 font-medium">الفرع</span>
+          <span class="text-sm font-semibold text-slate-900">{{ details.branchName }}</span>
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <span class="text-xs text-slate-500 font-medium">القسم</span>
+          <span class="text-sm font-semibold text-slate-900">{{ details.departmentName }}</span>
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <span class="text-xs text-slate-500 font-medium">الطابق</span>
+          <span class="text-sm font-semibold text-slate-900">{{ details.floor }}</span>
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <span class="text-xs text-slate-500 font-medium">السعة</span>
+          <span class="text-sm font-semibold text-slate-900">{{ details.capacity }} أسرّة</span>
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <span class="text-xs text-slate-500 font-medium">الحالة</span>
+          <span class="inline-flex w-fit items-center rounded-full px-2.5 py-1 text-xs font-medium border"
+                [class]="details.isActive ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : 'bg-rose-50 text-rose-700 border-rose-200'">
+            {{ details.isActive ? 'نشط' : 'غير نشط' }}
+          </span>
+        </div>
+      </div>
+    }
+  </div>
+
+  <div class="flex items-center justify-end p-4 border-t border-slate-100 bg-slate-50 rounded-b-xl">
+    <button (click)="closeDialog()"
+            class="px-5 py-2 text-sm font-medium text-slate-600 bg-white border border-slate-200 hover:bg-slate-50 active:bg-slate-100 rounded-lg transition-colors duration-200 cursor-pointer">
+      إغلاق
+    </button>
+  </div>
+</div>

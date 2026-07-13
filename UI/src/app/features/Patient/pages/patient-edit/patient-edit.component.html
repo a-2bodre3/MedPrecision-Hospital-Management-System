@@ -1,0 +1,275 @@
+<div class="w-full p-6 md:p-10 relative text-right" dir="rtl">
+  
+  <app-header
+    title="تعديل بيانات المريض"
+    description="تحديث البيانات الشخصية، العنوان الوطني، السجل الطبي وحالة حساب المريض"
+  >
+    <button type="button" (click)="goBack()"
+            class="cursor-pointer transition-colors bg-white hover:bg-slate-50 border border-slate-200 text-slate-600 px-4 py-2 rounded-xl flex items-center gap-2 shadow-sm font-semibold">
+      رجوع
+    </button>
+  </app-header>
+
+  <form (submit)="onSubmit($event)"
+        class="space-y-10 p-6 md:p-10 bg-white rounded-3xl border border-slate-100 shadow-xl shadow-slate-100/40 mt-8">
+
+    <!-- قسم حالة الحساب والبيانات المغلقة -->
+    <section class="space-y-6">
+      <div class="flex items-center gap-3 border-b border-slate-100 pb-4">
+        <div class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 shadow-inner">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+        </div>
+        <h3 class="text-lg font-extrabold text-slate-800">حالة الحساب</h3>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="flex flex-col gap-2.5">
+          <label class="text-sm font-bold text-slate-600">حالة الحساب العامة</label>
+          <select [formField]="patientForm.isActive"
+                  class="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl text-slate-700 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 transition-all cursor-pointer">
+            <option value="true">نشط</option>
+            <option value="false">غير نشط</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- قسم البيانات الشخصية -->
+    <section class="space-y-6">
+      <div class="flex items-center gap-3 border-b border-slate-100 pb-4">
+        <div class="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-600 shadow-inner">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="20" height="14" x="2" y="7" rx="2" ry="2"/>
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+          </svg>
+        </div>
+        <h3 class="text-lg font-extrabold text-slate-800">البيانات الشخصية</h3>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="flex flex-col gap-2.5">
+          <label for="first-name" class="text-sm font-bold text-slate-600">الاسم الأول</label>
+          <input id="first-name" type="text" placeholder="الاسم الأول المكتوب في الهوية"
+                 [formField]="patientForm.firstName"
+                 class="w-full px-4 py-3.5 bg-slate-50 border border-slate-200/80 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 rounded-2xl transition-all outline-none"/>
+        </div>
+
+        <div class="flex flex-col gap-2.5">
+          <label for="last-name" class="text-sm font-bold text-slate-600">اسم العائلة</label>
+          <input id="last-name" type="text" placeholder="اسم العائلة / اللقب الكنية"
+                 [formField]="patientForm.lastName"
+                 class="w-full px-4 py-3.5 bg-slate-50 border border-slate-200/80 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 rounded-2xl transition-all outline-none"/>
+        </div>
+
+        <div class="flex flex-col gap-2.5">
+          <label class="text-sm font-bold text-slate-600">الجنس</label>
+          <select [formField]="patientForm.gender"
+                  class="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl text-slate-700 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 transition-all cursor-pointer">
+            <option value="" disabled selected>اختر الجنس...</option>
+            <option value="1">ذكر</option>
+            <option value="2">أنثى</option>
+          </select>
+        </div>
+
+        <div class="flex flex-col gap-2.5">
+          <label for="phone" class="text-sm font-bold text-slate-600">رقم الهاتف الدولي</label>
+          <input id="phone" type="tel" placeholder="+966 5x xxx xxxx"
+                 [formField]="patientForm.phoneNumber"
+                 class="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl text-left focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all outline-none"
+                 dir="ltr"/>
+        </div>
+
+        <div class="flex flex-col gap-2.5">
+          <label class="text-sm font-bold text-slate-600">الصورة الشخصية</label>
+
+          @if (!imagePreview()) {
+            <div
+              class="relative flex flex-col items-center justify-center w-full h-[53px] border-2 border-dashed border-slate-200 bg-slate-50/50 rounded-2xl hover:bg-blue-50/30 hover:border-blue-400 transition-all duration-300 group cursor-pointer">
+              <input id="photo-upload" type="file"
+                     (change)="onFileChange($event)"
+                     class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" accept="image/*"/>
+              <div class="flex items-center gap-2 pointer-events-none">
+                <div
+                  class="w-7 h-7 rounded-lg bg-slate-200 flex items-center justify-center text-slate-600 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                       stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="17 8 12 3 7 8"/>
+                    <line x1="12" x2="12" y1="3" y2="15"/>
+                  </svg>
+                </div>
+                <span class="text-sm font-bold text-slate-500 group-hover:text-blue-600 transition-colors">اضغط لرفع صورة جديدة</span>
+              </div>
+            </div>
+          } @else {
+            <div
+              class="relative w-full h-[53px] flex items-center justify-between px-3 bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden shadow-inner">
+              <div class="flex items-center gap-3">
+                <img [src]="imagePreview()" class="w-9 h-9 rounded-xl object-cover border border-slate-200 shadow-sm"
+                     alt="Preview"/>
+                <span class="text-xs font-bold text-emerald-600 flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block animate-pulse"></span> جاهز
+                </span>
+              </div>
+              <button type="button" (click)="removeImage()"
+                      class="cursor-pointer p-2 rounded-xl bg-rose-50 text-rose-600 hover:bg-rose-100 transition-all border border-rose-200/40 flex items-center justify-center shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24"
+                     stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-4v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                </svg>
+              </button>
+            </div>
+          }
+        </div>
+
+      </div>
+    </section>
+
+    <!-- قسم الملف الطبي للمريض -->
+    <section class="space-y-6 bg-slate-50/50 p-6 md:p-8 rounded-3xl border border-slate-200/60">
+      <div class="flex items-center gap-3 border-b border-slate-200/60 pb-4">
+        <div class="w-10 h-10 rounded-xl bg-rose-50 flex items-center justify-center text-rose-600 shadow-inner">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+          </svg>
+        </div>
+        <h3 class="text-lg font-extrabold text-slate-800">الملف الطبي والتشخيصي</h3>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+        <!-- الحساسية -->
+        <div class="flex flex-col gap-3">
+          <label for="allergies" class="text-sm font-bold text-slate-700">أنواع الحساسية الحالية</label>
+          <div class="relative">
+            <select id="allergies" (change)="addAllergy($event)"
+                    class="w-full px-4 py-3.5 bg-white border border-slate-200 rounded-2xl focus:border-rose-400 focus:ring-4 focus:ring-rose-400/10 transition-all outline-none text-slate-700 cursor-pointer appearance-none">
+              <option value="" selected disabled>اضغط لاختيار الحساسية وإضافتها...</option>
+              @for (item of availableAllergies(); track item.id) {
+                <option [value]="item.id">{{ item.name }}</option>
+              }
+            </select>
+          </div>
+
+          <div
+            class="flex flex-wrap gap-2 min-h-[52px] p-2.5 bg-white/80 border border-dashed border-slate-200 rounded-2xl items-center">
+            @if (selectedAllergiesItems().length === 0) {
+              <span class="text-xs text-slate-400 px-2 italic">لم يتم تحديد أي نوع حساسية للمريض حتى الآن.</span>
+            }
+            @for (item of selectedAllergiesItems(); track item.id) {
+              <span
+                class="inline-flex items-center gap-2 bg-rose-50/80 text-rose-700 border border-rose-200/60 text-xs font-bold px-3 py-1.5 rounded-xl transition-all hover:bg-rose-100">
+                {{ item.name }}
+                <button type="button" (click)="removeAllergy(item.id)"
+                        class="cursor-pointer text-rose-400 hover:text-rose-700 font-extrabold text-sm focus:outline-none transition-colors">
+                  ✕
+                </button>
+              </span>
+            }
+          </div>
+        </div>
+
+        <!-- الأمراض المزمنة -->
+        <div class="flex flex-col gap-3">
+          <label for="chronic-diseases" class="text-sm font-bold text-slate-700">الأمراض المزمنة (إن وجدت)</label>
+          <div class="relative">
+            <select id="chronic-diseases" (change)="addChronicDisease($event)"
+                    class="w-full px-4 py-3.5 bg-white border border-slate-200 rounded-2xl focus:border-indigo-400 focus:ring-4 focus:ring-indigo-400/10 transition-all outline-none text-slate-700 cursor-pointer appearance-none">
+              <option value="" selected disabled>اضغط لاختيار المرض المزمن وإضافته...</option>
+              @for (item of availableChronicDiseases(); track item.id) {
+                <option [value]="item.id">{{ item.name }}</option>
+              }
+            </select>
+          </div>
+
+          <div
+            class="flex flex-wrap gap-2 min-h-[52px] p-2.5 bg-white/80 border border-dashed border-slate-200 rounded-2xl items-center">
+            @if (selectedChronicDiseasesItems().length === 0) {
+              <span class="text-xs text-slate-400 px-2 italic">لا يوجد أمراض مزمنة مسجلة بملف هذا المريض.</span>
+            }
+            @for (item of selectedChronicDiseasesItems(); track item.id) {
+              <span
+                class="inline-flex items-center gap-2 bg-indigo-50/80 text-indigo-700 border border-indigo-200/60 text-xs font-bold px-3 py-1.5 rounded-xl transition-all hover:bg-indigo-100">
+                {{ item.name }}
+                <button type="button" (click)="removeChronicDisease(item.id)"
+                        class="cursor-pointer text-indigo-400 hover:text-indigo-700 font-extrabold text-sm focus:outline-none transition-colors">
+                  ✕
+                </button>
+              </span>
+            }
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- قسم العنوان وحالات الطوارئ -->
+    <section class="space-y-6">
+      <div class="flex items-center gap-3 border-b border-slate-100 pb-4">
+        <div class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600 shadow-inner">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+        </div>
+        <h3 class="text-lg font-extrabold text-slate-800">العنوان وحالات الطوارئ</h3>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="flex flex-col gap-2.5">
+          <label for="country" class="text-sm font-bold text-slate-600">الدولة</label>
+          <input id="country" type="text" placeholder="مثال: المملكة العربية السعودية"
+                 [formField]="patientForm.country"
+                 class="w-full px-4 py-3.5 bg-slate-50 border border-slate-200/80 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 rounded-2xl transition-all outline-none"/>
+        </div>
+
+        <div class="flex flex-col gap-2.5">
+          <label for="city" class="text-sm font-bold text-slate-600">المدينة</label>
+          <input id="city" type="text" placeholder="مثال: الرياض"
+                 [formField]="patientForm.city"
+                 class="w-full px-4 py-3.5 bg-slate-50 border border-slate-200/80 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 rounded-2xl transition-all outline-none"/>
+        </div>
+
+        <div class="flex flex-col gap-2.5">
+          <label for="street" class="text-sm font-bold text-slate-600">الشارع والحي</label>
+          <input id="street" type="text" placeholder="أدخل اسم الشارع ورقم المبنى"
+                 [formField]="patientForm.street"
+                 class="w-full px-4 py-3.5 bg-slate-50 border border-slate-200/80 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 rounded-2xl transition-all outline-none"/>
+        </div>
+
+        <div class="flex flex-col gap-2.5 md:col-span-1">
+          <label for="emergency-phone" class="text-sm font-bold text-slate-600">رقم هاتف الطوارئ</label>
+          <input id="emergency-phone" type="tel" placeholder="05xxxxxxxx"
+                 [formField]="patientForm.emergencyPhoneNumber!"
+                 class="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl text-left focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all outline-none"
+                 dir="ltr"/>
+        </div>
+
+        <div class="flex flex-col gap-2.5 md:col-span-2">
+          <label for="emergency-email" class="text-sm font-bold text-slate-600">البريد الإلكتروني للطوارئ</label>
+          <input id="emergency-email" type="email" placeholder="example@domain.com"
+                 [formField]="patientForm.emergencyEmail!"
+                 class="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 rounded-2xl transition-all outline-none text-left"
+                 dir="ltr"/>
+        </div>
+      </div>
+    </section>
+
+    <!-- زر الحفظ -->
+    <div class="pt-8 border-t border-slate-100 flex justify-end">
+      <button type="submit"
+              class="cursor-pointer bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-extrabold px-12 py-4 rounded-2xl shadow-xl shadow-blue-600/10 transition-all duration-300 flex items-center justify-center min-w-[260px] hover:-translate-y-0.5 text-base">
+        حفـظ التـعديلات
+      </button>
+    </div>
+
+  </form>
+</div>

@@ -1,0 +1,163 @@
+<div class="flex flex-col gap-8 text-right" dir="rtl">
+  <app-header
+    title="إدارة المرضى"
+    description="عرض وتنظيم ملفات وحسابات المرضى، السجلات الطبية، والمواعيد"
+  >
+    <button (click)="goToCreate()"
+            class="cursor-pointer bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold px-5 py-2.5 rounded-2xl shadow-lg shadow-blue-500/15 transition-all duration-300 flex items-center gap-2 hover:-translate-y-0.5">
+      <svg lucidePlus class="w-4 h-4"></svg>
+      تسجيل مريض جديد
+    </button>
+  </app-header>
+
+  <!-- فلاتر والبحث -->
+  <div class="flex flex-col sm:flex-row items-center justify-between gap-4 bg-white p-5 rounded-2xl border border-slate-100 shadow-sm">
+    <div class="relative w-full sm:max-w-md">
+      <input
+        type="text"
+        [value]="patientStore.queryParams().searchTerm || ''"
+        (input)="onSearchChange($event)"
+        placeholder="ابحث عن مريض بالاسم أو الكود الطبي..."
+        class="w-full pl-4 pr-11 py-3 bg-slate-50 border border-slate-200/80 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 rounded-2xl transition-all duration-200 outline-none placeholder-slate-400 text-sm"
+      />
+      <div class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none text-slate-400">
+        <svg lucideSearch class="w-5 h-5"></svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- جدول المرضى -->
+  <div class="w-full overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm">
+    <div class="overflow-x-auto">
+      <table class="w-full min-w-[980px] border-collapse text-right text-sm">
+        <thead class="bg-slate-50/75 text-slate-500 border-b border-slate-200">
+          <tr>
+            <th class="px-6 py-4 font-semibold text-xs tracking-wider">المريض</th>
+            <th class="px-6 py-4 font-semibold text-xs tracking-wider">الكود الطبي</th>
+            <th class="px-6 py-4 font-semibold text-xs tracking-wider">البريد الإلكتروني</th>
+            <th class="px-6 py-4 font-semibold text-xs tracking-wider">رقم الهاتف</th>
+            <th class="px-6 py-4 font-semibold text-xs tracking-wider">الحالة</th>
+            <th class="px-6 py-4 font-semibold text-xs tracking-wider">الإجراءات</th>
+          </tr>
+        </thead>
+
+        <tbody class="divide-y divide-slate-100 text-slate-600">
+          @if (patientStore.loading()) {
+            <tr>
+              <td colspan="6" class="py-12 text-center text-slate-400">
+                <div class="flex flex-col items-center justify-center gap-3">
+                  <div class="w-7 h-7 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+                  <span class="text-xs font-semibold text-slate-500">جاري تحميل قائمة المرضى...</span>
+                </div>
+              </td>
+            </tr>
+          } @else {
+            @for (patient of patientStore.patient(); track patient.id) {
+              <tr class="transition-colors duration-200 hover:bg-slate-50/50">
+                <td class="px-6 py-4 font-semibold text-slate-900">
+                  <div class="flex items-center gap-3">
+                    @if (patient.imageUrl) {
+                      <img
+                        [src]="'https://localhost:7042' + patient.imageUrl"
+                        [alt]="patient.fullName"
+                        class="h-10 w-10 rounded-full object-cover border border-slate-200"
+                      >
+                    } @else {
+                      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-blue-50 text-blue-600">
+                        <svg lucideUserRound class="w-5 h-5"></svg>
+                      </div>
+                    }
+                    <span>{{ patient.fullName }}</span>
+                  </div>
+                </td>
+
+                <td class="px-6 py-4 font-mono font-bold text-slate-700">{{ patient.patientCode }}</td>
+                <td class="px-6 py-4 font-medium text-slate-700">{{ patient.email }}</td>
+                <td class="px-6 py-4 font-medium text-slate-700" dir="ltr">{{ patient.phoneNumber }}</td>
+
+                <td class="px-6 py-4">
+                  <span
+                    class="inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium tracking-wide transition-all border"
+                    [class]="patient.isActive
+                      ? 'bg-emerald-50 text-emerald-700 border-emerald-200/60'
+                      : 'bg-rose-50 text-rose-700 border-rose-200/60'">
+                    <span
+                      class="ml-1.5 h-1.5 w-1.5 rounded-full"
+                      [class]="patient.isActive ? 'bg-emerald-500' : 'bg-rose-500'"
+                    ></span>
+                    {{ patient.isActive ? 'نشط' : 'غير نشط' }}
+                  </span>
+                </td>
+
+                <td class="px-6 py-4">
+                  <div class="flex items-center gap-2">
+                    <button
+                      (click)="goToDetails(patient.id)"
+                      class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 border border-slate-200/40 bg-white transition-all hover:bg-blue-50 hover:text-blue-600 hover:border-blue-200/60 cursor-pointer shadow-sm"
+                      title="عرض التفاصيل">
+                      <svg lucideEye class="w-4 h-4"></svg>
+                    </button>
+
+                    <button
+                      (click)="goToEdit(patient.id)"
+                      class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 border border-slate-200/40 bg-white transition-all hover:bg-amber-50 hover:text-amber-600 hover:border-amber-200/60 cursor-pointer shadow-sm"
+                      title="تعديل">
+                      <svg lucidePencil class="w-4 h-4"></svg>
+                    </button>
+
+                    <button
+                      (click)="deletePatient(patient.id, patient.fullName)"
+                      class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 border border-slate-200/40 bg-white transition-all hover:bg-red-50 hover:text-red-600 hover:border-red-200/60 cursor-pointer shadow-sm"
+                      title="حذف">
+                      <svg lucideTrash2 class="w-4 h-4"></svg>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            } @empty {
+              <tr>
+                <td colspan="6" class="py-12 text-center text-slate-400 italic">
+                  لا توجد سجلات لمرضى متوافقة مع شروط التصفية الحالية.
+                </td>
+              </tr>
+            }
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <!-- الترقيم (Pagination) -->
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-t border-slate-100 bg-slate-50/60 px-5 py-4">
+      <div class="flex items-center gap-2 text-sm text-slate-500">
+        <span>عرض {{ startRecord }} - {{ endRecord }} من {{ patientStore.totalCount() }}</span>
+        <select
+          [value]="patientStore.queryParams().pageSize"
+          (change)="changePageSize($event)"
+          class="rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-sm text-slate-700 focus:outline-none focus:border-blue-500 cursor-pointer shadow-sm">
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="50">50</option>
+        </select>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button
+          (click)="changePage(patientStore.queryParams().pageNumber - 1)"
+          [disabled]="patientStore.queryParams().pageNumber <= 1"
+          class="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-500 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-slate-50 transition-colors shadow-sm cursor-pointer">
+          <svg lucideChevronRight class="w-4 h-4"></svg>
+        </button>
+        <span class="text-sm font-medium text-slate-600">
+          صفحة {{ patientStore.queryParams().pageNumber }} من {{ totalPages }}
+        </span>
+        <button
+          (click)="changePage(patientStore.queryParams().pageNumber + 1)"
+          [disabled]="patientStore.queryParams().pageNumber >= totalPages"
+          class="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-500 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-slate-50 transition-colors shadow-sm cursor-pointer">
+          <svg lucideChevronLeft class="w-4 h-4"></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

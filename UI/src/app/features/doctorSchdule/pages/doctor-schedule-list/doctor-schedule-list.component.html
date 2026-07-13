@@ -1,0 +1,67 @@
+<div class="w-full overflow-x-auto rounded-xl border border-gray-100 shadow-md bg-white" dir="rtl">
+  <table class="w-full text-right border-collapse">
+    <thead>
+    <tr class="bg-blue-50/50 border-b border-gray-100 text-blue-900 font-bold text-sm">
+      <th class="p-4 font-semibold">اسم الطبيب</th>
+      <th class="p-4 font-semibold">رقم الغرفة</th>
+      <th class="p-4 font-semibold">أقصى عدد للمرضى</th>
+      <th class="p-4 font-semibold">وقت البدء</th>
+      <th class="p-4 font-semibold">وقت الانتهاء</th>
+      <th class="p-4 font-semibold">أيام الكشف</th>
+      <th class="p-4 font-semibold text-center">الاجراءات</th>
+    </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-50 text-gray-700 text-sm">
+      @for (sch of doctorScheduleStore.doctorSchedule(); track sch.id) {
+        <tr class="hover:bg-blue-50/20 transition-colors duration-150">
+          <td class="p-4 font-medium text-gray-900">{{ sch.doctorName }}</td>
+          <td class="p-4">
+            <span class="inline-flex items-center px-2.5 py-1 rounded-md bg-gray-100 text-gray-800 font-medium text-xs">
+              {{ sch.roomNumber }}
+            </span>
+          </td>
+          <td class="p-4 font-semibold text-blue-600">{{ sch.maxPatients }}</td>
+          <td class="p-4 text-gray-500 dir-ltr text-right">{{ formatTime(sch.startTime) | date:'shortTime' }}</td>
+          <td class="p-4 text-gray-500 dir-ltr text-right">{{ formatTime(sch.endTime) | date:'shortTime' }}</td>
+          <td class="p-4">
+            <div class="flex flex-wrap gap-1">
+              @for (day of sch.dayOfWeeks; track $index) {
+                <span
+                  class="inline-flex items-center px-2 py-0.5 rounded-md bg-blue-50 text-blue-700 text-xs font-medium">
+                  {{ day }}
+                </span>
+              }
+            </div>
+          </td>
+          <td class="p-4">
+            <div class="flex items-center justify-center gap-2">
+              <button
+                (click)="showDialogUpdate(
+                'edit',
+                'تعديل الميعاد',
+                'تعديل بيانات مواعيد الدكتور',
+                sch
+                )"
+                class="flex items-center justify-center w-8 h-8 rounded-lg text-blue-600 hover:bg-blue-50 hover:text-blue-700 transition-colors"
+                title="تعديل">
+                <svg lucideEdit class="w-4 h-4"></svg>
+              </button>
+              <button
+                (click)="showDialogDelete(sch)"
+                class="flex items-center justify-center w-8 h-8 rounded-lg text-red-500 hover:bg-red-50 hover:text-red-600 transition-colors"
+                title="حذف">
+                <svg lucideTrash2 class="w-4 h-4"></svg>
+              </button>
+            </div>
+          </td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="7" class="p-8 text-center text-gray-400 font-medium">
+            لا توجد مواعيد مضافة حالياً.
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

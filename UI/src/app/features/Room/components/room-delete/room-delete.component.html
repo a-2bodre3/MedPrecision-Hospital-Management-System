@@ -1,0 +1,28 @@
+<div dir="rtl" class="p-6 text-center bg-white rounded-xl">
+  <div
+    class="mx-auto flex items-center justify-center w-12 h-12 rounded-full bg-rose-50 text-rose-600 mb-4 animate-pulse">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+         class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round"
+            d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/>
+    </svg>
+  </div>
+
+  <h3 class="text-lg font-bold text-slate-800 mb-2">تأكيد الحذف النهائي</h3>
+  <p class="text-sm text-slate-500 mb-6 leading-relaxed">
+    هل أنت متأكد تماماً من رغبتك في حذف الغرفة رقم <strong class="text-slate-900">"{{ roomNumber }}"</strong>؟
+    <br/>
+    <span class="text-xs text-rose-500 mt-1 block">تنبيه: لا يمكن التراجع عن هذا الإجراء بعد التنفيذ.</span>
+  </p>
+
+  <div class="flex items-center justify-center gap-3">
+    <button type="button" (click)="cancel()"
+            class="px-4 py-2 w-full text-sm font-medium text-slate-600 bg-white border border-slate-200 hover:bg-slate-50 rounded-lg transition-colors duration-200 cursor-pointer">
+      تراجع
+    </button>
+    <button type="button" (click)="confirm()"
+            class="px-4 py-2 w-full text-sm font-medium text-white bg-rose-600 hover:bg-rose-700 active:bg-rose-800 rounded-lg shadow-sm transition-colors duration-200 cursor-pointer">
+      نعم، احذف
+    </button>
+  </div>
+</div>

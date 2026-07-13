@@ -1,0 +1,18 @@
+<div>
+  <app-header
+    title="اداره مواعيد الدكاتره"
+    description="عرض وتنظيم ونعديل مواعيد الدكاتره"
+  >
+    <button hlmBtn class="bg-[#155DFC]"
+            (click)="showDialogCreate(
+      'add',
+      'اضافه ميعاد جديد',
+      'املئ كل البيانات اللازمه لاضافه معلومات جديده'
+      )"
+    >
+      <svg lucideClipboardPlus></svg>
+      اضافه ميعاد جديد
+    </button>
+  </app-header>
+  <app-doctor-schedule-list/>
+</div>

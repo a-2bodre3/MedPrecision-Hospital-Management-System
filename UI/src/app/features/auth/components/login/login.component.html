@@ -1,0 +1,80 @@
+<section class="flex flex-col gap-8 w-full max-w-sm mx-auto dir-rtl" dir="rtl">
+  <header class="text-center md:text-right space-y-2">
+    <h1 class="text-2xl font-extrabold text-gray-900 tracking-tight">
+      مرحباً بك مجدداً
+    </h1>
+    <p class="text-sm text-gray-500 leading-relaxed">
+      الرجاء إدخال بيانات الاعتماد الخاصة بك للوصول إلى لوحة التحكم
+    </p>
+  </header>
+  <form class="flex flex-col gap-6" (submit)="submit($event)">
+    <hlm-field>
+      <label hlmFieldLabel for="input-email">
+        البريد الالكتروني
+        <span class="text-destructive">*</span>
+      </label>
+      <hlm-input-group>
+        <input [formField]="loginForm.email" hlmInputGroupInput type="email" id="input-email"
+               placeholder="ادخل البريد الالكتروني"/>
+        <hlm-input-group-addon>
+          <svg lucideMail class="w-5 h-5"></svg>
+        </hlm-input-group-addon>
+      </hlm-input-group>
+      @for (error of loginForm.email().errors(); track error) {
+        <hlm-field-error [validator]="error.kind">{{ error.message }}</hlm-field-error>
+      }
+    </hlm-field>
+
+    <hlm-field>
+      <label hlmFieldLabel for="input-password">
+        كلمه المرور
+        <span class="text-destructive">*</span>
+      </label>
+      <hlm-input-group class="justify-between flex flex-row-reverse">
+        <div class="flex">
+          <input [formField]="loginForm.password" hlmInputGroupInput [type]="showPassword() ? 'text' : 'password'"
+                 id="input-password"
+                 placeholder="ادخل كلمه المرور"/>
+          <hlm-input-group-addon>
+            <svg lucideLockKeyhole class="w-5 h-5"></svg>
+          </hlm-input-group-addon>
+        </div>
+        <button type="button"
+                hlmInputGroupAddon
+                (click)="showPassword.set(!showPassword())"
+                class="pe-2 cursor-pointer hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition-colors">
+
+          @if (showPassword()) {
+            <svg lucideEyeOff class="w-5 h-5"></svg>
+          } @else {
+            <svg lucideEye class="w-5 h-5"></svg>
+          }
+        </button>
+      </hlm-input-group>
+      @for (error of loginForm.password().errors(); track error) {
+        <hlm-field-error [validator]="error.kind">{{ error.message }}</hlm-field-error>
+      }
+    </hlm-field>
+
+
+    @if (this.authStore.isLoading()) {
+      <button hlmBtn variant="outline" size="sm" disabled>
+        <hlm-spinner/>
+        Please wait
+      </button>
+    } @else {
+      <button type="submit" hlmBtn class="w-full p-button-lg py-3  flex items-center justify-center gap-2  ">
+        <svg lucideLogIn class="w-5 h-5"></svg>
+        تسجيل الدخول
+      </button>
+    }
+  </form>
+  <footer class="text-center text-sm text-gray-500 border-t pt-4">
+    <p>
+      هل تواجه مشكلة تقنية؟
+      <a href="#" class="text-green-600 hover:underline font-semibold mr-1 transition-all">
+        تواصل مع الدعم الفني
+      </a>
+    </p>
+  </footer>
+</section>
