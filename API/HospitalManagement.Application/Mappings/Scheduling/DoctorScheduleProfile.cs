@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using HospitalManagement.Application.DTO.Scheduling.DoctorSchedule;
 using HospitalManagement.Application.Features.Scheduling.DoctorSchedule.Commands.Update;
 using HospitalManagement.Application.Features.Scheduling.DoctorSchedule.Queries.GetAllDoctorSchedules;
 using HospitalManagement.Application.Features.Scheduling.DoctorSchedule.Queries.GetDoctorSchedules;

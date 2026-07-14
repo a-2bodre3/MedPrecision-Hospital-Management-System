@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "TdwjsSP3aNI=",
+  "dgSpecHash": "eZzAkYO+F8I=",
   "success": true,
-  "projectFilePath": "D:\\project\\Full Stack\\hospital-management-system\\backend\\HospitalManagementSystemAPI\\HospitalManagement.Application\\HospitalManagement.Application.csproj",
+  "projectFilePath": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Application\\HospitalManagement.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ah2bo\\.nuget\\packages\\automapper\\16.1.1\\automapper.16.1.1.nupkg.sha512",
     "C:\\Users\\ah2bo\\.nuget\\packages\\fluentvalidation\\12.1.1\\fluentvalidation.12.1.1.nupkg.sha512",

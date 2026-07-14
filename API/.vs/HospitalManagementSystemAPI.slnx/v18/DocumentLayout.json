@@ -1,23 +1,66 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\project\\Full Stack\\hospital-management-system\\backend\\HospitalManagementSystemAPI\\",
+  "WorkspaceRootPath": "D:\\project\\Full Stack\\hospital-management-system\\API\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B85A111B-13D3-DC2B-F5A5-548FACEB348E}|HospitalManagement.Presentation\\HospitalManagement.Presentation.csproj|d:\\project\\full stack\\hospital-management-system\\backend\\hospitalmanagementsystemapi\\hospitalmanagement.presentation\\controllers\\doctorschedulecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B85A111B-13D3-DC2B-F5A5-548FACEB348E}|HospitalManagement.Presentation\\HospitalManagement.Presentation.csproj|solutionrelative:hospitalmanagement.presentation\\controllers\\doctorschedulecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D7EFCBAB-4EE3-C980-01D2-2ECD54CD4B9D}|HospitalManagement.Application\\HospitalManagement.Application.csproj|d:\\project\\full stack\\hospital-management-system\\api\\hospitalmanagement.application\\mappings\\structure\\branchprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D7EFCBAB-4EE3-C980-01D2-2ECD54CD4B9D}|HospitalManagement.Application\\HospitalManagement.Application.csproj|solutionrelative:hospitalmanagement.application\\mappings\\structure\\branchprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/localhost/HospitalManagementSystem/sa/SqlTable/dbo.Permissions.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+      "AbsoluteMoniker": "D:0:0:{D7EFCBAB-4EE3-C980-01D2-2ECD54CD4B9D}|HospitalManagement.Application\\HospitalManagement.Application.csproj|d:\\project\\full stack\\hospital-management-system\\api\\hospitalmanagement.application\\hospitalmanagement.application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{D7EFCBAB-4EE3-C980-01D2-2ECD54CD4B9D}|HospitalManagement.Application\\HospitalManagement.Application.csproj|solutionrelative:hospitalmanagement.application\\hospitalmanagement.application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B85A111B-13D3-DC2B-F5A5-548FACEB348E}|HospitalManagement.Presentation\\HospitalManagement.Presentation.csproj|d:\\project\\full stack\\hospital-management-system\\backend\\hospitalmanagementsystemapi\\hospitalmanagement.presentation\\controllers\\branchcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B85A111B-13D3-DC2B-F5A5-548FACEB348E}|HospitalManagement.Presentation\\HospitalManagement.Presentation.csproj|solutionrelative:hospitalmanagement.presentation\\controllers\\branchcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D7EFCBAB-4EE3-C980-01D2-2ECD54CD4B9D}|HospitalManagement.Application\\HospitalManagement.Application.csproj|d:\\project\\full stack\\hospital-management-system\\api\\hospitalmanagement.application\\mappings\\scheduling\\doctorscheduleprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D7EFCBAB-4EE3-C980-01D2-2ECD54CD4B9D}|HospitalManagement.Application\\HospitalManagement.Application.csproj|solutionrelative:hospitalmanagement.application\\mappings\\scheduling\\doctorscheduleprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/localhost/HospitalManagementSystem/sa/SqlTable/dbo.Specializations.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+      "AbsoluteMoniker": "D:0:0:{D7EFCBAB-4EE3-C980-01D2-2ECD54CD4B9D}|HospitalManagement.Application\\HospitalManagement.Application.csproj|d:\\project\\full stack\\hospital-management-system\\api\\hospitalmanagement.application\\mappings\\scheduling\\appointmentprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D7EFCBAB-4EE3-C980-01D2-2ECD54CD4B9D}|HospitalManagement.Application\\HospitalManagement.Application.csproj|solutionrelative:hospitalmanagement.application\\mappings\\scheduling\\appointmentprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/localhost/HospitalManagementSystem/sa/SqlTable/dbo.SubSpecialties.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+      "AbsoluteMoniker": "D:0:0:{D7EFCBAB-4EE3-C980-01D2-2ECD54CD4B9D}|HospitalManagement.Application\\HospitalManagement.Application.csproj|d:\\project\\full stack\\hospital-management-system\\api\\hospitalmanagement.application\\dto\\identity\\role\\rolemodifydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D7EFCBAB-4EE3-C980-01D2-2ECD54CD4B9D}|HospitalManagement.Application\\HospitalManagement.Application.csproj|solutionrelative:hospitalmanagement.application\\dto\\identity\\role\\rolemodifydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D7EFCBAB-4EE3-C980-01D2-2ECD54CD4B9D}|HospitalManagement.Application\\HospitalManagement.Application.csproj|d:\\project\\full stack\\hospital-management-system\\api\\hospitalmanagement.application\\dto\\identity\\role\\roledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D7EFCBAB-4EE3-C980-01D2-2ECD54CD4B9D}|HospitalManagement.Application\\HospitalManagement.Application.csproj|solutionrelative:hospitalmanagement.application\\dto\\identity\\role\\roledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D7EFCBAB-4EE3-C980-01D2-2ECD54CD4B9D}|HospitalManagement.Application\\HospitalManagement.Application.csproj|d:\\project\\full stack\\hospital-management-system\\api\\hospitalmanagement.application\\dto\\identity\\role\\permissiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D7EFCBAB-4EE3-C980-01D2-2ECD54CD4B9D}|HospitalManagement.Application\\HospitalManagement.Application.csproj|solutionrelative:hospitalmanagement.application\\dto\\identity\\role\\permissiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D7EFCBAB-4EE3-C980-01D2-2ECD54CD4B9D}|HospitalManagement.Application\\HospitalManagement.Application.csproj|d:\\project\\full stack\\hospital-management-system\\api\\hospitalmanagement.application\\features\\identity\\authorization\\permission\\queries\\getpermissions\\getpermissionsresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D7EFCBAB-4EE3-C980-01D2-2ECD54CD4B9D}|HospitalManagement.Application\\HospitalManagement.Application.csproj|solutionrelative:hospitalmanagement.application\\features\\identity\\authorization\\permission\\queries\\getpermissions\\getpermissionsresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D7EFCBAB-4EE3-C980-01D2-2ECD54CD4B9D}|HospitalManagement.Application\\HospitalManagement.Application.csproj|d:\\project\\full stack\\hospital-management-system\\api\\hospitalmanagement.application\\validators\\extensions\\validatorextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D7EFCBAB-4EE3-C980-01D2-2ECD54CD4B9D}|HospitalManagement.Application\\HospitalManagement.Application.csproj|solutionrelative:hospitalmanagement.application\\validators\\extensions\\validatorextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/localhost/HospitalManagementSystem/sa/SqlTable/dbo.Roles.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D7EFCBAB-4EE3-C980-01D2-2ECD54CD4B9D}|HospitalManagement.Application\\HospitalManagement.Application.csproj|d:\\project\\full stack\\hospital-management-system\\api\\hospitalmanagement.application\\features\\identity\\authentication\\login\\logincommandvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D7EFCBAB-4EE3-C980-01D2-2ECD54CD4B9D}|HospitalManagement.Application\\HospitalManagement.Application.csproj|solutionrelative:hospitalmanagement.application\\features\\identity\\authentication\\login\\logincommandvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D7EFCBAB-4EE3-C980-01D2-2ECD54CD4B9D}|HospitalManagement.Application\\HospitalManagement.Application.csproj|d:\\project\\full stack\\hospital-management-system\\api\\hospitalmanagement.application\\mappings\\staff\\employeeprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D7EFCBAB-4EE3-C980-01D2-2ECD54CD4B9D}|HospitalManagement.Application\\HospitalManagement.Application.csproj|solutionrelative:hospitalmanagement.application\\mappings\\staff\\employeeprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D7EFCBAB-4EE3-C980-01D2-2ECD54CD4B9D}|HospitalManagement.Application\\HospitalManagement.Application.csproj|d:\\project\\full stack\\hospital-management-system\\api\\hospitalmanagement.application\\mappings\\staff\\doctorprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D7EFCBAB-4EE3-C980-01D2-2ECD54CD4B9D}|HospitalManagement.Application\\HospitalManagement.Application.csproj|solutionrelative:hospitalmanagement.application\\mappings\\staff\\doctorprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/localhost/HospitalManagementSystem/sa/SqlTable/dbo.UserRoles.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/localhost/HospitalManagementSystem/sa/SqlTable/dbo.Users.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/localhost/HospitalManagementSystem/sa/SqlTable/dbo.UserBranches.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
     }
   ],
   "DocumentGroupContainers": [
@@ -27,16 +70,66 @@
       "DocumentGroups": [
         {
           "DockedWidth": 408,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BranchProfile.cs",
+              "DocumentMoniker": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Application\\Mappings\\Structure\\BranchProfile.cs",
+              "RelativeDocumentMoniker": "HospitalManagement.Application\\Mappings\\Structure\\BranchProfile.cs",
+              "ToolTip": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Application\\Mappings\\Structure\\BranchProfile.cs",
+              "RelativeToolTip": "HospitalManagement.Application\\Mappings\\Structure\\BranchProfile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T07:59:20.892Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "HospitalManagement.Application",
+              "DocumentMoniker": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Application\\HospitalManagement.Application.csproj",
+              "RelativeDocumentMoniker": "HospitalManagement.Application\\HospitalManagement.Application.csproj",
+              "ToolTip": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Application\\HospitalManagement.Application.csproj",
+              "RelativeToolTip": "HospitalManagement.Application\\HospitalManagement.Application.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-07-14T07:54:04.301Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "dbo.Roles [Data]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/localhost/HospitalManagementSystem/sa/SqlTable/dbo.Roles.sql",
+              "ToolTip": "dbo.Roles [Data]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002897|",
+              "WhenOpened": "2026-07-14T07:33:42.143Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "dbo.Users [Data]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/localhost/HospitalManagementSystem/sa/SqlTable/dbo.Users.sql",
+              "ToolTip": "dbo.Users [Data]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002897|",
+              "WhenOpened": "2026-07-14T07:32:22.95Z",
+              "EditorCaption": ""
             }
           ]
         },
         {
-          "DockedWidth": 432,
+          "DockedWidth": 408,
           "SelectedChildIndex": 2,
           "Children": [
             {
@@ -49,64 +142,152 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "dbo.Permissions [Data]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/localhost/HospitalManagementSystem/sa/SqlTable/dbo.Permissions.sql",
-              "ToolTip": "dbo.Permissions [Data]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002897|",
-              "WhenOpened": "2026-07-13T20:55:58.521Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "dbo.SubSpecialties [Data]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/localhost/HospitalManagementSystem/sa/SqlTable/dbo.SubSpecialties.sql",
-              "ToolTip": "dbo.SubSpecialties [Data]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002897|",
-              "WhenOpened": "2026-07-13T20:34:28.991Z",
+              "DocumentIndex": 2,
+              "Title": "DoctorScheduleProfile.cs",
+              "DocumentMoniker": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Application\\Mappings\\Scheduling\\DoctorScheduleProfile.cs",
+              "RelativeDocumentMoniker": "HospitalManagement.Application\\Mappings\\Scheduling\\DoctorScheduleProfile.cs",
+              "ToolTip": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Application\\Mappings\\Scheduling\\DoctorScheduleProfile.cs",
+              "RelativeToolTip": "HospitalManagement.Application\\Mappings\\Scheduling\\DoctorScheduleProfile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T07:59:04.69Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "dbo.Specializations [Data]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/localhost/HospitalManagementSystem/sa/SqlTable/dbo.Specializations.sql",
-              "ToolTip": "dbo.Specializations [Data]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002897|",
-              "WhenOpened": "2026-07-13T20:34:18.621Z",
-              "EditorCaption": ""
-            }
-          ]
-        },
-        {
-          "DockedWidth": 432,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "DoctorScheduleController.cs",
-              "DocumentMoniker": "D:\\project\\Full Stack\\hospital-management-system\\backend\\HospitalManagementSystemAPI\\HospitalManagement.Presentation\\Controllers\\DoctorScheduleController.cs",
-              "RelativeDocumentMoniker": "HospitalManagement.Presentation\\Controllers\\DoctorScheduleController.cs",
-              "ToolTip": "D:\\project\\Full Stack\\hospital-management-system\\backend\\HospitalManagementSystemAPI\\HospitalManagement.Presentation\\Controllers\\DoctorScheduleController.cs",
-              "RelativeToolTip": "HospitalManagement.Presentation\\Controllers\\DoctorScheduleController.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAowEwAAAAAAAAAAAAAAA==",
+              "Title": "AppointmentProfile.cs",
+              "DocumentMoniker": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Application\\Mappings\\Scheduling\\AppointmentProfile.cs",
+              "RelativeDocumentMoniker": "HospitalManagement.Application\\Mappings\\Scheduling\\AppointmentProfile.cs",
+              "ToolTip": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Application\\Mappings\\Scheduling\\AppointmentProfile.cs",
+              "RelativeToolTip": "HospitalManagement.Application\\Mappings\\Scheduling\\AppointmentProfile.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAwwDQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-13T20:38:06.243Z",
+              "WhenOpened": "2026-07-14T07:58:42.468Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "BranchController.cs",
-              "DocumentMoniker": "D:\\project\\Full Stack\\hospital-management-system\\backend\\HospitalManagementSystemAPI\\HospitalManagement.Presentation\\Controllers\\BranchController.cs",
-              "RelativeDocumentMoniker": "HospitalManagement.Presentation\\Controllers\\BranchController.cs",
-              "ToolTip": "D:\\project\\Full Stack\\hospital-management-system\\backend\\HospitalManagementSystemAPI\\HospitalManagement.Presentation\\Controllers\\BranchController.cs",
-              "RelativeToolTip": "HospitalManagement.Presentation\\Controllers\\BranchController.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAUwBUAAAAIAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "RoleModifyDto.cs",
+              "DocumentMoniker": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Application\\DTO\\Identity\\Role\\RoleModifyDto.cs",
+              "RelativeDocumentMoniker": "HospitalManagement.Application\\DTO\\Identity\\Role\\RoleModifyDto.cs",
+              "ToolTip": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Application\\DTO\\Identity\\Role\\RoleModifyDto.cs",
+              "RelativeToolTip": "HospitalManagement.Application\\DTO\\Identity\\Role\\RoleModifyDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-13T20:37:26.115Z",
+              "WhenOpened": "2026-07-14T07:58:34.651Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "RoleDto.cs",
+              "DocumentMoniker": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Application\\DTO\\Identity\\Role\\RoleDto.cs",
+              "RelativeDocumentMoniker": "HospitalManagement.Application\\DTO\\Identity\\Role\\RoleDto.cs",
+              "ToolTip": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Application\\DTO\\Identity\\Role\\RoleDto.cs",
+              "RelativeToolTip": "HospitalManagement.Application\\DTO\\Identity\\Role\\RoleDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T07:58:33.269Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PermissionDto.cs",
+              "DocumentMoniker": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Application\\DTO\\Identity\\Role\\PermissionDto.cs",
+              "RelativeDocumentMoniker": "HospitalManagement.Application\\DTO\\Identity\\Role\\PermissionDto.cs",
+              "ToolTip": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Application\\DTO\\Identity\\Role\\PermissionDto.cs",
+              "RelativeToolTip": "HospitalManagement.Application\\DTO\\Identity\\Role\\PermissionDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T07:58:30.218Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "GetPermissionsResponse.cs",
+              "DocumentMoniker": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Application\\Features\\Identity\\Authorization\\Permission\\Queries\\GetPermissions\\GetPermissionsResponse.cs",
+              "RelativeDocumentMoniker": "HospitalManagement.Application\\Features\\Identity\\Authorization\\Permission\\Queries\\GetPermissions\\GetPermissionsResponse.cs",
+              "ToolTip": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Application\\Features\\Identity\\Authorization\\Permission\\Queries\\GetPermissions\\GetPermissionsResponse.cs",
+              "RelativeToolTip": "HospitalManagement.Application\\Features\\Identity\\Authorization\\Permission\\Queries\\GetPermissions\\GetPermissionsResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T07:57:04.004Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ValidatorExtensions.cs",
+              "DocumentMoniker": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Application\\Validators\\Extensions\\ValidatorExtensions.cs",
+              "RelativeDocumentMoniker": "HospitalManagement.Application\\Validators\\Extensions\\ValidatorExtensions.cs",
+              "ToolTip": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Application\\Validators\\Extensions\\ValidatorExtensions.cs",
+              "RelativeToolTip": "HospitalManagement.Application\\Validators\\Extensions\\ValidatorExtensions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwBcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T07:55:30.739Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "LoginCommandValidator.cs",
+              "DocumentMoniker": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Application\\Features\\Identity\\Authentication\\Login\\LoginCommandValidator.cs",
+              "RelativeDocumentMoniker": "HospitalManagement.Application\\Features\\Identity\\Authentication\\Login\\LoginCommandValidator.cs",
+              "ToolTip": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Application\\Features\\Identity\\Authentication\\Login\\LoginCommandValidator.cs",
+              "RelativeToolTip": "HospitalManagement.Application\\Features\\Identity\\Authentication\\Login\\LoginCommandValidator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T07:48:23.017Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "EmployeeProfile.cs",
+              "DocumentMoniker": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Application\\Mappings\\Staff\\EmployeeProfile.cs",
+              "RelativeDocumentMoniker": "HospitalManagement.Application\\Mappings\\Staff\\EmployeeProfile.cs",
+              "ToolTip": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Application\\Mappings\\Staff\\EmployeeProfile.cs",
+              "RelativeToolTip": "HospitalManagement.Application\\Mappings\\Staff\\EmployeeProfile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T07:47:02.29Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "DoctorProfile.cs",
+              "DocumentMoniker": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Application\\Mappings\\Staff\\DoctorProfile.cs",
+              "RelativeDocumentMoniker": "HospitalManagement.Application\\Mappings\\Staff\\DoctorProfile.cs",
+              "ToolTip": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Application\\Mappings\\Staff\\DoctorProfile.cs",
+              "RelativeToolTip": "HospitalManagement.Application\\Mappings\\Staff\\DoctorProfile.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAiwEYAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T07:36:16.57Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "dbo.UserRoles [Data]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/localhost/HospitalManagementSystem/sa/SqlTable/dbo.UserRoles.sql",
+              "ToolTip": "dbo.UserRoles [Data]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002897|",
+              "WhenOpened": "2026-07-14T07:32:29.704Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "dbo.UserBranches [Data]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/localhost/HospitalManagementSystem/sa/SqlTable/dbo.UserBranches.sql",
+              "ToolTip": "dbo.UserBranches [Data]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002897|",
+              "WhenOpened": "2026-07-14T07:32:39.455Z",
               "EditorCaption": ""
             }
           ]

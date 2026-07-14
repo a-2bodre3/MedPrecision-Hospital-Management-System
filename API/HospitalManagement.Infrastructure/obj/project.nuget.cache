@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wqLgmFRm+L4=",
+  "dgSpecHash": "njNDVOLN3FI=",
   "success": true,
-  "projectFilePath": "D:\\project\\Full Stack\\hospital-management-system\\backend\\HospitalManagementSystemAPI\\HospitalManagement.Infrastructure\\HospitalManagement.Infrastructure.csproj",
+  "projectFilePath": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Infrastructure\\HospitalManagement.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ah2bo\\.nuget\\packages\\automapper\\16.1.1\\automapper.16.1.1.nupkg.sha512",
     "C:\\Users\\ah2bo\\.nuget\\packages\\azure.core\\1.47.1\\azure.core.1.47.1.nupkg.sha512",

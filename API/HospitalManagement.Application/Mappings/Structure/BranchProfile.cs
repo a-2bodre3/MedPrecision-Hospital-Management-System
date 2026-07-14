@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using HospitalManagement.Application.DTO.Structure.Branch;
 using HospitalManagement.Application.Features.Structure.Branch.Commands.Create;
 using HospitalManagement.Application.Features.Structure.Branch.Commands.Update;
 using HospitalManagement.Application.Features.Structure.Branch.Queries.GetAll;

@@ -19,9 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DTO\Identity\Login\" />
     <Folder Include="Extensions\" />
-    <Folder Include="Validators\Identity\Login\" />
   </ItemGroup>
 
 </Project>

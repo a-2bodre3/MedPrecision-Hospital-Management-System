@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
-using HospitalManagement.Application.DTO.Staff;
-using HospitalManagement.Application.DTO.Staff.Employee;
+
 using HospitalManagement.Application.Features.Staff.Employee.Commands.Create;
 using HospitalManagement.Application.Features.Staff.Employee.Commands.Update;
 using HospitalManagement.Application.Features.Staff.Employee.Queries.GetAll;
@@ -31,8 +30,6 @@ internal class EmployeeProfile : Profile
 
 
         CreateMap<Employee, EmployeeDetailsResponse>()
-            .IncludeBase<Employee, EmployeeDto>()
-
 
             .ForMember(dest => dest.PhoneNumber, opt => opt.MapFrom(src => src.User != null ? src.User.PhoneNumber : string.Empty))
             .ForMember(dest => dest.BirthDate, opt => opt.MapFrom(src => src.User != null ? src.DateOfBirth : (DateTime?)null))

@@ -57,19 +57,18 @@ namespace HospitalManagement.Application.Mappings.Staff
                 .ForMember(dest => dest.ImageUrl, opt => opt.Ignore())
                 .ForMember(dest => dest.IsActive, opt => opt.Ignore());
 
-            CreateMap<CreateDoctorCommand, Employee>()
-                .ForMember(dest => dest , opt => opt.MapFrom(src => src));
+            CreateMap<CreateDoctorCommand, Employee>();
 
-            CreateMap<CreateDoctorCommand, Doctor>()
-                .ForMember(dest => dest.Employee, opt => opt.MapFrom(src => src));
 
+            CreateMap<CreateDoctorCommand, Doctor>();
 
 
 
-            CreateMap<UpdateDoctorCommand, User>();
+
+            CreateMap<UpdateDoctorCommand, User>()
+                .ForMember(dest => dest.ImageUrl, opt => opt.Ignore());
             CreateMap<UpdateDoctorCommand, Employee>();
-            CreateMap<UpdateDoctorCommand, Doctor>()
-                .ForMember(dest => dest.Employee.User.ImageUrl, opt => opt.Ignore());
+            CreateMap<UpdateDoctorCommand, Doctor>();
 
 
 
