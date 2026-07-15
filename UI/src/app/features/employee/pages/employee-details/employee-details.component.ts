@@ -10,7 +10,14 @@ import { toast } from '@spartan-ng/brain/sonner';
 @Component({
   selector: 'app-employee-details',
   standalone: true,
-  imports: [DatePipe, HeaderComponent, HlmButton, LucideArrowRight, LucideKeyRound, LucideUserRound],
+  imports: [
+    DatePipe,
+    HeaderComponent,
+    HlmButton,
+    LucideArrowRight,
+    LucideKeyRound,
+    LucideUserRound,
+  ],
   templateUrl: './employee-details.component.html',
   styleUrl: './employee-details.component.scss',
 })
@@ -47,7 +54,7 @@ export class EmployeeDetailsComponent implements OnInit {
 
   submitPassword(event: Event) {
     event.preventDefault();
-    const employee = this.employeeStore.selectedEmployee();
+    const employee = this.employeeStore.employeeDetails();
     if (!employee || this.newPassword().length < 6) {
       toast.error('كلمة المرور يجب أن لا تقل عن 6 أحرف');
       return;

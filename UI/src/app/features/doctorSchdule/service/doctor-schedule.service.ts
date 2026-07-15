@@ -1,8 +1,14 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../../../environments/environment.development';
-import { DoctorScheduleDisplayDTO, DoctorScheduleFormDTO } from '../model/doctorSchedule.model';
+import {
+  AdjustScheduleValidityDto,
+  DoctorScheduleDetailsDTO,
+  DoctorScheduleDisplayDTO,
+  DoctorScheduleFormDTO,
+} from '../model/doctorSchedule.model';
 import { Observable } from 'rxjs';
+import { PagedResult } from '../../../core/model/pagination.model';
 
 @Injectable({
   providedIn: 'root',
@@ -29,14 +35,28 @@ export class DoctorScheduleService {
     return this.http.put<boolean>(`${this.apiUrl}/${id}`, data);
   }
 
-  getDoctorSchedule(doctorId?: number): Observable<DoctorScheduleDisplayDTO[]> {
-    let params = new HttpParams();
+  getDoctorSchedules(
+    pageNumber = 1,
+    pageSize = 10,
+    specializationId?: number,
+  ): Observable<PagedResult<DoctorScheduleDisplayDTO>> {
+    let params = new HttpParams()
+      .set('PageNumber', pageNumber)
+      .set('PageSize', pageSize);
 
-    if (doctorId) {
-      params = params.set('doctorId', doctorId.toString());
+    if (specializationId) {
+      params = params.set('SpecializationId', specializationId);
     }
 
-    return this.http.get<DoctorScheduleDisplayDTO[]>(`${this.apiUrl}`, { params });
+    return this.http.get<PagedResult<DoctorScheduleDisplayDTO>>(`${this.apiUrl}`, { params });
+  }
+
+  getDoctorScheduleById(id: number): Observable<DoctorScheduleDetailsDTO> {
+    return this.http.get<DoctorScheduleDetailsDTO>(`${this.apiUrl}/${id}`);
+  }
+
+  adjustScheduleValidity(id: number, data: AdjustScheduleValidityDto): Observable<boolean> {
+    return this.http.patch<boolean>(`${this.apiUrl}/${id}`, data);
   }
 
   deleteDoctorSchedule(id: number): Observable<boolean> {

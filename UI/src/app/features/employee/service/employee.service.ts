@@ -2,8 +2,14 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment.development';
-import { EmployeeDetailsDto, EmployeeDto, EmployeeQueryParameters } from '../model/employee.model';
 import { PagedResult } from '../../../core/model/pagination.model';
+import {
+  EmployeeDetailsResponse,
+  EmployeeQuery,
+  EmployeeResponse,
+} from '../model/employee-response.model';
+import { CreateEmployeeRequest, UpdateEmployeeRequest } from '../model/employee-request.model';
+import { toFormData } from '../../../core/utils/form-data.util';
 
 @Injectable({
   providedIn: 'root',
@@ -22,53 +28,47 @@ export class EmployeeService {
   //================================================
   //===================method=======================
   //================================================
-  getEmployees(
-    params: EmployeeQueryParameters,
-    includeInactive: boolean,
-  ): Observable<PagedResult<EmployeeDto>> {
+  getEmployees(query: EmployeeQuery): Observable<PagedResult<EmployeeResponse>> {
     let httpParams = new HttpParams()
-      .set('PageNumber', params.pageNumber)
-      .set('PageSize', params.pageSize)
-      .set('includeInactive', includeInactive);
+      .set('PageNumber', query.pageNumber)
+      .set('PageSize', query.pageSize);
 
-    if (params.searchTerm) {
-      httpParams = httpParams.set('SearchTerm', params.searchTerm);
+    if (query.searchTerm) {
+      httpParams = httpParams.set('searchTerm', query.searchTerm);
     }
-    if (params.roleId) {
-      httpParams = httpParams.set('RoleId', params.roleId);
+    if (query.isActive !== undefined && query.isActive !== null) {
+      httpParams = httpParams.set('isActive', query.isActive.toString());
     }
-    if (params.departmentId) {
-      httpParams = httpParams.set('DepartmentId', params.departmentId);
+    if (query.departmentId) {
+      httpParams = httpParams.set('departmentId', query.departmentId.toString());
     }
 
-    return this.http.get<PagedResult<EmployeeDto>>(`${this.apiUrl}/GetAllEmployees`, {
+    return this.http.get<PagedResult<EmployeeResponse>>(`${this.apiUrl}`, {
       params: httpParams,
     });
   }
 
-  getEmployeeById(id: number): Observable<EmployeeDetailsDto> {
-    return this.http.get<EmployeeDetailsDto>(`${this.apiUrl}/getEmployee/${id}`);
+  getEmployeeById(id: number): Observable<EmployeeDetailsResponse> {
+    return this.http.get<EmployeeDetailsResponse>(`${this.apiUrl}/${id}`);
   }
 
-  createEmployee(data: FormData): Observable<EmployeeDetailsDto> {
-    return this.http.post<EmployeeDetailsDto>(`${this.apiUrl}/createEmployee`, data);
+  createEmployee(data: CreateEmployeeRequest): Observable<boolean> {
+    const formData = toFormData(data);
+    return this.http.post<boolean>(`${this.apiUrl}`, formData);
   }
 
-  updateEmployee(id: number, data: FormData): Observable<boolean> {
-    return this.http.put<boolean>(`${this.apiUrl}/updateEmployee/${id}`, data);
+  updateEmployee(id: number, data: UpdateEmployeeRequest): Observable<boolean> {
+    const formData = toFormData(data);
+    return this.http.put<boolean>(`${this.apiUrl}/${id}`, formData);
   }
 
   changePassword(id: number, password: string): Observable<boolean> {
-    return this.http.patch<boolean>(
-      `${this.apiUrl}/updateEmployeePassword/${id}`,
-      JSON.stringify(password),
-      {
-        headers: { 'Content-Type': 'application/json' },
-      },
-    );
+    return this.http.patch<boolean>(`${this.apiUrl}/ChangePassword/${id}`, {
+      password: password,
+    });
   }
 
   deleteEmployee(id: number): Observable<boolean> {
-    return this.http.patch<boolean>(`${this.apiUrl}/deleteUser/${id}`, {});
+    return this.http.delete<boolean>(`${this.apiUrl}/${id}`);
   }
 }

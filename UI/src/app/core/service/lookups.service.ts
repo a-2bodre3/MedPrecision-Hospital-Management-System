@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
 import { Observable } from 'rxjs';
-import { Lookups } from '../model/Lookups.model';
+import { LookupsResponse } from '../model/Lookups.model';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +21,7 @@ export class LookupsService {
   //================================================
   //===================method=======================
   //================================================
-  getLookups(): Observable<Lookups[]> {
-    return this.http.get<Lookups[]>(this.apiUrl);
+  getLookups(): Observable<LookupsResponse> {
+    return this.http.get<LookupsResponse>(this.apiUrl);
   }
 }

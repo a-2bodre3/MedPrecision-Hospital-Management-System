@@ -64,7 +64,6 @@ export class EmployeeTableComponent implements OnInit {
   fetchEmployees() {
     this.employeeStore.loadEmployees({
       params: this.employeeStore.queryParameters(),
-      includeInactive: this.employeeStore.includeInactive(),
     });
   }
 
@@ -80,6 +79,7 @@ export class EmployeeTableComponent implements OnInit {
     if (jopTitle === 'دكتور') {
       this.router.navigate(['/staff/doctor', id, 'edit']);
     } else {
+      this.employeeStore.loadEmployeeById(id);
       this.router.navigate(['/staff/employee', id, 'edit']);
     }
   }

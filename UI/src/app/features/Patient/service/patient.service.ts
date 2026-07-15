@@ -17,7 +17,7 @@ export class PatientService {
   //================================================
   //===================variable=====================
   //================================================
-  private apiUrl: string = `${environment.baseApi}/Patients`;
+  private apiUrl: string = `${environment.baseApi}/Patient`;
 
   //================================================
   //===================method=======================
@@ -31,6 +31,9 @@ export class PatientService {
     if (params.searchTerm) {
       httpParams = httpParams.set('SearchTerm', params.searchTerm);
     }
+    if (params.isActive !== undefined && params.isActive !== null) {
+      httpParams = httpParams.set('IsActive', params.isActive);
+    }
     return this.http.get<PagedResult<PatientDto>>(`${this.apiUrl}`, {
       params: httpParams,
     });
@@ -40,17 +43,25 @@ export class PatientService {
     return this.http.get<PatientDetailsDto>(`${this.apiUrl}/${id}`);
   }
 
-  createPatient(data: FormData): Observable<PatientDto> {
-    return this.http.post<PatientDto>(`${this.apiUrl}`, data);
+  createPatient(data: FormData): Observable<boolean> {
+    return this.http.post<boolean>(`${this.apiUrl}`, data);
   }
 
   updatePatient(id: number, data: FormData): Observable<boolean> {
     return this.http.put<boolean>(`${this.apiUrl}/${id}`, data);
   }
+
   changePassword(id: number, password: string): Observable<boolean> {
-    return this.http.patch<boolean>(`${this.apiUrl}/${id}/change-password`, password);
+    return this.http.patch<boolean>(
+      `${this.apiUrl}/ChangePassword/${id}`,
+      JSON.stringify(password),
+      {
+        headers: { 'Content-Type': 'application/json' },
+      },
+    );
   }
+
   deletePatient(id: number): Observable<boolean> {
-    return this.http.patch<boolean>(`${this.apiUrl}/delete/${id}`, {});
+    return this.http.delete<boolean>(`${this.apiUrl}/${id}`);
   }
 }

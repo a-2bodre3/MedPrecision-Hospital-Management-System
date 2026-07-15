@@ -18,11 +18,11 @@ export const PATIENT_ROUTES: Routes = [
   //   loadComponent: () =>
   //     import('./pages/patient-edit/patient-edit.component').then((m) => m.PatientEditComponent),
   // },
-  {
-    path: ':id',
-    loadComponent: () =>
-      import('./pages/patient-details/patient-details.component').then(
-        (m) => m.PatientDetailsComponent,
-      ),
-  },
+  // {
+  //   path: ':id',
+  //   loadComponent: () =>
+  //     import('./pages/patient-details/patient-details.component').then(
+  //       (m) => m.PatientDetailsComponent,
+  //     ),
+  // },
 ];
