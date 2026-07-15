@@ -49,10 +49,10 @@ export const routes: Routes = [
             (m) => m.RoomManagementComponent,
           ),
       },
-      // {
-      //   path: 'employee',
-      //   loadChildren: () => import('./features/employee/routes').then((m) => m.EMPLOYEE_ROUTES),
-      // },
+      {
+        path: 'employee',
+        loadChildren: () => import('./features/employee/routes').then((m) => m.EMPLOYEE_ROUTES),
+      },
       // {
       //   path: 'doctor',
       //   loadChildren: () => import('./features/doctor/doctor.route').then((m) => m.DOCTOR_ROUTES),

@@ -8,17 +8,22 @@ export interface PatientDto {
   phoneNumber: string;
 }
 
-export interface PatientDetailsDto extends PatientDto, Address {
+export interface PatientDetailsDto extends PatientDto {
   createdAt: string;
   dateOfBirth: string;
-  gender: string;
+  gender: number;
   emergencyPhoneNumber?: string;
   emergencyEmail?: string;
+  address: {
+    street: string;
+    city: string;
+    country: string;
+  };
   allergies?: string[];
   chronicDiseases?: string[];
 }
 
-export interface CreatePatientDto extends Address {
+export interface CreatePatientDto {
   email: string;
   password: string;
   firstName: string;
@@ -30,24 +35,48 @@ export interface CreatePatientDto extends Address {
   emergencyEmail?: string;
   allergies?: number[];
   chronicDiseases?: number[];
-  gender: string;
+  gender: number;
+  street: string;
+  city: string;
+  country: string;
 }
 
-export interface UpdatePatientDto extends Omit<
-  CreatePatientDto,
-  'email' | 'password' | 'dateOfBirth'
-> {
+export interface UpdatePatientDto {
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
   isActive: boolean;
+  imageFile?: File | null;
+  gender: number;
+  street: string;
+  city: string;
+  country: string;
+  emergencyPhoneNumber?: string;
+  emergencyEmail?: string;
+  allergies?: number[];
+  chronicDiseases?: number[];
 }
 
 export interface PatientQueryParameters {
   searchTerm?: string | null;
+  isActive?: boolean | null;
   pageNumber: number;
   pageSize: number;
 }
 
-interface Address {
-  country: string;
-  city: string;
+export type PatientFormModel = {
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  imageFile: File | null;
+  dateOfBirth: string;
+  gender: string;
   street: string;
-}
+  city: string;
+  country: string;
+  isActive: string;
+  emergencyPhoneNumber: string;
+  emergencyEmail: string;
+};

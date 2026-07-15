@@ -1,4 +1,5 @@
-﻿using HospitalManagement.Domain.Entities.Structure;
+﻿using HospitalManagement.Domain.Entities.Identity;
+using HospitalManagement.Domain.Entities.Structure;
 using HospitalManagement.Domain.Interfaces;
 using MediatR;
 using System;
@@ -21,13 +22,15 @@ namespace HospitalManagement.Application.Features.Lookups.Queries.GetAppLookups
             var branches = await _unitOfWork.Repository<Branch>().ListAllAsync(cancellationToken);
             var departments = await _unitOfWork.Repository<Department>().ListAllAsync(cancellationToken);
             var rooms = await _unitOfWork.Repository<Room>().ListAllAsync(cancellationToken);
+            var roles = await _unitOfWork.Repository<Role>().ListAllAsync(cancellationToken);
 
 
             return new AppLookupsResponse
             {
                 Branches = branches.Select(b => new LookupDto(b.Id, b.Name)).ToList(),
                 Departments = departments.Select(b => new LookupDto(b.Id, b.Name)).ToList(),
-                Rooms = rooms.Select(b => new LookupDto(b.Id, b.RoomNumber)).ToList()
+                Rooms = rooms.Select(b => new LookupDto(b.Id, b.RoomNumber)).ToList(),
+                Roles = roles.Select(r => new LookupDto(r.Id, r.Name)).ToList()
             };
         }
     }
