@@ -1,3 +1,4 @@
+wwwroot\images\3b4765f7-ca77-40fe-b529-03951fdcee6a_UniverstyManagementSystem.png
 wwwroot\images\58473aac-0e64-43ac-bc34-550a35a2ec7d_WhatsApp Image 2025-11-05 at 00.24.36_ae1f6ba9.jpg
 wwwroot\images\employees\3d5f5a1d-5f6b-4188-913f-4ae132f324a1_Screenshot 2026-04-20 215343.png
 wwwroot\images\employees\755d4823-adc3-47c1-8931-c3909cb7b0fb_WhatsApp Image 2025-11-05 at 00.24.36_ae1f6ba9.jpg

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using HospitalManagement.Application.Features.Staff.Doctor.Commands.Create;
 using HospitalManagement.Application.Features.Staff.Doctor.Commands.Update;
+using HospitalManagement.Application.Features.Staff.Doctor.Queries.GetAll;
 using HospitalManagement.Application.Features.Staff.Doctor.Queries.GetDetails;
 using HospitalManagement.Domain.Entities.Identity;
 using HospitalManagement.Domain.Entities.Staff;
@@ -14,6 +15,22 @@ namespace HospitalManagement.Application.Mappings.Staff
     {
         public DoctorProfile()
         {
+
+            CreateMap<Doctor, DoctorsResponse>()
+                .ForPath(dest => dest.FullName, opt => opt.MapFrom(src =>
+                    src.Employee.User != null ? $"{src.Employee.User.FirstName} {src.Employee.User.LastName}" : string.Empty))
+
+                .ForPath(dest => dest.DepartmentName, opt => opt.MapFrom(src =>
+                    src.Employee.Department != null ? src.Employee.Department.Name : string.Empty))
+
+                .ForPath(dest => dest.Email, opt => opt.MapFrom(src =>
+                    src.Employee.User != null ? src.Employee.User.Email : string.Empty))
+                .ForPath(dest => dest.ImageUrl, opt => opt.MapFrom(src =>
+                    src.Employee.User != null ? src.Employee.User.ImageUrl : string.Empty))
+                .ForPath(dest => dest.IsActive, opt => opt.MapFrom(src =>
+                    src.Employee.User != null ? src.Employee.User.IsActive : false));
+
+
             CreateMap<Doctor, DoctorDetailsResponse>()
 
             .ForMember(dest => dest.Specialization, opt => opt.MapFrom(src =>

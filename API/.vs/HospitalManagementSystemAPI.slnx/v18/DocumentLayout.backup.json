@@ -1,0 +1,276 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\project\\Full Stack\\hospital-management-system\\API\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D7EFCBAB-4EE3-C980-01D2-2ECD54CD4B9D}|HospitalManagement.Application\\HospitalManagement.Application.csproj|d:\\project\\full stack\\hospital-management-system\\api\\hospitalmanagement.application\\mappings\\staff\\doctorprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D7EFCBAB-4EE3-C980-01D2-2ECD54CD4B9D}|HospitalManagement.Application\\HospitalManagement.Application.csproj|solutionrelative:hospitalmanagement.application\\mappings\\staff\\doctorprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BB6AD29-45E6-2E42-8538-E3D5E6881780}|HospitalManagement.Infrastructure\\HospitalManagement.Infrastructure.csproj|d:\\project\\full stack\\hospital-management-system\\api\\hospitalmanagement.infrastructure\\services\\authentication\\permissionpolicyprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5BB6AD29-45E6-2E42-8538-E3D5E6881780}|HospitalManagement.Infrastructure\\HospitalManagement.Infrastructure.csproj|solutionrelative:hospitalmanagement.infrastructure\\services\\authentication\\permissionpolicyprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B85A111B-13D3-DC2B-F5A5-548FACEB348E}|HospitalManagement.Presentation\\HospitalManagement.Presentation.csproj|d:\\project\\full stack\\hospital-management-system\\api\\hospitalmanagement.presentation\\controllers\\doctorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B85A111B-13D3-DC2B-F5A5-548FACEB348E}|HospitalManagement.Presentation\\HospitalManagement.Presentation.csproj|solutionrelative:hospitalmanagement.presentation\\controllers\\doctorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B85A111B-13D3-DC2B-F5A5-548FACEB348E}|HospitalManagement.Presentation\\HospitalManagement.Presentation.csproj|d:\\project\\full stack\\hospital-management-system\\api\\hospitalmanagement.presentation\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B85A111B-13D3-DC2B-F5A5-548FACEB348E}|HospitalManagement.Presentation\\HospitalManagement.Presentation.csproj|solutionrelative:hospitalmanagement.presentation\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D7EFCBAB-4EE3-C980-01D2-2ECD54CD4B9D}|HospitalManagement.Application\\HospitalManagement.Application.csproj|d:\\project\\full stack\\hospital-management-system\\api\\hospitalmanagement.application\\features\\staff\\employee\\queries\\getall\\getallemployeehandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D7EFCBAB-4EE3-C980-01D2-2ECD54CD4B9D}|HospitalManagement.Application\\HospitalManagement.Application.csproj|solutionrelative:hospitalmanagement.application\\features\\staff\\employee\\queries\\getall\\getallemployeehandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D7EFCBAB-4EE3-C980-01D2-2ECD54CD4B9D}|HospitalManagement.Application\\HospitalManagement.Application.csproj|d:\\project\\full stack\\hospital-management-system\\api\\hospitalmanagement.application\\features\\staff\\doctor\\queries\\getall\\getalldoctorhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D7EFCBAB-4EE3-C980-01D2-2ECD54CD4B9D}|HospitalManagement.Application\\HospitalManagement.Application.csproj|solutionrelative:hospitalmanagement.application\\features\\staff\\doctor\\queries\\getall\\getalldoctorhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FDB1DF7A-5D2A-75DD-E5C3-F75BAD58AE3F}|HospitalManagement.Domain\\HospitalManagement.Domain.csproj|d:\\project\\full stack\\hospital-management-system\\api\\hospitalmanagement.domain\\specifications\\doctor\\doctordetailsspec.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FDB1DF7A-5D2A-75DD-E5C3-F75BAD58AE3F}|HospitalManagement.Domain\\HospitalManagement.Domain.csproj|solutionrelative:hospitalmanagement.domain\\specifications\\doctor\\doctordetailsspec.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FDB1DF7A-5D2A-75DD-E5C3-F75BAD58AE3F}|HospitalManagement.Domain\\HospitalManagement.Domain.csproj|d:\\project\\full stack\\hospital-management-system\\api\\hospitalmanagement.domain\\specifications\\doctor\\doctorfilterspec.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FDB1DF7A-5D2A-75DD-E5C3-F75BAD58AE3F}|HospitalManagement.Domain\\HospitalManagement.Domain.csproj|solutionrelative:hospitalmanagement.domain\\specifications\\doctor\\doctorfilterspec.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FDB1DF7A-5D2A-75DD-E5C3-F75BAD58AE3F}|HospitalManagement.Domain\\HospitalManagement.Domain.csproj|d:\\project\\full stack\\hospital-management-system\\api\\hospitalmanagement.domain\\specifications\\employee\\employeefilterspec.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FDB1DF7A-5D2A-75DD-E5C3-F75BAD58AE3F}|HospitalManagement.Domain\\HospitalManagement.Domain.csproj|solutionrelative:hospitalmanagement.domain\\specifications\\employee\\employeefilterspec.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D7EFCBAB-4EE3-C980-01D2-2ECD54CD4B9D}|HospitalManagement.Application\\HospitalManagement.Application.csproj|d:\\project\\full stack\\hospital-management-system\\api\\hospitalmanagement.application\\features\\staff\\employee\\queries\\getall\\getallemployeequery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D7EFCBAB-4EE3-C980-01D2-2ECD54CD4B9D}|HospitalManagement.Application\\HospitalManagement.Application.csproj|solutionrelative:hospitalmanagement.application\\features\\staff\\employee\\queries\\getall\\getallemployeequery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D7EFCBAB-4EE3-C980-01D2-2ECD54CD4B9D}|HospitalManagement.Application\\HospitalManagement.Application.csproj|d:\\project\\full stack\\hospital-management-system\\api\\hospitalmanagement.application\\features\\staff\\employee\\queries\\getall\\getallemployeeresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D7EFCBAB-4EE3-C980-01D2-2ECD54CD4B9D}|HospitalManagement.Application\\HospitalManagement.Application.csproj|solutionrelative:hospitalmanagement.application\\features\\staff\\employee\\queries\\getall\\getallemployeeresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D7EFCBAB-4EE3-C980-01D2-2ECD54CD4B9D}|HospitalManagement.Application\\HospitalManagement.Application.csproj|d:\\project\\full stack\\hospital-management-system\\api\\hospitalmanagement.application\\mappings\\staff\\employeeprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D7EFCBAB-4EE3-C980-01D2-2ECD54CD4B9D}|HospitalManagement.Application\\HospitalManagement.Application.csproj|solutionrelative:hospitalmanagement.application\\mappings\\staff\\employeeprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D7EFCBAB-4EE3-C980-01D2-2ECD54CD4B9D}|HospitalManagement.Application\\HospitalManagement.Application.csproj|d:\\project\\full stack\\hospital-management-system\\api\\hospitalmanagement.application\\features\\staff\\doctor\\queries\\getall\\getalldoctorresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D7EFCBAB-4EE3-C980-01D2-2ECD54CD4B9D}|HospitalManagement.Application\\HospitalManagement.Application.csproj|solutionrelative:hospitalmanagement.application\\features\\staff\\doctor\\queries\\getall\\getalldoctorresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D7EFCBAB-4EE3-C980-01D2-2ECD54CD4B9D}|HospitalManagement.Application\\HospitalManagement.Application.csproj|d:\\project\\full stack\\hospital-management-system\\api\\hospitalmanagement.application\\features\\staff\\doctor\\queries\\getall\\getalldoctorquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D7EFCBAB-4EE3-C980-01D2-2ECD54CD4B9D}|HospitalManagement.Application\\HospitalManagement.Application.csproj|solutionrelative:hospitalmanagement.application\\features\\staff\\doctor\\queries\\getall\\getalldoctorquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 408,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PermissionPolicyProvider.cs",
+              "DocumentMoniker": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Infrastructure\\Services\\Authentication\\PermissionPolicyProvider.cs",
+              "RelativeDocumentMoniker": "HospitalManagement.Infrastructure\\Services\\Authentication\\PermissionPolicyProvider.cs",
+              "ToolTip": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Infrastructure\\Services\\Authentication\\PermissionPolicyProvider.cs",
+              "RelativeToolTip": "HospitalManagement.Infrastructure\\Services\\Authentication\\PermissionPolicyProvider.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T14:59:59.395Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DoctorController.cs",
+              "DocumentMoniker": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Presentation\\Controllers\\DoctorController.cs",
+              "RelativeDocumentMoniker": "HospitalManagement.Presentation\\Controllers\\DoctorController.cs",
+              "ToolTip": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Presentation\\Controllers\\DoctorController.cs",
+              "RelativeToolTip": "HospitalManagement.Presentation\\Controllers\\DoctorController.cs",
+              "ViewState": "AgIAAD0AAAAAAAAAAAAQwCEAAABUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T14:56:50.481Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "DoctorDetailsSpec.cs",
+              "DocumentMoniker": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Domain\\Specifications\\Doctor\\DoctorDetailsSpec.cs",
+              "RelativeDocumentMoniker": "HospitalManagement.Domain\\Specifications\\Doctor\\DoctorDetailsSpec.cs",
+              "ToolTip": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Domain\\Specifications\\Doctor\\DoctorDetailsSpec.cs",
+              "RelativeToolTip": "HospitalManagement.Domain\\Specifications\\Doctor\\DoctorDetailsSpec.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T14:49:11.169Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "DoctorFilterSpec.cs",
+              "DocumentMoniker": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Domain\\Specifications\\Doctor\\DoctorFilterSpec.cs",
+              "RelativeDocumentMoniker": "HospitalManagement.Domain\\Specifications\\Doctor\\DoctorFilterSpec.cs",
+              "ToolTip": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Domain\\Specifications\\Doctor\\DoctorFilterSpec.cs",
+              "RelativeToolTip": "HospitalManagement.Domain\\Specifications\\Doctor\\DoctorFilterSpec.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T12:26:52.538Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DoctorProfile.cs",
+              "DocumentMoniker": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Application\\Mappings\\Staff\\DoctorProfile.cs",
+              "RelativeDocumentMoniker": "HospitalManagement.Application\\Mappings\\Staff\\DoctorProfile.cs",
+              "ToolTip": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Application\\Mappings\\Staff\\DoctorProfile.cs*",
+              "RelativeToolTip": "HospitalManagement.Application\\Mappings\\Staff\\DoctorProfile.cs*",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAMwCAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T12:19:02.483Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "GetAllDoctorHandler.cs",
+              "DocumentMoniker": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Application\\Features\\Staff\\Doctor\\Queries\\GetAll\\GetAllDoctorHandler.cs",
+              "RelativeDocumentMoniker": "HospitalManagement.Application\\Features\\Staff\\Doctor\\Queries\\GetAll\\GetAllDoctorHandler.cs",
+              "ToolTip": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Application\\Features\\Staff\\Doctor\\Queries\\GetAll\\GetAllDoctorHandler.cs",
+              "RelativeToolTip": "HospitalManagement.Application\\Features\\Staff\\Doctor\\Queries\\GetAll\\GetAllDoctorHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACgAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T12:10:57.878Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "GetAllDoctorQuery.cs",
+              "DocumentMoniker": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Application\\Features\\Staff\\Doctor\\Queries\\GetAll\\GetAllDoctorQuery.cs",
+              "RelativeDocumentMoniker": "HospitalManagement.Application\\Features\\Staff\\Doctor\\Queries\\GetAll\\GetAllDoctorQuery.cs",
+              "ToolTip": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Application\\Features\\Staff\\Doctor\\Queries\\GetAll\\GetAllDoctorQuery.cs",
+              "RelativeToolTip": "HospitalManagement.Application\\Features\\Staff\\Doctor\\Queries\\GetAll\\GetAllDoctorQuery.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T12:11:06.368Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "GetAllDoctorResponse.cs",
+              "DocumentMoniker": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Application\\Features\\Staff\\Doctor\\Queries\\GetAll\\GetAllDoctorResponse.cs",
+              "RelativeDocumentMoniker": "HospitalManagement.Application\\Features\\Staff\\Doctor\\Queries\\GetAll\\GetAllDoctorResponse.cs",
+              "ToolTip": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Application\\Features\\Staff\\Doctor\\Queries\\GetAll\\GetAllDoctorResponse.cs",
+              "RelativeToolTip": "HospitalManagement.Application\\Features\\Staff\\Doctor\\Queries\\GetAll\\GetAllDoctorResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T12:11:10.564Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 408,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "EmployeeController.cs",
+              "DocumentMoniker": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Presentation\\Controllers\\EmployeeController.cs",
+              "RelativeDocumentMoniker": "HospitalManagement.Presentation\\Controllers\\EmployeeController.cs",
+              "ToolTip": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Presentation\\Controllers\\EmployeeController.cs",
+              "RelativeToolTip": "HospitalManagement.Presentation\\Controllers\\EmployeeController.cs",
+              "ViewState": "AgIAACsAAAAAAAAAAAAqwBsAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T14:57:01.496Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "EmployeeFilterSpec.cs",
+              "DocumentMoniker": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Domain\\Specifications\\Employee\\EmployeeFilterSpec.cs",
+              "RelativeDocumentMoniker": "HospitalManagement.Domain\\Specifications\\Employee\\EmployeeFilterSpec.cs",
+              "ToolTip": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Domain\\Specifications\\Employee\\EmployeeFilterSpec.cs",
+              "RelativeToolTip": "HospitalManagement.Domain\\Specifications\\Employee\\EmployeeFilterSpec.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAB1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T12:24:54.253Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "EmployeeProfile.cs",
+              "DocumentMoniker": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Application\\Mappings\\Staff\\EmployeeProfile.cs",
+              "RelativeDocumentMoniker": "HospitalManagement.Application\\Mappings\\Staff\\EmployeeProfile.cs",
+              "ToolTip": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Application\\Mappings\\Staff\\EmployeeProfile.cs",
+              "RelativeToolTip": "HospitalManagement.Application\\Mappings\\Staff\\EmployeeProfile.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABwAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T12:18:58.917Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "GetAllEmployeeResponse.cs",
+              "DocumentMoniker": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Application\\Features\\Staff\\Employee\\Queries\\GetAll\\GetAllEmployeeResponse.cs",
+              "RelativeDocumentMoniker": "HospitalManagement.Application\\Features\\Staff\\Employee\\Queries\\GetAll\\GetAllEmployeeResponse.cs",
+              "ToolTip": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Application\\Features\\Staff\\Employee\\Queries\\GetAll\\GetAllEmployeeResponse.cs",
+              "RelativeToolTip": "HospitalManagement.Application\\Features\\Staff\\Employee\\Queries\\GetAll\\GetAllEmployeeResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T12:09:37.549Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "GetAllEmployeeQuery.cs",
+              "DocumentMoniker": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Application\\Features\\Staff\\Employee\\Queries\\GetAll\\GetAllEmployeeQuery.cs",
+              "RelativeDocumentMoniker": "HospitalManagement.Application\\Features\\Staff\\Employee\\Queries\\GetAll\\GetAllEmployeeQuery.cs",
+              "ToolTip": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Application\\Features\\Staff\\Employee\\Queries\\GetAll\\GetAllEmployeeQuery.cs",
+              "RelativeToolTip": "HospitalManagement.Application\\Features\\Staff\\Employee\\Queries\\GetAll\\GetAllEmployeeQuery.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T12:09:36.73Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "GetAllEmployeeHandler.cs",
+              "DocumentMoniker": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Application\\Features\\Staff\\Employee\\Queries\\GetAll\\GetAllEmployeeHandler.cs",
+              "RelativeDocumentMoniker": "HospitalManagement.Application\\Features\\Staff\\Employee\\Queries\\GetAll\\GetAllEmployeeHandler.cs",
+              "ToolTip": "D:\\project\\Full Stack\\hospital-management-system\\API\\HospitalManagement.Application\\Features\\Staff\\Employee\\Queries\\GetAll\\GetAllEmployeeHandler.cs",
+              "RelativeToolTip": "HospitalManagement.Application\\Features\\Staff\\Employee\\Queries\\GetAll\\GetAllEmployeeHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T12:09:35.866Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

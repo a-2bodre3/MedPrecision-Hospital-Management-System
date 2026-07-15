@@ -1,6 +1,8 @@
-﻿using HospitalManagement.Application.Features.Identity.Users.ChangePassword;
+﻿using HospitalManagement.Application.DTO.Common;
+using HospitalManagement.Application.Features.Identity.Users.ChangePassword;
 using HospitalManagement.Application.Features.Staff.Doctor.Commands.Create;
 using HospitalManagement.Application.Features.Staff.Doctor.Commands.Update;
+using HospitalManagement.Application.Features.Staff.Doctor.Queries.GetAll;
 using HospitalManagement.Application.Features.Staff.Doctor.Queries.GetDetails;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -17,6 +19,14 @@ namespace HospitalManagement.Presentation.Controllers
         public DoctorController(IMediator mediator)
         {
             _mediator = mediator;
+        }
+
+        [Authorize("User_Read")]
+        [HttpGet]
+        public async Task<ActionResult<PagedResult<DoctorsResponse>>> GetAllDoctor([FromQuery] DoctorsQuery query)
+        {
+            var result = await _mediator.Send(query);
+            return Ok(result);
         }
 
         [Authorize("User_Read")]
