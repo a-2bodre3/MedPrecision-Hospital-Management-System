@@ -1,5 +1,5 @@
 <div class="w-full p-6 md:p-10 relative text-right" dir="rtl">
-  
+
   <app-header
     title="تعديل بيانات المريض"
     description="تحديث البيانات الشخصية، العنوان الوطني، السجل الطبي وحالة حساب المريض"
@@ -227,21 +227,21 @@
         <div class="flex flex-col gap-2.5">
           <label for="country" class="text-sm font-bold text-slate-600">الدولة</label>
           <input id="country" type="text" placeholder="مثال: المملكة العربية السعودية"
-                 [formField]="patientForm.country"
+                 [formField]="patientForm.address.country"
                  class="w-full px-4 py-3.5 bg-slate-50 border border-slate-200/80 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 rounded-2xl transition-all outline-none"/>
         </div>
 
         <div class="flex flex-col gap-2.5">
           <label for="city" class="text-sm font-bold text-slate-600">المدينة</label>
           <input id="city" type="text" placeholder="مثال: الرياض"
-                 [formField]="patientForm.city"
+                 [formField]="patientForm.address.city"
                  class="w-full px-4 py-3.5 bg-slate-50 border border-slate-200/80 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 rounded-2xl transition-all outline-none"/>
         </div>
 
         <div class="flex flex-col gap-2.5">
           <label for="street" class="text-sm font-bold text-slate-600">الشارع والحي</label>
           <input id="street" type="text" placeholder="أدخل اسم الشارع ورقم المبنى"
-                 [formField]="patientForm.street"
+                 [formField]="patientForm.address.street"
                  class="w-full px-4 py-3.5 bg-slate-50 border border-slate-200/80 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 rounded-2xl transition-all outline-none"/>
         </div>
 

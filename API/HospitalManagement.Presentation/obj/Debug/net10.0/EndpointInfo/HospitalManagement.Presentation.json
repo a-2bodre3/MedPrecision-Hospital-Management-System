@@ -567,19 +567,102 @@
         ],
         "requestBody": {
           "content": {
-            "application/json": {
+            "application/x-www-form-urlencoded": {
               "schema": {
-                "$ref": "#/components/schemas/CreateDoctorCommand"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateDoctorCommand"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateDoctorCommand"
+                "type": "object",
+                "properties": {
+                  "LicenseNumber": {
+                    "type": "string"
+                  },
+                  "ConsultationFee": {
+                    "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+                    "type": [
+                      "number",
+                      "string"
+                    ],
+                    "format": "double"
+                  },
+                  "Degree": {
+                    "$ref": "#/components/schemas/AcademicDegree"
+                  },
+                  "SubSpecialtyId": {
+                    "pattern": "^-?(?:0|[1-9]\\d*)$",
+                    "type": [
+                      "integer",
+                      "string"
+                    ],
+                    "format": "int32"
+                  },
+                  "Email": {
+                    "type": "string"
+                  },
+                  "Password": {
+                    "type": "string"
+                  },
+                  "FirstName": {
+                    "type": "string"
+                  },
+                  "LastName": {
+                    "type": "string"
+                  },
+                  "PhoneNumber": {
+                    "type": "string"
+                  },
+                  "JobTitle": {
+                    "type": "string"
+                  },
+                  "ImageFile": {
+                    "$ref": "#/components/schemas/IFormFile"
+                  },
+                  "DateOfBirth": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "Gender": {
+                    "$ref": "#/components/schemas/Gender"
+                  },
+                  "Salary": {
+                    "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+                    "type": [
+                      "number",
+                      "string"
+                    ],
+                    "format": "double"
+                  },
+                  "RoleId": {
+                    "pattern": "^-?(?:0|[1-9]\\d*)$",
+                    "type": [
+                      "integer",
+                      "string"
+                    ],
+                    "format": "int32"
+                  },
+                  "BranchId": {
+                    "pattern": "^-?(?:0|[1-9]\\d*)$",
+                    "type": [
+                      "integer",
+                      "string"
+                    ],
+                    "format": "int32"
+                  },
+                  "DepartmentId": {
+                    "pattern": "^-?(?:0|[1-9]\\d*)$",
+                    "type": [
+                      "integer",
+                      "string"
+                    ],
+                    "format": "int32"
+                  },
+                  "Address.Street": {
+                    "type": "string"
+                  },
+                  "Address.City": {
+                    "type": "string"
+                  },
+                  "Address.Country": {
+                    "type": "string"
+                  }
+                }
               }
             }
           },
@@ -673,19 +756,93 @@
         ],
         "requestBody": {
           "content": {
-            "application/json": {
+            "application/x-www-form-urlencoded": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateDoctorCommand"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateDoctorCommand"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateDoctorCommand"
+                "type": "object",
+                "properties": {
+                  "ConsultationFee": {
+                    "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+                    "type": [
+                      "number",
+                      "string"
+                    ],
+                    "format": "double"
+                  },
+                  "Id": {
+                    "pattern": "^-?(?:0|[1-9]\\d*)$",
+                    "type": [
+                      "integer",
+                      "string"
+                    ],
+                    "format": "int32"
+                  },
+                  "FirstName": {
+                    "type": "string"
+                  },
+                  "LastName": {
+                    "type": "string"
+                  },
+                  "PhoneNumber": {
+                    "type": "string"
+                  },
+                  "IsActive": {
+                    "type": "boolean"
+                  },
+                  "ImageFile": {
+                    "$ref": "#/components/schemas/IFormFile"
+                  },
+                  "Salary": {
+                    "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+                    "type": [
+                      "number",
+                      "string"
+                    ],
+                    "format": "double"
+                  },
+                  "DateOfBirth": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "JobTitle": {
+                    "type": "string"
+                  },
+                  "Gender": {
+                    "$ref": "#/components/schemas/Gender"
+                  },
+                  "Address.Street": {
+                    "type": "string"
+                  },
+                  "Address.City": {
+                    "type": "string"
+                  },
+                  "Address.Country": {
+                    "type": "string"
+                  },
+                  "BranchId": {
+                    "pattern": "^-?(?:0|[1-9]\\d*)$",
+                    "type": [
+                      "integer",
+                      "string"
+                    ],
+                    "format": "int32"
+                  },
+                  "RoleId": {
+                    "pattern": "^-?(?:0|[1-9]\\d*)$",
+                    "type": [
+                      "integer",
+                      "string"
+                    ],
+                    "format": "int32"
+                  },
+                  "DepartmentId": {
+                    "pattern": "^-?(?:0|[1-9]\\d*)$",
+                    "type": [
+                      "integer",
+                      "string"
+                    ],
+                    "format": "int32"
+                  }
+                }
               }
             }
           },
@@ -1673,19 +1830,73 @@
         ],
         "requestBody": {
           "content": {
-            "application/json": {
+            "application/x-www-form-urlencoded": {
               "schema": {
-                "$ref": "#/components/schemas/CreatePatientCommand"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreatePatientCommand"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreatePatientCommand"
+                "type": "object",
+                "properties": {
+                  "Email": {
+                    "type": "string"
+                  },
+                  "Password": {
+                    "type": "string"
+                  },
+                  "FirstName": {
+                    "type": "string"
+                  },
+                  "LastName": {
+                    "type": "string"
+                  },
+                  "PhoneNumber": {
+                    "type": "string"
+                  },
+                  "ImageFile": {
+                    "$ref": "#/components/schemas/IFormFile"
+                  },
+                  "DateOfBirth": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "Gender": {
+                    "$ref": "#/components/schemas/Gender"
+                  },
+                  "Address.Street": {
+                    "type": "string"
+                  },
+                  "Address.City": {
+                    "type": "string"
+                  },
+                  "Address.Country": {
+                    "type": "string"
+                  },
+                  "EmergencyPhoneNumber": {
+                    "type": "string"
+                  },
+                  "EmergencyEmail": {
+                    "type": "string"
+                  },
+                  "Allergies": {
+                    "type": "array",
+                    "items": {
+                      "pattern": "^-?(?:0|[1-9]\\d*)$",
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "format": "int32"
+                    }
+                  },
+                  "ChronicDiseases": {
+                    "type": "array",
+                    "items": {
+                      "pattern": "^-?(?:0|[1-9]\\d*)$",
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "format": "int32"
+                    }
+                  }
+                }
               }
             }
           },
@@ -1779,19 +1990,74 @@
         ],
         "requestBody": {
           "content": {
-            "application/json": {
+            "application/x-www-form-urlencoded": {
               "schema": {
-                "$ref": "#/components/schemas/UpdatePatientCommand"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdatePatientCommand"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdatePatientCommand"
+                "type": "object",
+                "properties": {
+                  "Id": {
+                    "pattern": "^-?(?:0|[1-9]\\d*)$",
+                    "type": [
+                      "integer",
+                      "string"
+                    ],
+                    "format": "int32"
+                  },
+                  "FirstName": {
+                    "type": "string"
+                  },
+                  "LastName": {
+                    "type": "string"
+                  },
+                  "PhoneNumber": {
+                    "type": "string"
+                  },
+                  "IsActive": {
+                    "type": "boolean"
+                  },
+                  "ImageFile": {
+                    "$ref": "#/components/schemas/IFormFile"
+                  },
+                  "Gender": {
+                    "$ref": "#/components/schemas/Gender"
+                  },
+                  "Address.Street": {
+                    "type": "string"
+                  },
+                  "Address.City": {
+                    "type": "string"
+                  },
+                  "Address.Country": {
+                    "type": "string"
+                  },
+                  "EmergencyPhoneNumber": {
+                    "type": "string"
+                  },
+                  "EmergencyEmail": {
+                    "type": "string"
+                  },
+                  "Allergies": {
+                    "type": "array",
+                    "items": {
+                      "pattern": "^-?(?:0|[1-9]\\d*)$",
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "format": "int32"
+                    }
+                  },
+                  "ChronicDiseases": {
+                    "type": "array",
+                    "items": {
+                      "pattern": "^-?(?:0|[1-9]\\d*)$",
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "format": "int32"
+                    }
+                  }
+                }
               }
             }
           },
@@ -2585,6 +2851,30 @@
             "items": {
               "$ref": "#/components/schemas/LookupDto"
             }
+          },
+          "subSpecialty": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LookupDto"
+            }
+          },
+          "specialization": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LookupDto"
+            }
+          },
+          "allergies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LookupDto"
+            }
+          },
+          "chronicDisease": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LookupDto"
+            }
           }
         }
       },
@@ -2719,122 +3009,6 @@
           }
         }
       },
-      "CreateDoctorCommand": {
-        "required": [
-          "licenseNumber",
-          "consultationFee",
-          "degree",
-          "subSpecialtyId",
-          "email",
-          "password",
-          "firstName",
-          "lastName",
-          "phoneNumber",
-          "jobTitle",
-          "dateOfBirth",
-          "gender",
-          "salary",
-          "roleId",
-          "branchId",
-          "departmentId",
-          "address"
-        ],
-        "type": "object",
-        "properties": {
-          "licenseNumber": {
-            "type": "string"
-          },
-          "consultationFee": {
-            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "type": [
-              "number",
-              "string"
-            ],
-            "format": "double"
-          },
-          "degree": {
-            "$ref": "#/components/schemas/AcademicDegree"
-          },
-          "subSpecialtyId": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
-            "format": "int32"
-          },
-          "email": {
-            "type": "string"
-          },
-          "password": {
-            "type": "string"
-          },
-          "firstName": {
-            "type": "string"
-          },
-          "lastName": {
-            "type": "string"
-          },
-          "phoneNumber": {
-            "type": "string"
-          },
-          "jobTitle": {
-            "type": "string"
-          },
-          "imageFile": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "$ref": "#/components/schemas/IFormFile"
-              }
-            ]
-          },
-          "dateOfBirth": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "gender": {
-            "$ref": "#/components/schemas/Gender"
-          },
-          "salary": {
-            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "type": [
-              "number",
-              "string"
-            ],
-            "format": "double"
-          },
-          "roleId": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
-            "format": "int32"
-          },
-          "branchId": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
-            "format": "int32"
-          },
-          "departmentId": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
-            "format": "int32"
-          },
-          "address": {
-            "$ref": "#/components/schemas/Address"
-          }
-        }
-      },
       "CreateDoctorScheduleCommand": {
         "required": [
           "dayOfWeeks",
@@ -2888,96 +3062,6 @@
               "string"
             ],
             "format": "int32"
-          }
-        }
-      },
-      "CreatePatientCommand": {
-        "required": [
-          "email",
-          "password",
-          "firstName",
-          "lastName",
-          "phoneNumber",
-          "dateOfBirth",
-          "gender",
-          "address"
-        ],
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string"
-          },
-          "password": {
-            "type": "string"
-          },
-          "firstName": {
-            "type": "string"
-          },
-          "lastName": {
-            "type": "string"
-          },
-          "phoneNumber": {
-            "type": "string"
-          },
-          "imageFile": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "$ref": "#/components/schemas/IFormFile"
-              }
-            ]
-          },
-          "dateOfBirth": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "gender": {
-            "$ref": "#/components/schemas/Gender"
-          },
-          "address": {
-            "$ref": "#/components/schemas/Address"
-          },
-          "emergencyPhoneNumber": {
-            "type": [
-              "null",
-              "string"
-            ]
-          },
-          "emergencyEmail": {
-            "type": [
-              "null",
-              "string"
-            ]
-          },
-          "allergies": {
-            "type": [
-              "null",
-              "array"
-            ],
-            "items": {
-              "pattern": "^-?(?:0|[1-9]\\d*)$",
-              "type": [
-                "integer",
-                "string"
-              ],
-              "format": "int32"
-            }
-          },
-          "chronicDiseases": {
-            "type": [
-              "null",
-              "array"
-            ],
-            "items": {
-              "pattern": "^-?(?:0|[1-9]\\d*)$",
-              "type": [
-                "integer",
-                "string"
-              ],
-              "format": "int32"
-            }
           }
         }
       },
@@ -3078,6 +3162,7 @@
       },
       "DoctorDetailsResponse": {
         "required": [
+          "employeeId",
           "licenseNumber",
           "consultationFee",
           "degree",
@@ -3097,6 +3182,14 @@
         ],
         "type": "object",
         "properties": {
+          "employeeId": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
           "licenseNumber": {
             "type": "string"
           },
@@ -3455,10 +3548,7 @@
         "type": "integer"
       },
       "IFormFile": {
-        "type": [
-          "null",
-          "string"
-        ],
+        "type": "string",
         "format": "binary"
       },
       "LoginCommand": {
@@ -4125,94 +4215,6 @@
               "string"
             ],
             "format": "int32"
-          }
-        }
-      },
-      "UpdatePatientCommand": {
-        "required": [
-          "firstName",
-          "lastName",
-          "phoneNumber",
-          "gender",
-          "address"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
-            "format": "int32"
-          },
-          "firstName": {
-            "type": "string"
-          },
-          "lastName": {
-            "type": "string"
-          },
-          "phoneNumber": {
-            "type": "string"
-          },
-          "isActive": {
-            "type": "boolean"
-          },
-          "imageFile": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "$ref": "#/components/schemas/IFormFile"
-              }
-            ]
-          },
-          "gender": {
-            "$ref": "#/components/schemas/Gender"
-          },
-          "address": {
-            "$ref": "#/components/schemas/Address"
-          },
-          "emergencyPhoneNumber": {
-            "type": [
-              "null",
-              "string"
-            ]
-          },
-          "emergencyEmail": {
-            "type": [
-              "null",
-              "string"
-            ]
-          },
-          "allergies": {
-            "type": [
-              "null",
-              "array"
-            ],
-            "items": {
-              "pattern": "^-?(?:0|[1-9]\\d*)$",
-              "type": [
-                "integer",
-                "string"
-              ],
-              "format": "int32"
-            }
-          },
-          "chronicDiseases": {
-            "type": [
-              "null",
-              "array"
-            ],
-            "items": {
-              "pattern": "^-?(?:0|[1-9]\\d*)$",
-              "type": [
-                "integer",
-                "string"
-              ],
-              "format": "int32"
-            }
           }
         }
       },

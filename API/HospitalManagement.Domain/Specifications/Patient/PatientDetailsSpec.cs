@@ -11,6 +11,7 @@ namespace HospitalManagement.Domain.Specifications.Patient
         public PatientDetailsSpec(int patientId) : base(p => p.Id == patientId)
         {
             AddInclude(p => p.User);
+            AddInclude(p => p.Address);
             AddInclude($"{nameof(PatientEntity.PatientAllergies)}.{nameof(PatientAllergy.Allergy)}");
             AddInclude($"{nameof(PatientEntity.PatientChronicDiseases)}.{nameof(PatientChronicDisease.ChronicDisease)}");
         }

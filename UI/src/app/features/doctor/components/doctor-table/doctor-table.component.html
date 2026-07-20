@@ -1,0 +1,126 @@
+<div class="w-full overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm" dir="rtl">
+  <div class="overflow-x-auto">
+    <table class="w-full min-w-[980px] border-collapse text-right text-sm">
+      <thead class="bg-slate-50/75 text-slate-500 border-b border-slate-200">
+      <tr>
+        <th class="px-6 py-4 font-semibold text-xs tracking-wider">الطبيب</th>
+        <th class="px-6 py-4 font-semibold text-xs tracking-wider">البريد الإلكتروني</th>
+        <th class="px-6 py-4 font-semibold text-xs tracking-wider">الدرجة الأكاديمية</th>
+        <th class="px-6 py-4 font-semibold text-xs tracking-wider">القسم</th>
+        <th class="px-6 py-4 font-semibold text-xs tracking-wider">الحالة</th>
+        <th class="px-6 py-4 font-semibold text-xs tracking-wider">الإجراءات</th>
+      </tr>
+      </thead>
+
+      <tbody class="divide-y divide-slate-100 text-slate-600">
+        @if (doctorStore.loading()) {
+          <tr>
+            <td colspan="6" class="py-10 text-center text-slate-400">جاري تحميل الأطباء...</td>
+          </tr>
+        } @else {
+          @for (doctor of doctorStore.items(); track doctor.id) {
+            <tr class="transition-colors duration-200 hover:bg-slate-50/50">
+              <td class="px-6 py-4 font-semibold text-slate-900">
+                <div class="flex items-center gap-3">
+                  @if (doctor.imageUrl) {
+                    <img
+                      [src]="'https://localhost:7042/images/'+doctor.imageUrl"
+                      [alt]="'https://localhost:7042/images/'+doctor.imageUrl"
+                      class="h-10 w-10 rounded-full object-cover border border-slate-200"
+                    >
+                  } @else {
+                    <div class="flex h-10 w-10 items-center justify-center rounded-full bg-blue-50 text-blue-600">
+                      <svg lucideUserRound class="w-5 h-5"></svg>
+                    </div>
+                  }
+                  <span>{{ doctor.fullName }}</span>
+                </div>
+              </td>
+
+              <td class="px-6 py-4 font-medium text-slate-700">{{ doctor.email }}</td>
+              <td class="px-6 py-4 font-medium text-slate-700">{{ doctor.jobTitle }}</td>
+              <td class="px-6 py-4">
+                <span
+                  class="rounded-lg bg-blue-50/50 px-2.5 py-1 text-xs font-medium text-blue-700 border border-blue-100/50">
+                  {{ doctor.departmentName }}
+                </span>
+              </td>
+
+              <td class="px-6 py-4">
+                <span
+                  class="inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium tracking-wide transition-all border"
+                  [class]="doctor.isActive
+                    ? 'bg-emerald-50 text-emerald-700 border-emerald-200/60'
+                    : 'bg-rose-50 text-rose-700 border-rose-200/60'">
+                  <span
+                    class="ml-1.5 h-1.5 w-1.5 rounded-full"
+                    [class]="doctor.isActive ? 'bg-emerald-500' : 'bg-rose-500'"
+                  ></span>
+                  {{ doctor.isActive ? 'نشط' : 'غير نشط' }}
+                </span>
+              </td>
+
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-2">
+                  <button
+                    (click)="goToDetails(doctor.id)"
+                    class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 border border-slate-200/40 bg-white transition-all hover:bg-blue-50 hover:text-blue-600 hover:border-blue-200/60 cursor-pointer shadow-sm"
+                    title="عرض التفاصيل">
+                    <svg lucideEye class="w-4 h-4"></svg>
+                  </button>
+
+                  <button
+                    (click)="goToEdit(doctor.id)"
+                    class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 border border-slate-200/40 bg-white transition-all hover:bg-amber-50 hover:text-amber-600 hover:border-amber-200/60 cursor-pointer shadow-sm"
+                    title="تعديل">
+                    <svg lucidePencil class="w-4 h-4"></svg>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="6" class="py-10 text-center text-slate-400 italic">
+                لا توجد بيانات أطباء مطابقة للتصفية الحالية.
+              </td>
+            </tr>
+          }
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <div
+    class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-t border-slate-100 bg-slate-50/60 px-5 py-4">
+    <div class="flex items-center gap-2 text-sm text-slate-500">
+      <span>عرض {{ startRecord }} - {{ endRecord }} من {{ doctorStore.totalCount() }}</span>
+      <select
+        [value]="doctorStore.queryParameters().pageSize"
+        (change)="changePageSize($event)"
+        class="rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-sm text-slate-700 focus:outline-none focus:border-blue-500">
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="50">50</option>
+      </select>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <button
+        (click)="changePage(doctorStore.queryParameters().pageNumber - 1)"
+        [disabled]="doctorStore.queryParameters().pageNumber <= 1"
+        class="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-500 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-slate-50">
+        <svg lucideChevronRight class="w-4 h-4"></svg>
+      </button>
+      <span class="text-sm font-medium text-slate-600">
+        صفحة {{ doctorStore.queryParameters().pageNumber }} من {{ totalPages }}
+      </span>
+      <button
+        (click)="changePage(doctorStore.queryParameters().pageNumber + 1)"
+        [disabled]="doctorStore.queryParameters().pageNumber >= totalPages"
+        class="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-500 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-slate-50">
+        <svg lucideChevronLeft class="w-4 h-4"></svg>
+      </button>
+    </div>
+  </div>
+</div>

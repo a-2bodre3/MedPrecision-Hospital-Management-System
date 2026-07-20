@@ -179,7 +179,7 @@ export class SidebarStaffComponent {
         {
           title: 'الاطباء',
           permission: 'User_Read',
-          link: '/staff/employee',
+          link: '/staff/doctor',
         },
         {
           title: 'اداره مواعيد الاطباء',

@@ -7,4 +7,8 @@ export interface LookupsResponse {
   departments: LookupItem[];
   rooms: LookupItem[];
   roles: LookupItem[];
+  specialization: LookupItem[];
+  subSpecialty: LookupItem[];
+  allergies: LookupItem[];
+  chronicDisease: LookupItem[];
 }

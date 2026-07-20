@@ -1,4 +1,6 @@
 ﻿using HospitalManagement.Domain.Entities.Identity;
+using HospitalManagement.Domain.Entities.Patients;
+using HospitalManagement.Domain.Entities.Staff;
 using HospitalManagement.Domain.Entities.Structure;
 using HospitalManagement.Domain.Interfaces;
 using MediatR;
@@ -23,6 +25,11 @@ namespace HospitalManagement.Application.Features.Lookups.Queries.GetAppLookups
             var departments = await _unitOfWork.Repository<Department>().ListAllAsync(cancellationToken);
             var rooms = await _unitOfWork.Repository<Room>().ListAllAsync(cancellationToken);
             var roles = await _unitOfWork.Repository<Role>().ListAllAsync(cancellationToken);
+            var specializations = await _unitOfWork.Repository<Specialization>().ListAllAsync(cancellationToken);
+            var subSpecialty = await _unitOfWork.Repository<SubSpecialty>().ListAllAsync(cancellationToken);
+            var allergies = await _unitOfWork.Repository<Allergy>().ListAllAsync(cancellationToken);
+            var chronicDisease = await _unitOfWork.Repository<ChronicDisease>().ListAllAsync(cancellationToken);
+
 
 
             return new AppLookupsResponse
@@ -30,7 +37,12 @@ namespace HospitalManagement.Application.Features.Lookups.Queries.GetAppLookups
                 Branches = branches.Select(b => new LookupDto(b.Id, b.Name)).ToList(),
                 Departments = departments.Select(b => new LookupDto(b.Id, b.Name)).ToList(),
                 Rooms = rooms.Select(b => new LookupDto(b.Id, b.RoomNumber)).ToList(),
-                Roles = roles.Select(r => new LookupDto(r.Id, r.Name)).ToList()
+                Roles = roles.Select(r => new LookupDto(r.Id, r.Name)).ToList(),
+                Specialization = specializations.Select(s => new LookupDto(s.Id , s.Name)).ToList(),
+                SubSpecialty = subSpecialty.Select(ss => new LookupDto(ss.Id , ss.Name)).ToList(),
+                Allergies = allergies.Select(a => new LookupDto(a.Id , a.Name)).ToList(),
+                ChronicDisease = chronicDisease.Select(cd => new LookupDto(cd.Id , cd.Name)).ToList(),
+
             };
         }
     }

@@ -34,6 +34,7 @@ namespace HospitalManagement.Application.Features.Patient.Commands.Update
             {
                 throw new NotFoundException($"Patient with Id {request.Id} not found.");
             }
+            _mapper.Map(request, patient);
 
             if (request.ImageFile != null && request.ImageFile.Length > 0)
             {

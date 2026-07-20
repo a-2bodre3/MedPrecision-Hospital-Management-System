@@ -1,5 +1,16 @@
+wwwroot\images\1cd3cd21-cf4e-4ef3-a42c-e7e852ed3255_Screenshot 2026-04-20 215056.png
+wwwroot\images\36bb2584-6e72-4a3d-80b5-6d0f2405ca4d_Screenshot 2026-04-20 213348.png
 wwwroot\images\3b4765f7-ca77-40fe-b529-03951fdcee6a_UniverstyManagementSystem.png
+wwwroot\images\51088e06-c758-44ac-850a-fb36c219d522_Screenshot 2026-04-20 214127.png
 wwwroot\images\58473aac-0e64-43ac-bc34-550a35a2ec7d_WhatsApp Image 2025-11-05 at 00.24.36_ae1f6ba9.jpg
+wwwroot\images\88d244ac-c9e1-4252-8ac0-6bf0e2841d0c_Screenshot 2026-04-20 213348.png
+wwwroot\images\ae66d9d6-39ba-414f-8f4c-64ce5a8f6e04_Screenshot 2026-04-20 213348.png
+wwwroot\images\ba9f6463-f031-4916-addb-7b36e86b898f_Screenshot 2026-04-20 214127.png
+wwwroot\images\bd1f3b09-f12a-4240-ad0d-dba7190eec67_WhatsApp Image 2025-11-05 at 00.24.36_ae1f6ba9.jpg
+wwwroot\images\bdb21f86-3da1-4066-b480-81c5b1e66ab4_WhatsApp Image 2025-11-05 at 00.24.36_ae1f6ba9.jpg
+wwwroot\images\cceab625-2b8c-4037-8518-79309602ea69_Screenshot 2026-04-20 214127.png
+wwwroot\images\dbfd4669-6165-4130-8db7-9a6f1bb89b0c_Screenshot 2026-04-21 193859.png
+wwwroot\images\ed25dc7a-a569-4335-85dd-897fcb1f0bfe_WhatsApp Image 2025-11-05 at 00.24.36_ae1f6ba9.jpg
 wwwroot\images\employees\3d5f5a1d-5f6b-4188-913f-4ae132f324a1_Screenshot 2026-04-20 215343.png
 wwwroot\images\employees\755d4823-adc3-47c1-8931-c3909cb7b0fb_WhatsApp Image 2025-11-05 at 00.24.36_ae1f6ba9.jpg
 wwwroot\images\employees\7625d3fc-6130-4990-95de-0bf13e83fd10_WhatsApp Image 2025-11-05 at 00.24.36_ae1f6ba9.jpg

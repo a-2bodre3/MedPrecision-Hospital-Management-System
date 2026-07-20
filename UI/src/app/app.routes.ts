@@ -51,12 +51,13 @@ export const routes: Routes = [
       },
       {
         path: 'employee',
-        loadChildren: () => import('./features/employee/routes').then((m) => m.EMPLOYEE_ROUTES),
+        loadChildren: () =>
+          import('./features/employee/employee.route').then((m) => m.EMPLOYEE_ROUTES),
       },
-      // {
-      //   path: 'doctor',
-      //   loadChildren: () => import('./features/doctor/doctor.route').then((m) => m.DOCTOR_ROUTES),
-      // },
+      {
+        path: 'doctor',
+        loadChildren: () => import('./features/doctor/doctor.route').then((m) => m.DOCTOR_ROUTES),
+      },
       {
         path: 'role',
         loadComponent: () =>

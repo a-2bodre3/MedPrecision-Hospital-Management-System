@@ -1,4 +1,5 @@
-﻿using HospitalManagement.Domain.Entities.Common;
+﻿
+using HospitalManagement.Domain.Value_Objects;
 using System;
 using System.Collections.Generic;
 using System.Text;

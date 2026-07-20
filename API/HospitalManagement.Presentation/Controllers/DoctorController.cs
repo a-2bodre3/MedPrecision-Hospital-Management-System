@@ -44,7 +44,7 @@ namespace HospitalManagement.Presentation.Controllers
 
         [Authorize("User_Create")]
         [HttpPost]
-        public async Task<ActionResult<bool>> CreateDoctor([FromBody] CreateDoctorCommand command)
+        public async Task<ActionResult<bool>> CreateDoctor([FromForm] CreateDoctorCommand command)
         {
             var result = await _mediator.Send(command);
             return Ok(result);
@@ -52,7 +52,7 @@ namespace HospitalManagement.Presentation.Controllers
 
         [Authorize("User_Update")]
         [HttpPut("{id}")]
-        public async Task<ActionResult<bool>> UpdateDoctor(int id, [FromBody] UpdateDoctorCommand command)
+        public async Task<ActionResult<bool>> UpdateDoctor(int id, [FromForm] UpdateDoctorCommand command)
         {
             command.Id = id;
             var result = await _mediator.Send(command);

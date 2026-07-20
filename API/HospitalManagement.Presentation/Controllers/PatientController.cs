@@ -46,14 +46,14 @@ namespace HospitalManagement.Presentation.Controllers
 
         [Authorize("Patient_Create")]
         [HttpPost]
-        public async Task<ActionResult<bool>> CreatePatient([FromBody] CreatePatientCommand command)
+        public async Task<ActionResult<bool>> CreatePatient([FromForm] CreatePatientCommand command)
         {
             var result = await _mediator.Send(command);
             return Ok(result);
         }
         [Authorize("Patient_Update")]
         [HttpPut("{id}")]
-        public async Task<ActionResult<bool>> UpdatePatient(int id, [FromBody] UpdatePatientCommand command)
+        public async Task<ActionResult<bool>> UpdatePatient(int id, [FromForm] UpdatePatientCommand command)
         {
             command.Id = id;
             var result = await _mediator.Send(command);
