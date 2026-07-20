@@ -12,6 +12,10 @@ interface ILookupsState {
   departments: LookupItem[];
   rooms: LookupItem[];
   roles: LookupItem[];
+  specialization: LookupItem[];
+  subSpecialty: LookupItem[];
+  allergies: LookupItem[];
+  chronicDisease: LookupItem[];
   loading: boolean;
   error: string | null;
 }
@@ -21,6 +25,10 @@ const initialState: ILookupsState = {
   departments: [],
   rooms: [],
   roles: [],
+  specialization: [],
+  subSpecialty: [],
+  allergies: [],
+  chronicDisease: [],
   loading: false,
   error: null,
 };
@@ -43,6 +51,10 @@ export const LookupsState = signalStore(
                   departments: data.departments,
                   rooms: data.rooms,
                   roles: data.roles,
+                  subSpecialty: data.subSpecialty,
+                  specialization: data.specialization,
+                  allergies: data.allergies,
+                  chronicDisease: data.chronicDisease,
                 }),
               ),
               catchError((e) => {

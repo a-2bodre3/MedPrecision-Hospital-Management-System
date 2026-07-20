@@ -1,4 +1,3 @@
-import { PatientDetailsDto, PatientDto, PatientQueryParameters } from '../model/patient.model';
 import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
 import { withDevtools } from '@angular-architects/ngrx-toolkit';
 import { inject } from '@angular/core';
@@ -6,14 +5,22 @@ import { PatientService } from '../service/patient.service';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { catchError, EMPTY, pipe, switchMap, tap } from 'rxjs';
 import { PagedResult } from '../../../core/model/pagination.model';
+import {
+  PatientDetailsResponse,
+  PatientQuery,
+  PatientResponse,
+} from '../model/patient.response.model';
+import { CreatePatientRequest, UpdatePatientRequest } from '../model/patient.request.model';
+import { toast } from '@spartan-ng/brain/sonner';
+import { Router } from '@angular/router';
 
 interface IPatientState {
-  patient: PatientDto[];
+  patient: PatientResponse[];
   totalCount: number;
   loading: boolean;
   error: string | null;
-  queryParams: PatientQueryParameters;
-  selectedPatient: PatientDetailsDto | null;
+  queryParams: PatientQuery;
+  PatientDetails: PatientDetailsResponse | null;
 }
 
 const initialState: IPatientState = {
@@ -26,15 +33,15 @@ const initialState: IPatientState = {
     pageNumber: 1,
     pageSize: 10,
   },
-  selectedPatient: null,
+  PatientDetails: null,
 };
 
 export const PatientStore = signalStore(
   { providedIn: 'root' },
   withDevtools('PatientStore'),
   withState(() => initialState),
-  withMethods((store, patientService = inject(PatientService)) => {
-    const loadPatient = rxMethod<{ params: PatientQueryParameters }>(
+  withMethods((store, router = inject(Router), patientService = inject(PatientService)) => {
+    const loadPatient = rxMethod<{ params: PatientQuery }>(
       pipe(
         tap(({ params }) =>
           patchState(store, {
@@ -44,7 +51,7 @@ export const PatientStore = signalStore(
         ),
         switchMap(({ params }) =>
           patientService.getPatients(params).pipe(
-            tap((response: PagedResult<PatientDto>) =>
+            tap((response: PagedResult<PatientResponse>) =>
               patchState(store, {
                 loading: false,
                 patient: response.items,
@@ -72,9 +79,7 @@ export const PatientStore = signalStore(
         tap(() => patchState(store, { loading: true })),
         switchMap((id: number) =>
           patientService.getPatientById(id).pipe(
-            tap((selectedPatient) =>
-              patchState(store, { loading: false, selectedPatient: selectedPatient }),
-            ),
+            tap((data) => patchState(store, { loading: false, PatientDetails: data })),
             catchError((e) => {
               patchState(store, {
                 loading: false,
@@ -95,20 +100,24 @@ export const PatientStore = signalStore(
       loadPatient,
       loadPatientById,
 
-      createPatient: rxMethod<FormData>(
+      createPatient: rxMethod<{ data: CreatePatientRequest }>(
         pipe(
           tap(() => patchState(store, { loading: true })),
-          switchMap((data) =>
+          switchMap(({ data }) =>
             patientService.createPatient(data).pipe(
               tap(() => {
+                toast.success('تم إنشاء حساب الموظف الجديد بنجاح مذهل!');
+                router.navigate(['/staff/patient/list']);
                 patchState(store, { loading: false });
                 refreshPatient();
               }),
               catchError((e) => {
+                const error = e.message || 'حدث خطأ أثناء إضافة المريض';
                 patchState(store, {
                   loading: false,
-                  error: e.message || 'حدث خطأ أثناء إضافة المريض',
+                  error: error,
                 });
+                toast.error(error);
                 return EMPTY;
               }),
             ),
@@ -116,22 +125,17 @@ export const PatientStore = signalStore(
         ),
       ),
 
-      updatePatient: rxMethod<{ id: number; data: FormData }>(
+      updatePatient: rxMethod<{ id: number; data: UpdatePatientRequest }>(
         pipe(
           tap(() => patchState(store, { loading: true })),
           switchMap(({ id, data }) =>
             patientService.updatePatient(id, data).pipe(
-              tap((isSuccess) => {
-                if (isSuccess) {
-                  patchState(store, { loading: false });
-                  loadPatientById(id);
-                  refreshPatient();
-                } else {
-                  patchState(store, {
-                    loading: false,
-                    error: 'فشل في تعديل بيانات المريض',
-                  });
-                }
+              tap(() => {
+                toast.success('تم تعديل بيانات المريض بنجاح');
+                patchState(store, { loading: false , PatientDetails : null});
+                refreshPatient();
+                router.navigate(['/staff/patient/list']);
+
               }),
               catchError((e) => {
                 patchState(store, {
@@ -187,7 +191,7 @@ export const PatientStore = signalStore(
         ),
       ),
       clearSelectedPatient() {
-        patchState(store, { loading: false, selectedPatient: null });
+        patchState(store, { loading: false, PatientDetails: null });
       },
     };
   }),

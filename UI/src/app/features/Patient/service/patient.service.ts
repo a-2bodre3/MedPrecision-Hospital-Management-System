@@ -1,9 +1,15 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../../../environments/environment.development';
-import { PatientDetailsDto, PatientDto, PatientQueryParameters } from '../model/patient.model';
 import { Observable } from 'rxjs';
 import { PagedResult } from '../../../core/model/pagination.model';
+import {
+  PatientDetailsResponse,
+  PatientQuery,
+  PatientResponse,
+} from '../model/patient.response.model';
+import { CreatePatientRequest, UpdatePatientRequest } from '../model/patient.request.model';
+import { toFormData } from '../../../core/utils/form-data.util';
 
 @Injectable({
   providedIn: 'root',
@@ -23,32 +29,34 @@ export class PatientService {
   //===================method=======================
   //================================================
 
-  getPatients(params: PatientQueryParameters): Observable<PagedResult<PatientDto>> {
+  getPatients(query: PatientQuery): Observable<PagedResult<PatientResponse>> {
     let httpParams = new HttpParams()
-      .set('PageNumber', params.pageNumber || 1)
-      .set('PageSize', params.pageSize || 10);
+      .set('PageNumber', query.pageNumber || 1)
+      .set('PageSize', query.pageSize || 10);
 
-    if (params.searchTerm) {
-      httpParams = httpParams.set('SearchTerm', params.searchTerm);
+    if (query.searchTerm) {
+      httpParams = httpParams.set('SearchTerm', query.searchTerm);
     }
-    if (params.isActive !== undefined && params.isActive !== null) {
-      httpParams = httpParams.set('IsActive', params.isActive);
+    if (query.isActive !== undefined && query.isActive !== null) {
+      httpParams = httpParams.set('IsActive', query.isActive);
     }
-    return this.http.get<PagedResult<PatientDto>>(`${this.apiUrl}`, {
+    return this.http.get<PagedResult<PatientResponse>>(`${this.apiUrl}`, {
       params: httpParams,
     });
   }
 
-  getPatientById(id: number): Observable<PatientDetailsDto> {
-    return this.http.get<PatientDetailsDto>(`${this.apiUrl}/${id}`);
+  getPatientById(id: number): Observable<PatientDetailsResponse> {
+    return this.http.get<PatientDetailsResponse>(`${this.apiUrl}/${id}`);
   }
 
-  createPatient(data: FormData): Observable<boolean> {
-    return this.http.post<boolean>(`${this.apiUrl}`, data);
+  createPatient(data: CreatePatientRequest): Observable<boolean> {
+    const formData = toFormData(data);
+    return this.http.post<boolean>(`${this.apiUrl}`, formData);
   }
 
-  updatePatient(id: number, data: FormData): Observable<boolean> {
-    return this.http.put<boolean>(`${this.apiUrl}/${id}`, data);
+  updatePatient(id: number, data: UpdatePatientRequest): Observable<boolean> {
+    const formData = toFormData(data);
+    return this.http.put<boolean>(`${this.apiUrl}/${id}`, formData);
   }
 
   changePassword(id: number, password: string): Observable<boolean> {

@@ -1,65 +1,66 @@
-// import { inject, Injectable } from '@angular/core';
-// import { HttpClient, HttpParams } from '@angular/common/http';
-// import { environment } from '../../../../environments/environment.development';
-// import { Observable } from 'rxjs';
-// import { DoctorDetailsDto } from '../model/doctor.model';
-// import { EmployeeDto } from '../../employee/model/employee.model';
-// import { PagedResult } from '../../../core/model/pagination.model';
-//
-// @Injectable({
-//   providedIn: 'root',
-// })
-// export class DoctorService {
-//   //================================================
-//   //===================inject=======================
-//   //================================================
-//   private http = inject(HttpClient);
-//
-//   //================================================
-//   //===================variable=====================
-//   //================================================
-//   private apiUrl: string = `${environment.baseApi}/Doctor`;
-//   private lookupsUrl: string = `${environment.baseApi}/Lookups`;
-//
-//   //================================================
-//   //===================method=======================
-//   //================================================
-//   getDoctorById(id: number): Observable<DoctorDetailsDto> {
-//     return this.http.get<DoctorDetailsDto>(`${this.apiUrl}/${id}`);
-//   }
-//
-//   createDoctor(data: FormData): Observable<boolean> {
-//     return this.http.post<boolean>(`${this.apiUrl}`, data);
-//   }
-//
-//   updateDoctor(id: number, data: FormData): Observable<boolean> {
-//     return this.http.put<boolean>(`${this.apiUrl}/${id}`, data);
-//   }
-//
-//   changePassword(id: number, password: string): Observable<boolean> {
-//     return this.http.patch<boolean>(
-//       `${this.apiUrl}/changePassword/${id}`,
-//       JSON.stringify(password),
-//       {
-//         headers: { 'Content-Type': 'application/json' },
-//       },
-//     );
-//   }
-//
-//   getSpecialization(): Observable<{ id: number; name: string }[]> {
-//     return this.http.get<{ id: number; name: string }[]>(
-//       `${this.lookupsUrl}/specializations`,
-//     );
-//   }
-//
-//   getSubSpecialties(specializationId?: number): Observable<{ id: number; name: string; specializationName: string }[]> {
-//     let params = new HttpParams();
-//     if (specializationId) {
-//       params = params.set('specializationId', specializationId);
-//     }
-//     return this.http.get<{ id: number; name: string; specializationName: string }[]>(
-//       `${this.lookupsUrl}/sub-specialties`,
-//       { params },
-//     );
-//   }
-// }
+import { inject, Injectable } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { environment } from '../../../../environments/environment.development';
+import { Observable } from 'rxjs';
+import { DoctorDetailsResponse, DoctorQuery, DoctorResponse } from '../model/doctor-response.model';
+import { PagedResult } from '../../../core/model/pagination.model';
+import { CreateDoctorRequest, UpdateDoctorRequest } from '../model/doctor-request.model';
+import { toFormData } from '../../../core/utils/form-data.util';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class DoctorService {
+  //================================================
+  //===================inject=======================
+  //================================================
+  private http = inject(HttpClient);
+
+  //================================================
+  //===================variable=====================
+  //================================================
+  private apiUrl: string = `${environment.baseApi}/Doctor`;
+
+  //================================================
+  //===================method=======================
+  //================================================
+  getDoctors(query: DoctorQuery): Observable<PagedResult<DoctorResponse>> {
+    let httpParams = new HttpParams()
+      .set('PageNumber', query.pageNumber)
+      .set('PageSize', query.pageSize);
+
+    if (query.searchTerm) {
+      httpParams = httpParams.set('searchTerm', query.searchTerm);
+    }
+    if (query.isActive !== undefined && query.isActive !== null) {
+      httpParams = httpParams.set('isActive', query.isActive.toString());
+    }
+    if (query.departmentId) {
+      httpParams = httpParams.set('departmentId', query.departmentId.toString());
+    }
+
+    return this.http.get<PagedResult<DoctorResponse>>(`${this.apiUrl}`, {
+      params: httpParams,
+    });
+  }
+
+  getDoctorById(id: number): Observable<DoctorDetailsResponse> {
+    return this.http.get<DoctorDetailsResponse>(`${this.apiUrl}/${id}`);
+  }
+
+  createDoctor(data: CreateDoctorRequest): Observable<boolean> {
+    const formDate = toFormData(data);
+    return this.http.post<boolean>(`${this.apiUrl}`, formDate);
+  }
+
+  updateDoctor(id: number, data: UpdateDoctorRequest): Observable<boolean> {
+    const formData = toFormData(data);
+    return this.http.put<boolean>(`${this.apiUrl}/${id}`, formData);
+  }
+
+  changePassword(id: number, password: string): Observable<boolean> {
+    return this.http.patch<boolean>(`${this.apiUrl}/ChangePassword/${id}`, {
+      password: password,
+    });
+  }
+}

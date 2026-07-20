@@ -35,7 +35,7 @@ namespace HospitalManagement.Infrastructure.Services.Authentication
             new Claim("IsActive" , user.IsActive.ToString()),
             new Claim(ClaimTypes.Role,role.Name),
             new Claim("Branch",branch.Name),
-            new Claim("ImageUrl",$"https://localhost:7042/{user.ImageUrl}"),
+            new Claim("ImageUrl",$"https://localhost:7042/images/{user.ImageUrl}"),
         };
             foreach (var permission in permissions)
             {

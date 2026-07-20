@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using HospitalManagement.Domain.Entities.Identity;
 using HospitalManagement.Domain.Entities.Staff;
 using HospitalManagement.Domain.Interfaces;
 using HospitalManagement.Domain.Interfaces.Authentication;
@@ -29,6 +30,9 @@ namespace HospitalManagement.Application.Features.Staff.Doctor.Commands.Create
         public async Task<bool> Handle(CreateDoctorCommand request, CancellationToken cancellationToken)
         {
             var doctor = _mapper.Map<DoctorEntity>(request);
+
+     
+
             doctor.Employee.User.PasswordHash = _passwordHasher.HashPassword(request.Password);
             string imageUrl = "/uploads/default-avatar.png";
             if (request.ImageFile != null && request.ImageFile.Length > 0)

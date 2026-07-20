@@ -13,5 +13,9 @@ namespace HospitalManagement.Application.Features.Lookups.Queries.GetAppLookups
         public List<LookupDto> Departments { get; set; } = new();
         public List<LookupDto> Rooms { get; set; } = new();
         public List<LookupDto> Roles { get; set; } = new();
+        public List<LookupDto> SubSpecialty { get; set; } = new();
+        public List<LookupDto> Specialization { get; set; } = new();
+        public List<LookupDto> Allergies { get; set; } = new();
+        public List<LookupDto> ChronicDisease { get; set; } = new();
     }
 }

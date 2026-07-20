@@ -1,7 +1,7 @@
 <div class="flex flex-col gap-6" dir="rtl">
   <app-header
     title="تعديل بيانات الطبيب"
-    description="تحديث بيانات الحساب والمعلومات الوظيفية والمهنية للطبيب"
+    description="تحديث المعلومات الشخصية والوظيفية لحساب الطبيب"
   >
     <button hlmBtn variant="outline" (click)="goBack()"
             class="cursor-pointer transition-colors hover:bg-slate-50 border-slate-200 text-slate-600 gap-2">
@@ -10,238 +10,208 @@
     </button>
   </app-header>
 
-  @if (employeeStore.loading() && !employeeStore.selectedEmployee()) {
-    <div
-      class="bg-white rounded-2xl border border-slate-100 shadow-sm p-12 text-center text-slate-400 flex flex-col items-center justify-center gap-3">
-      <div class="w-8 h-8 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
-      <span class="text-sm font-medium text-slate-500">جاري تحميل بيانات الطبيب...</span>
+  <form (submit)="onSubmit($event)" class="bg-white rounded-2xl border border-slate-100 shadow-sm p-6 lg:p-8">
+
+    <div class="mb-8">
+      <h3 class="text-base font-bold text-slate-800 mb-6 pb-3 border-b border-slate-100 flex items-center gap-2">
+        <span class="w-1 h-4 bg-amber-500 rounded-full"></span>
+        تحديث الصورة (اختياري)
+      </h3>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="flex flex-col gap-2">
+          <label class="text-xs font-semibold text-slate-500 mr-1">صورة الطبيب</label>
+          <input
+            type="file"
+            accept="image/*"
+            (change)="onFileChange($event)"
+            class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-1.5 text-sm text-slate-600 file:ml-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-amber-50 file:text-amber-700 hover:file:bg-amber-100 file:cursor-pointer focus:outline-none focus:border-amber-500 focus:ring-4 focus:ring-amber-50 transition-all"
+          >
+        </div>
+      </div>
     </div>
-  } @else {
-    <form (submit)="onSubmit($event)" class="bg-white rounded-2xl border border-slate-100 shadow-sm p-6 lg:p-8">
 
-      <div class="mb-8">
-        <h3 class="text-base font-bold text-slate-800 mb-6 pb-3 border-b border-slate-100 flex items-center gap-2">
-          <span class="w-1 h-4 bg-blue-600 rounded-full"></span>
-          بيانات الحساب الأساسية
-        </h3>
+    <div class="mb-8">
+      <h3 class="text-base font-bold text-slate-800 mb-6 pb-3 border-b border-slate-100 flex items-center gap-2">
+        <span class="w-1 h-4 bg-amber-500 rounded-full"></span>
+        المعلومات الشخصية والوظيفية
+      </h3>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          <div class="flex flex-col gap-2">
-            <label class="text-xs font-semibold text-slate-500 mr-1">البريد الإلكتروني</label>
-            <input
-              [value]="doctorModel().email"
-              type="email"
-              disabled
-              class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm text-slate-400 cursor-not-allowed border-dashed"
-            >
-          </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="flex flex-col gap-2">
+          <label class="text-xs font-semibold text-slate-500 mr-1">الاسم الأول</label>
+          <input
+            [formField]="doctorForm.firstName"
+            type="text"
+            class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-amber-500 focus:bg-white focus:ring-4 focus:ring-amber-50 transition-all"
+          >
+        </div>
 
-          <div class="flex flex-col gap-2">
-            <label class="text-xs font-semibold text-slate-500 mr-1">الصورة الشخصية</label>
-            <input
-              type="file"
-              accept="image/*"
-              (change)="onFileChange($event)"
-              class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-1.5 text-sm text-slate-600 file:ml-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 file:cursor-pointer focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-50 transition-all"
-            >
-          </div>
+        <div class="flex flex-col gap-2">
+          <label class="text-xs font-semibold text-slate-500 mr-1">اسم العائلة</label>
+          <input
+            [formField]="doctorForm.lastName"
+            type="text"
+            class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-amber-500 focus:bg-white focus:ring-4 focus:ring-amber-50 transition-all"
+          >
+        </div>
 
-          <div class="flex flex-col gap-2">
-            <label class="text-xs font-semibold text-slate-500 mr-1">الحالة</label>
-            <div class="relative">
-              <select
-                [formField]="doctorForm.isActive"
-                class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-50 transition-all appearance-none"
-              >
-                <option value="true">نشط</option>
-                <option value="false">غير نشط</option>
-              </select>
-            </div>
-          </div>
+        <div class="flex flex-col gap-2">
+          <label class="text-xs font-semibold text-slate-500 mr-1">رقم الهاتف</label>
+          <input
+            [formField]="doctorForm.phoneNumber"
+            type="tel"
+            dir="ltr"
+            class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 placeholder-slate-400 text-right focus:outline-none focus:border-amber-500 focus:bg-white focus:ring-4 focus:ring-amber-50 transition-all"
+          >
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label class="text-xs font-semibold text-slate-500 mr-1">الدور</label>
+          <select
+            [formField]="doctorForm.roleId"
+            class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:border-amber-500 focus:bg-white focus:ring-4 focus:ring-amber-50 transition-all"
+          >
+            <option value="" disabled>اختر الدور...</option>
+            @for (role of lookupsStore.roles(); track role.id) {
+              <option [value]="role.id">{{ role.name }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label class="text-xs font-semibold text-slate-500 mr-1">الفرع</label>
+          <select
+            [formField]="doctorForm.branchId"
+            (change)="onBranchChange()"
+            class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:border-amber-500 focus:bg-white focus:ring-4 focus:ring-amber-50 transition-all"
+          >
+            <option value="" disabled>اختر الفرع...</option>
+            @for (branch of lookupsStore.branches(); track branch.id) {
+              <option [value]="branch.id">{{ branch.name }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label class="text-xs font-semibold text-slate-500 mr-1">القسم</label>
+          <select
+            [formField]="doctorForm.departmentId"
+            class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:border-amber-500 focus:bg-white focus:ring-4 focus:ring-amber-50 transition-all"
+          >
+            <option value="" disabled>اختر القسم...</option>
+            @for (department of filteredDepartments(); track department.id) {
+              <option [value]="department.id">{{ department.name }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label class="text-xs font-semibold text-slate-500 mr-1">المسمى الوظيفي</label>
+          <input
+            [formField]="doctorForm.jobTitle"
+            type="text"
+            class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-amber-500 focus:bg-white focus:ring-4 focus:ring-amber-50 transition-all"
+          >
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label class="text-xs font-semibold text-slate-500 mr-1">رسوم الاستشارة</label>
+          <input
+            [formField]="doctorForm.consultationFee"
+            type="number"
+            class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-amber-500 focus:bg-white focus:ring-4 focus:ring-amber-50 transition-all"
+          >
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label class="text-xs font-semibold text-slate-500 mr-1">الراتب</label>
+          <input
+            [formField]="doctorForm.salary"
+            type="number"
+            class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-amber-500 focus:bg-white focus:ring-4 focus:ring-amber-50 transition-all"
+          >
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label class="text-xs font-semibold text-slate-500 mr-1">تاريخ الميلاد</label>
+          <input
+            [formField]="doctorForm.dateOfBirth"
+            type="date"
+            class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:border-amber-500 focus:bg-white focus:ring-4 focus:ring-amber-50 transition-all"
+          >
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label class="text-xs font-semibold text-slate-500 mr-1">الجنس</label>
+          <select
+            [formField]="doctorForm.gender"
+            class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:border-amber-500 focus:bg-white focus:ring-4 focus:ring-amber-50 transition-all"
+          >
+            <option value="" disabled>اختر الجنس...</option>
+            <option value="1">ذكر</option>
+            <option value="2">أنثى</option>
+          </select>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label class="text-xs font-semibold text-slate-500 mr-1">حالة الحساب</label>
+          <select
+            [formField]="doctorForm.isActive"
+            class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:border-amber-500 focus:bg-white focus:ring-4 focus:ring-amber-50 transition-all"
+          >
+            <option value="true">نشط</option>
+            <option value="false">غير نشط</option>
+          </select>
         </div>
       </div>
+    </div>
 
-      <div class="mb-8">
-        <h3 class="text-base font-bold text-slate-800 mb-6 pb-3 border-b border-slate-100 flex items-center gap-2">
-          <span class="w-1 h-4 bg-blue-600 rounded-full"></span>
-          المعلومات الشخصية والوظيفية
-        </h3>
+    <div>
+      <h3 class="text-base font-bold text-slate-800 mb-6 pb-3 border-b border-slate-100 flex items-center gap-2">
+        <span class="w-1 h-4 bg-amber-500 rounded-full"></span>
+        تفاصيل العنوان
+      </h3>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          <div class="flex flex-col gap-2">
-            <label class="text-xs font-semibold text-slate-500 mr-1">الاسم الأول</label>
-            <input
-              [formField]="doctorForm.firstName"
-              type="text"
-              class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-50 transition-all"
-            >
-          </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="flex flex-col gap-2">
+          <label class="text-xs font-semibold text-slate-500 mr-1">الشارع</label>
+          <input
+            [formField]="doctorForm.address.street"
+            type="text"
+            class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-amber-500 focus:bg-white focus:ring-4 focus:ring-amber-50 transition-all"
+          >
+        </div>
 
-          <div class="flex flex-col gap-2">
-            <label class="text-xs font-semibold text-slate-500 mr-1">اسم العائلة</label>
-            <input
-              [formField]="doctorForm.lastName"
-              type="text"
-              class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-50 transition-all"
-            >
-          </div>
+        <div class="flex flex-col gap-2">
+          <label class="text-xs font-semibold text-slate-500 mr-1">المدينة</label>
+          <input
+            [formField]="doctorForm.address.city"
+            type="text"
+            class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-amber-500 focus:bg-white focus:ring-4 focus:ring-amber-50 transition-all"
+          >
+        </div>
 
-          <div class="flex flex-col gap-2">
-            <label class="text-xs font-semibold text-slate-500 mr-1">رقم الهاتف</label>
-            <input
-              [formField]="doctorForm.phoneNumber"
-              type="tel"
-              dir="ltr"
-              class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 placeholder-slate-400 text-right focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-50 transition-all"
-            >
-          </div>
-
-          <div class="flex flex-col gap-2">
-            <label class="text-xs font-semibold text-slate-500 mr-1">الدور</label>
-            <select
-              [formField]="doctorForm.roleId"
-              class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-50 transition-all"
-            >
-              <option value="" disabled>اختر الدور...</option>
-              @for (role of roleStore.roles(); track role.id) {
-                <option [value]="role.id">{{ role.name }}</option>
-              }
-            </select>
-          </div>
-
-          <div class="flex flex-col gap-2">
-            <label class="text-xs font-semibold text-slate-500 mr-1">الفرع</label>
-            <select
-              [formField]="doctorForm.branchId"
-              (change)="onBranchChange()"
-              class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-50 transition-all"
-            >
-              <option value="" disabled>اختر الفرع...</option>
-              @for (branch of branchStore.branches(); track branch.id) {
-                <option [value]="branch.id">{{ branch.name }}</option>
-              }
-            </select>
-          </div>
-
-          <div class="flex flex-col gap-2">
-            <label class="text-xs font-semibold text-slate-500 mr-1">القسم</label>
-            <select
-              [formField]="doctorForm.departmentId"
-              class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-50 transition-all"
-            >
-              <option value="" disabled>اختر القسم...</option>
-              @for (department of filteredDepartments(); track department.id) {
-                <option [value]="department.id">{{ department.name }}</option>
-              }
-            </select>
-          </div>
-
-          <div class="flex flex-col gap-2">
-            <label class="text-xs font-semibold text-slate-500 mr-1">المسمى الوظيفي</label>
-            <input
-              [formField]="doctorForm.jobTitle"
-              type="text"
-              class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-50 transition-all"
-            >
-          </div>
-
-          <div class="flex flex-col gap-2">
-            <label class="text-xs font-semibold text-slate-500 mr-1">الراتب</label>
-            <input
-              [formField]="doctorForm.salary"
-              type="number"
-              class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-50 transition-all"
-            >
-          </div>
-
-          <div class="flex flex-col gap-2">
-            <label class="text-xs font-semibold text-slate-500 mr-1">تاريخ الميلاد</label>
-            <input
-              [formField]="doctorForm.dateOfBirth"
-              type="date"
-              class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-50 transition-all"
-            >
-          </div>
-
-          <div class="flex flex-col gap-2">
-            <label class="text-xs font-semibold text-slate-500 mr-1">الجنس</label>
-            <select
-              [formField]="doctorForm.gender"
-              class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-50 transition-all"
-            >
-              <option value="1">ذكر</option>
-              <option value="2">أنثى</option>
-            </select>
-          </div>
+        <div class="flex flex-col gap-2">
+          <label class="text-xs font-semibold text-slate-500 mr-1">الدولة</label>
+          <input
+            [formField]="doctorForm.address.country"
+            type="text"
+            class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-amber-500 focus:bg-white focus:ring-4 focus:ring-amber-50 transition-all"
+          >
         </div>
       </div>
+    </div>
 
-      <div class="mb-8">
-        <h3 class="text-base font-bold text-slate-800 mb-6 pb-3 border-b border-slate-100 flex items-center gap-2">
-          <span class="w-1 h-4 bg-emerald-600 rounded-full"></span>
-          البيانات المهنية والعيادة
-        </h3>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          <div class="flex flex-col gap-2">
-            <label class="text-xs font-semibold text-slate-500 mr-1">رسوم الكشفية</label>
-            <div class="relative">
-              <input
-                [formField]="doctorForm.consultationFee"
-                type="number"
-                class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-emerald-700 font-medium placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:bg-white focus:ring-4 focus:ring-emerald-50 transition-all"
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <h3 class="text-base font-bold text-slate-800 mb-6 pb-3 border-b border-slate-100 flex items-center gap-2">
-          <span class="w-1 h-4 bg-slate-400 rounded-full"></span>
-          تفاصيل العنوان
-        </h3>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          <div class="flex flex-col gap-2">
-            <label class="text-xs font-semibold text-slate-500 mr-1">الشارع</label>
-            <input
-              [formField]="doctorForm.street"
-              type="text"
-              class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-50 transition-all"
-            >
-          </div>
-
-          <div class="flex flex-col gap-2">
-            <label class="text-xs font-semibold text-slate-500 mr-1">المدينة</label>
-            <input
-              [formField]="doctorForm.city"
-              type="text"
-              class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-50 transition-all"
-            >
-          </div>
-
-          <div class="flex flex-col gap-2">
-            <label class="text-xs font-semibold text-slate-500 mr-1">الدولة</label>
-            <input
-              [formField]="doctorForm.country"
-              type="text"
-              class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-50 transition-all"
-            >
-          </div>
-        </div>
-      </div>
-
-      <div class="flex items-center justify-end gap-3 mt-8 pt-5 border-t border-slate-100">
-        <button
-          type="submit"
-          hlmBtn
-          class="bg-blue-600 hover:bg-blue-700 text-white rounded-xl shadow-sm shadow-blue-100 transition-all cursor-pointer gap-2 px-5 py-2.5 text-sm font-medium"
-        >
-          <svg lucideSave class="w-4 h-4"></svg>
-          حفظ التعديلات
-        </button>
-      </div>
-    </form>
-  }
+    <div class="flex items-center justify-end gap-3 mt-8 pt-5 border-t border-slate-100">
+      <button
+        type="submit"
+        hlmBtn
+        class="bg-amber-500 hover:bg-amber-600 text-white rounded-xl shadow-sm shadow-amber-100 transition-all cursor-pointer gap-2 px-5 py-2.5 text-sm font-medium"
+      >
+        <svg lucideSave class="w-4 h-4"></svg>
+        حفظ التعديلات
+      </button>
+    </div>
+  </form>
 </div>

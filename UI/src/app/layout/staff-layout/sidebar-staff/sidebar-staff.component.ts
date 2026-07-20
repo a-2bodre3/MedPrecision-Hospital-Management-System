@@ -177,7 +177,12 @@ export class SidebarStaffComponent {
           link: '/staff/employee',
         },
         {
-          title: 'اداره مواعيد الدكاتره',
+          title: 'الاطباء',
+          permission: 'User_Read',
+          link: '/staff/doctor',
+        },
+        {
+          title: 'اداره مواعيد الاطباء',
           permission: 'User_Read',
           link: '/staff/doctorSchedule',
         },

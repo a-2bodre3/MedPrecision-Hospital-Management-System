@@ -1,6 +1,8 @@
-﻿using HospitalManagement.Application.Features.Identity.Users.ChangePassword;
+﻿using HospitalManagement.Application.DTO.Common;
+using HospitalManagement.Application.Features.Identity.Users.ChangePassword;
 using HospitalManagement.Application.Features.Staff.Doctor.Commands.Create;
 using HospitalManagement.Application.Features.Staff.Doctor.Commands.Update;
+using HospitalManagement.Application.Features.Staff.Doctor.Queries.GetAll;
 using HospitalManagement.Application.Features.Staff.Doctor.Queries.GetDetails;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -20,6 +22,14 @@ namespace HospitalManagement.Presentation.Controllers
         }
 
         [Authorize("User_Read")]
+        [HttpGet]
+        public async Task<ActionResult<PagedResult<DoctorsResponse>>> GetAllDoctor([FromQuery] DoctorsQuery query)
+        {
+            var result = await _mediator.Send(query);
+            return Ok(result);
+        }
+
+        [Authorize("User_Read")]
         [HttpGet("{id}")]
         public async Task<ActionResult<DoctorDetailsResponse>> GetDoctorById(int id)
         {
@@ -34,7 +44,7 @@ namespace HospitalManagement.Presentation.Controllers
 
         [Authorize("User_Create")]
         [HttpPost]
-        public async Task<ActionResult<bool>> CreateDoctor([FromBody] CreateDoctorCommand command)
+        public async Task<ActionResult<bool>> CreateDoctor([FromForm] CreateDoctorCommand command)
         {
             var result = await _mediator.Send(command);
             return Ok(result);
@@ -42,7 +52,7 @@ namespace HospitalManagement.Presentation.Controllers
 
         [Authorize("User_Update")]
         [HttpPut("{id}")]
-        public async Task<ActionResult<bool>> UpdateDoctor(int id, [FromBody] UpdateDoctorCommand command)
+        public async Task<ActionResult<bool>> UpdateDoctor(int id, [FromForm] UpdateDoctorCommand command)
         {
             command.Id = id;
             var result = await _mediator.Send(command);

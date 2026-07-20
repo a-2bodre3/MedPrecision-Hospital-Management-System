@@ -1,7 +1,7 @@
 <div class="flex flex-col gap-6" dir="rtl">
   <app-header
     title="إضافة طبيب جديد"
-    description="إنشاء حساب طبيب جديد وربطه بالفرع، القسم، التخصص والدور المناسب"
+    description="إنشاء حساب طبيب جديد وربطه بالفرع والقسم والدور المناسب"
   >
     <button hlmBtn variant="outline" (click)="goBack()"
             class="cursor-pointer transition-colors hover:bg-slate-50 border-slate-200 text-slate-600 gap-2">
@@ -15,7 +15,7 @@
     <div class="mb-8">
       <h3 class="text-base font-bold text-slate-800 mb-6 pb-3 border-b border-slate-100 flex items-center gap-2">
         <span class="w-1 h-4 bg-blue-600 rounded-full"></span>
-        بيانات الحساب والأمان
+        بيانات الحساب الأمان
       </h3>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -40,7 +40,7 @@
         </div>
 
         <div class="flex flex-col gap-2">
-          <label class="text-xs font-semibold text-slate-500 mr-1">صورة الموظف</label>
+          <label class="text-xs font-semibold text-slate-500 mr-1">صورة الطبيب</label>
           <input
             type="file"
             accept="image/*"
@@ -93,7 +93,7 @@
             class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-50 transition-all"
           >
             <option value="" disabled>اختر الدور...</option>
-            @for (role of roleStore.roles(); track role.id) {
+            @for (role of lookupsStore.roles(); track role.id) {
               <option [value]="role.id">{{ role.name }}</option>
             }
           </select>
@@ -107,7 +107,7 @@
             class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-50 transition-all"
           >
             <option value="" disabled>اختر الفرع...</option>
-            @for (branch of branchStore.branches(); track branch.id) {
+            @for (branch of lookupsStore.branches(); track branch.id) {
               <option [value]="branch.id">{{ branch.name }}</option>
             }
           </select>
@@ -133,6 +133,50 @@
             type="text"
             class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-50 transition-all"
           >
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label class="text-xs font-semibold text-slate-500 mr-1">رقم الترخيص</label>
+          <input
+            [formField]="doctorForm.licenseNumber"
+            type="text"
+            class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-50 transition-all"
+          >
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label class="text-xs font-semibold text-slate-500 mr-1">الدرجة الأكاديمية</label>
+          <select
+            [formField]="doctorForm.degree"
+            class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-50 transition-all"
+          >
+            <option value="1">بكالوريوس (Bachelor)</option>
+            <option value="2">ماجستير (Master)</option>
+            <option value="3">دكتوراه (Doctorate)</option>
+            <option value="4">أستاذ (Professor)</option>
+          </select>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label class="text-xs font-semibold text-slate-500 mr-1">رسوم الاستشارة</label>
+          <input
+            [formField]="doctorForm.consultationFee"
+            type="number"
+            class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-50 transition-all"
+          >
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label class="text-xs font-semibold text-slate-500 mr-1">التخصص الدقيق</label>
+          <select
+            [formField]="doctorForm.subSpecialtyId"
+            class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-50 transition-all"
+          >
+            <option value="" disabled>اختر التحصص...</option>
+            @for (sub of lookupsStore.subSpecialty(); track sub.id) {
+              <option [value]="sub.id">{{ sub.name }}</option>
+            }
+          </select>
         </div>
 
         <div class="flex flex-col gap-2">
@@ -164,52 +208,6 @@
             <option value="2">أنثى</option>
           </select>
         </div>
-
-        <div class="flex flex-col gap-2">
-          <label class="text-xs font-semibold text-slate-500 mr-1">رقم الترخيص الطبي</label>
-          <input
-            [formField]="doctorForm.licenseNumber"
-            type="text"
-            class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-50 transition-all"
-          >
-        </div>
-
-
-        <div class="flex flex-col gap-2">
-          <label class="text-xs font-semibold text-slate-500 mr-1">الدرجة العلمية</label>
-          <select
-            [formField]="doctorForm.academicDegree"
-            class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-50 transition-all"
-          >
-            <option value="" disabled>اختر الدرجة العلمية...</option>
-            <option value="1">Bachelor</option>
-            <option value="2">Master</option>
-            <option value="3">Doctorate</option>
-            <option value="4">Professor</option>
-          </select>
-        </div>
-
-        <div class="flex flex-col gap-2">
-          <label class="text-xs font-semibold text-slate-500 mr-1">رسوم الكشفية</label>
-          <input
-            [formField]="doctorForm.consultationFee"
-            type="number"
-            class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-50 transition-all"
-          >
-        </div>
-
-        <div class="flex flex-col gap-2">
-          <label class="text-xs font-semibold text-slate-500 mr-1">التخصص الدقيق</label>
-          <select
-            [formField]="doctorForm.subSpecialtyId"
-            class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-50 transition-all"
-          >
-            <option value="" disabled>اختر التخصص...</option>
-            @for (specialization of employeeStore.Specializations(); track specialization.id) {
-              <option [value]="specialization.id">{{ specialization.name }}</option>
-            }
-          </select>
-        </div>
       </div>
     </div>
 
@@ -223,7 +221,7 @@
         <div class="flex flex-col gap-2">
           <label class="text-xs font-semibold text-slate-500 mr-1">الشارع</label>
           <input
-            [formField]="doctorForm.street"
+            [formField]="doctorForm.address.street"
             type="text"
             class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-50 transition-all"
           >
@@ -232,7 +230,7 @@
         <div class="flex flex-col gap-2">
           <label class="text-xs font-semibold text-slate-500 mr-1">المدينة</label>
           <input
-            [formField]="doctorForm.city"
+            [formField]="doctorForm.address.city"
             type="text"
             class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-50 transition-all"
           >
@@ -241,7 +239,7 @@
         <div class="flex flex-col gap-2">
           <label class="text-xs font-semibold text-slate-500 mr-1">الدولة</label>
           <input
-            [formField]="doctorForm.country"
+            [formField]="doctorForm.address.country"
             type="text"
             class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-50 transition-all"
           >
@@ -256,7 +254,7 @@
         class="bg-blue-600 hover:bg-blue-700 text-white rounded-xl shadow-sm shadow-blue-100 transition-all cursor-pointer gap-2 px-5 py-2.5 text-sm font-medium"
       >
         <svg lucideSave class="w-4 h-4"></svg>
-        حفظ البيانات
+        حفظ الطبيب
       </button>
     </div>
   </form>
